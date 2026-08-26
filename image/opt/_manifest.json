@@ -1,0 +1,294 @@
+{
+ "manifest": {
+  "shani_bracelet": [
+   "shani_bracelet",
+   "shani_bracelet_2",
+   "shani_bracelet_3"
+  ],
+  "money_magnet": [
+   "money_magnet",
+   "money_magnet_2",
+   "money_magnet_3",
+   "money_magnet_4"
+  ],
+  "seven_chakra": [
+   "seven_chakra"
+  ],
+  "rose_quartz_love": [
+   "rose_quartz",
+   "rose_quartz_2",
+   "rose_quartz_3"
+  ],
+  "pyrite_solo": [
+   "pyrite_solo",
+   "pyrite_solo2",
+   "pyrite_solo3",
+   "pyrite_solo4"
+  ],
+  "moonstone_pearl": [
+   "moonstone_pearl",
+   "moonstone_pearl_2",
+   "moonstone_pearl_3"
+  ],
+  "dhan_yog_rudraksha": [
+   "DhanYog1",
+   "DhanYog2",
+   "DhanYog3"
+  ]
+ },
+ "report": [
+  {
+   "sku": "shani_bracelet",
+   "file": "shani_bracelet.jpg",
+   "orig_kb": 289,
+   "160webp": 5.8,
+   "160jpg": 7.8,
+   "640avif": 47.9,
+   "640webp": 79.0,
+   "640jpg": 100.5,
+   "1152avif": 125.0,
+   "1152webp": 191.8,
+   "1152jpg": 263.0
+  },
+  {
+   "sku": "shani_bracelet",
+   "file": "shani_bracelet_2.jpg",
+   "orig_kb": 176,
+   "160webp": 5.7,
+   "160jpg": 7.7,
+   "640avif": 30.0,
+   "640webp": 37.8,
+   "640jpg": 66.9,
+   "1152avif": 63.5,
+   "1152webp": 82.7,
+   "1152jpg": 154.1
+  },
+  {
+   "sku": "shani_bracelet",
+   "file": "shani_bracelet_3.jpg",
+   "orig_kb": 209,
+   "160webp": 6.9,
+   "160jpg": 8.7,
+   "640avif": 34.5,
+   "640webp": 50.2,
+   "640jpg": 80.3,
+   "1152avif": 73.4,
+   "1152webp": 104.9,
+   "1152jpg": 186.1
+  },
+  {
+   "sku": "money_magnet",
+   "file": "money_magnet.jpg",
+   "orig_kb": 1559,
+   "160webp": 5.4,
+   "160jpg": 7.2,
+   "640avif": 56.4,
+   "640webp": 98.8,
+   "640jpg": 116.1,
+   "1152avif": 137.0,
+   "1152webp": 239.4,
+   "1152jpg": 314.3
+  },
+  {
+   "sku": "money_magnet",
+   "file": "money_magnet_2.jpg",
+   "orig_kb": 1274,
+   "160webp": 7.1,
+   "160jpg": 8.7,
+   "640avif": 41.2,
+   "640webp": 65.8,
+   "640jpg": 90.8,
+   "1152avif": 87.6,
+   "1152webp": 136.5,
+   "1152jpg": 223.2
+  },
+  {
+   "sku": "money_magnet",
+   "file": "money_magnet_3.jpg",
+   "orig_kb": 1645,
+   "160webp": 4.8,
+   "160jpg": 6.9,
+   "640avif": 65.1,
+   "640webp": 120.6,
+   "640jpg": 130.8,
+   "1152avif": 167.2,
+   "1152webp": 311.2,
+   "1152jpg": 368.1
+  },
+  {
+   "sku": "money_magnet",
+   "file": "money_magnet_4.jpg",
+   "orig_kb": 1959,
+   "160webp": 4.8,
+   "160jpg": 7.0,
+   "640avif": 34.1,
+   "640webp": 47.3,
+   "640jpg": 77.1,
+   "1152avif": 82.2,
+   "1152webp": 111.2,
+   "1152jpg": 205.0
+  },
+  {
+   "sku": "seven_chakra",
+   "file": "seven_chakra.jpg",
+   "orig_kb": 116,
+   "160webp": 3.8,
+   "160jpg": 6.0,
+   "640avif": 21.6,
+   "640webp": 22.4,
+   "640jpg": 46.1
+  },
+  {
+   "sku": "rose_quartz_love",
+   "file": "rose_quartz.jpg",
+   "orig_kb": 210,
+   "160webp": 4.3,
+   "160jpg": 6.6,
+   "640avif": 42.5,
+   "640webp": 65.8,
+   "640jpg": 90.5
+  },
+  {
+   "sku": "rose_quartz_love",
+   "file": "rose_quartz_2.jpg",
+   "orig_kb": 203,
+   "160webp": 5.7,
+   "160jpg": 7.8,
+   "640avif": 39.0,
+   "640webp": 57.5,
+   "640jpg": 86.7
+  },
+  {
+   "sku": "rose_quartz_love",
+   "file": "rose_quartz_3.jpg",
+   "orig_kb": 233,
+   "160webp": 4.7,
+   "160jpg": 7.1,
+   "640avif": 42.0,
+   "640webp": 68.1,
+   "640jpg": 91.1
+  },
+  {
+   "sku": "pyrite_solo",
+   "file": "pyrite_solo.jpg",
+   "orig_kb": 296,
+   "160webp": 4.8,
+   "160jpg": 6.8,
+   "640avif": 56.4,
+   "640webp": 103.0,
+   "640jpg": 116.2
+  },
+  {
+   "sku": "pyrite_solo",
+   "file": "pyrite_solo2.jpg",
+   "orig_kb": 245,
+   "160webp": 4.0,
+   "160jpg": 6.0,
+   "640avif": 50.5,
+   "640webp": 84.8,
+   "640jpg": 102.7
+  },
+  {
+   "sku": "pyrite_solo",
+   "file": "pyrite_solo3.jpg",
+   "orig_kb": 236,
+   "160webp": 8.1,
+   "160jpg": 9.6,
+   "640avif": 44.9,
+   "640webp": 79.5,
+   "640jpg": 108.4
+  },
+  {
+   "sku": "pyrite_solo",
+   "file": "pyrite_solo4.jpg",
+   "orig_kb": 299,
+   "160webp": 4.7,
+   "160jpg": 6.8,
+   "640avif": 56.4,
+   "640webp": 104.6,
+   "640jpg": 116.6
+  },
+  {
+   "sku": "moonstone_pearl",
+   "file": "moonstone_pearl.jpg",
+   "orig_kb": 2662,
+   "160webp": 5.7,
+   "160jpg": 8.1,
+   "640avif": 36.7,
+   "640webp": 64.5,
+   "640jpg": 91.2,
+   "1152avif": 102.9,
+   "1152webp": 161.6,
+   "1152jpg": 253.6
+  },
+  {
+   "sku": "moonstone_pearl",
+   "file": "moonstone_pearl_2.jpg",
+   "orig_kb": 3274,
+   "160webp": 4.9,
+   "160jpg": 7.1,
+   "640avif": 55.8,
+   "640webp": 107.9,
+   "640jpg": 124.8,
+   "1152avif": 152.6,
+   "1152webp": 300.1,
+   "1152jpg": 360.3
+  },
+  {
+   "sku": "moonstone_pearl",
+   "file": "moonstone_pearl_3.jpg",
+   "orig_kb": 2962,
+   "160webp": 5.1,
+   "160jpg": 7.4,
+   "640avif": 42.3,
+   "640webp": 77.3,
+   "640jpg": 99.8,
+   "1152avif": 136.5,
+   "1152webp": 234.6,
+   "1152jpg": 311.3
+  },
+  {
+   "sku": "dhan_yog_rudraksha",
+   "file": "DhanYog1.jpg",
+   "orig_kb": 258,
+   "160webp": 5.2,
+   "160jpg": 7.2,
+   "640avif": 52.7,
+   "640webp": 88.8,
+   "640jpg": 107.9
+  },
+  {
+   "sku": "dhan_yog_rudraksha",
+   "file": "DhanYog2.jpg",
+   "orig_kb": 158,
+   "160webp": 4.5,
+   "160jpg": 6.4,
+   "640avif": 33.3,
+   "640webp": 43.3,
+   "640jpg": 71.8
+  },
+  {
+   "sku": "dhan_yog_rudraksha",
+   "file": "DhanYog3.jpg",
+   "orig_kb": 253,
+   "160webp": 5.6,
+   "160jpg": 7.4,
+   "640avif": 51.9,
+   "640webp": 90.6,
+   "640jpg": 108.4
+  },
+  {
+   "sku": "_placeholder",
+   "file": "crystal-placeholder.jpg",
+   "orig_kb": 51,
+   "160webp": 0.8,
+   "160jpg": 1.8,
+   "640avif": 4.1,
+   "640webp": 5.6,
+   "640jpg": 11.9,
+   "1152avif": 6.3,
+   "1152webp": 11.1,
+   "1152jpg": 28.3
+  }
+ ]
+}
