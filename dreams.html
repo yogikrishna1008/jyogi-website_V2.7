@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dream Journal — Jyogi</title>
+<meta name="description" content="Record and interpret your dreams with Vedic symbolism. Free dream journal with tag-based analysis.">
+<link rel="canonical" href="https://jyogi.in/dreams.html">
+<link rel="icon" href="/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="fonts/playfair-display-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/v25-fonts.css">
+<link rel="stylesheet" href="assets/shared.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VMKLQJ64RV"></script>
+<style>
+body.light-theme .review-card,body.light-theme .bracelet-card,body.light-theme .service-card,body.light-theme .muhurta-day,body.light-theme .dream-entry{background:#ffffff;border-color:rgba(100,65,0,0.15);box-shadow:0 2px 12px rgba(0,0,0,0.07);}
+body.light-theme .dream-input{background:#fff;color:#1a0f00;border-color:rgba(100,65,0,0.25);}
+body.light-theme .dream-text{color:#1a0f00;}
+body.light-theme .dream-date{color:#7a5c30;}
+body.light-theme .dream-tag{background:rgba(91,58,158,0.08);border-color:rgba(91,58,158,0.2);color:#5b3a9e;}
+body.warm-theme .review-card,body.warm-theme .bracelet-card,body.warm-theme .service-card,body.warm-theme .muhurta-day,body.warm-theme .dream-entry{background:#FFFFFF;border:1px solid rgba(138,106,8,0.25);box-shadow:none;}
+.dream-entry{background:rgba(255,255,255,0.03);border:1px solid rgba(255,195,64,0.1);
+  border-radius:14px;padding:16px;margin-bottom:12px;}
+.dream-date{font-size:14px;letter-spacing:0.15em;color:var(--dim);}
+.dream-text{font-size:14px;color:var(--text);margin:6px 0;line-height:1.7;}
+.dream-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;}
+.dream-tag{font-size:14px;padding:2px 8px;border-radius:10px;background:rgba(167,139,250,0.15);
+  border:1px solid rgba(167,139,250,0.25);color:var(--violet);}
+.dream-empty{text-align:center;padding:40px;color:var(--dim);font-style:italic;}
+.dream-input{background:rgba(10,5,30,0.7);border:1px solid rgba(255,195,64,0.25);border-radius:12px;
+  padding:14px 16px;color:var(--text);font-size:15px;font-family:'Cormorant Garamond',serif;
+  outline:none;width:100%;resize:none;line-height:1.7;transition:border-color 0.25s;}
+.dream-input:focus{border-color:rgba(255,195,64,0.5);}
+.dream-mood{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0;}
+.mood-btn{font-size:20px;padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.03);cursor:pointer;transition:all 0.15s;-webkit-tap-highlight-color:transparent;}
+.mood-btn.sel{background:rgba(255,195,64,0.12);border-color:rgba(255,195,64,0.4);}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-chart" viewBox="0 0 24 24"><path d="M12 2 22 12 12 22 2 12Z"/><path d="M12 7 17 12 12 17 7 12Z"/></symbol>
+<symbol id="i-crystal" viewBox="0 0 24 24"><path d="M12 2 20 9l-8 13L4 9Z"/><path d="M4 9h16M12 2v20"/></symbol>
+<symbol id="i-report" viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6Z"/><path d="M15 2v5h5M9 12h7M9 16h7"/></symbol>
+<symbol id="i-talk" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.5 7.2L3 21l1.8-6.5A8 8 0 1 1 21 12Z"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+<symbol id="i-om" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18 4.5 4.5 0 0 1 0-9 4.5 4.5 0 0 0 0-9Z"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M5 5l1.8 1.8M17.2 17.2 19 19M19 5l-1.8 1.8M6.8 17.2 5 19"/></symbol>
+<symbol id="i-cards" viewBox="0 0 24 24"><rect x="3" y="5" width="11" height="15" rx="2"/><path d="M17 7l4 1.4-3.5 11"/></symbol>
+<symbol id="i-compat" viewBox="0 0 24 24"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></symbol>
+<symbol id="i-guide" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></symbol>
+<symbol id="i-num" viewBox="0 0 24 24"><path d="M9 4v16M15 4v16M4 9h16M4 15h16"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14A8.5 8.5 0 0 1 10 4a8.5 8.5 0 1 0 10 10Z"/></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><path d="M21 3 10.5 13.5M21 3l-6.8 18-3.7-7.5L3 10.1Z"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="2.5"/></symbol>
+<symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 13h18M12 9v12M12 9S9.5 4 7 6s5 3 5 3ZM12 9s2.5-5 5-3-5 3-5 3Z"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5 20 12 7 19.5Z"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></symbol>
+<symbol id="i-wa" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.84-.2-.49-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.22.25-.87.85-.87 2.07s.89 2.4 1.02 2.56c.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29Z"/></symbol>
+</defs></svg>
+<div class="mobile-backdrop" id="mob-backdrop" onclick="closeMobileNav()"></div>
+<nav class="mobile-drawer" id="mob-drawer" aria-label="Mobile navigation">
+  <div class="drawer-head"><span class="logo-text" style="font-size:.9375rem;color:var(--navy)">JYOGI</span>
+    <button class="drawer-close" onclick="closeMobileNav()" aria-label="Close menu">✕</button></div>
+  <div class="drawer-links">
+    <a href="/"><svg class="icon"><use href="#i-sun"/></svg>Home</a>
+    <a href="/tools.html#astrology"><svg class="icon"><use href="#i-chart"/></svg>Kundli</a>
+    <a href="/tools.html#tarot"><svg class="icon"><use href="#i-cards"/></svg>Tarot</a>
+    <a href="/tools.html#astrology"><svg class="icon"><use href="#i-report"/></svg>Reports</a>
+    <a href="/#consult" onclick="closeMobileNav()"><svg class="icon"><use href="#i-talk"/></svg>Consultations</a>
+    <a href="/crystals.html"><svg class="icon"><use href="#i-crystal"/></svg>Crystals</a>
+    <a href="/blog/index.html"><svg class="icon"><use href="#i-cards"/></svg>Blog</a>
+    <a href="/#about" onclick="closeMobileNav()"><svg class="icon"><use href="#i-om"/></svg>About</a>
+  </div>
+  <div class="drawer-settings">
+    <!-- V2.5: language selector intentionally hidden on this homepage —
+         the new copy has no Hindi/Odia translation yet, so offering the
+         switch here would be misleading. Full homepage i18n is the
+         immediate next task (see release notes). The underlying
+         setSiteLang() mechanism is untouched and unremoved, ready to
+         re-enable this control once translations are wired in. -->
+    <div class="drawer-settings-row">
+      <span class="drawer-settings-label">Appearance</span>
+      <button class="theme-btn" id="theme-btn-mob" onclick="cycleTheme()" aria-label="Change appearance">
+        <span id="theme-icon-mob">☀️</span> <span id="theme-label-mob">Light</span>
+      </button>
+    </div>
+  </div>
+  <div class="drawer-cta"><a href="https://wa.me/919437794561" rel="noopener" class="btn btn-wa"><svg class="icon wa-ico"><use href="#i-wa"/></svg>Talk to Jyogi</a></div>
+</nav>
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <svg class="logo-mark" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="19" cy="19" r="18" fill="#1A1B3A" stroke="#C4993D" stroke-width="1"/>
+        <path d="M19 5L33 19L19 33L5 19Z" stroke="url(#lg)" stroke-width="1.5" fill="none"/>
+        <path d="M19 10L28 19L19 28L10 19Z" stroke="url(#lg)" stroke-width="1" fill="none" opacity="0.5"/>
+        <text x="19" y="23" text-anchor="middle" font-family="'Playfair Display',serif" font-size="12" font-weight="600" fill="#C4993D">J</text>
+        <defs><linearGradient id="lg" x1="5" y1="5" x2="33" y2="33"><stop stop-color="#D4A94D"/><stop offset="1" stop-color="#A67C2E"/></linearGradient></defs>
+      </svg>
+      <span class="logo-text">JYOGI</span>
+    </a>
+    <nav class="nav-links">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/tools.html#astrology" class="nav-link">Kundli</a>
+      <a href="/tools.html#tarot" class="nav-link">Tarot</a>
+      <a href="/tools.html#astrology" class="nav-link">Reports</a>
+      <a href="/#consult" class="nav-link">Consultations</a>
+      <a href="/crystals.html" class="nav-link">Crystals</a>
+      <a href="/blog/index.html" class="nav-link">Blog</a>
+      <a href="/#about" class="nav-link">About</a>
+    </nav>
+    <div class="nav-right">
+      <!-- V2.5: language selector intentionally hidden on this homepage —
+           see matching comment in the mobile drawer above. -->
+      <button class="theme-btn" id="theme-btn" onclick="cycleTheme()" aria-label="Change appearance"><span id="theme-icon">☀️</span></button>
+      <a href="https://wa.me/919437794561" rel="noopener" class="btn btn-wa btn-sm nav-cta" aria-label="Talk to Jyogi on WhatsApp"><svg class="icon wa-ico"><use href="#i-wa"/></svg><span class="wa-label">Talk to Jyogi</span></a>
+    </div>
+    <button class="nav-toggle" onclick="openMobileNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<main style="padding-top:calc(62px + 20px)">
+<section id="dreams">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-badge">✦ Sacred Dreams ✦</div>
+      <h2 class="sec-title"><span data-i18n="section.dreams_title">Dream Journal</span></span></h2>
+      <p class="sec-desc" style="font-family:var(--font-body),'Inter',sans-serif;font-size:16px;font-style:normal;color:var(--soft-slate);line-height:1.7;"><span data-i18n="auto.your_dreams_carry_hidden_mes">Your dreams carry hidden messages. Record yours and receive a Tarot card — or let Jyogi interpret the deeper meaning.</span></p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px;">
+        <button onclick="document.querySelector('#tarot').scrollIntoView({behavior:'smooth'});setTimeout(()=>{document.getElementById('draw-btn').click();},600);" style="background:rgba(167,139,250,0.15);border:1px solid rgba(167,139,250,0.4);border-radius:20px;padding:9px 22px;color:#a78bfa;font-family:'Cormorant SC',serif;font-size:13px;letter-spacing:0.1em;cursor:pointer;transition:all 0.2s;">🎴 Interpret My Dream with Tarot</button>
+        <button onclick="openWhatsApp('Hi Jyogi! I want to get my recurring dream interpreted. Can you help?')" style="background:rgba(37,211,102,0.12);border:1px solid rgba(37,211,102,0.35);border-radius:20px;padding:9px 22px;color:#25D366;font-family:'Cormorant SC',serif;font-size:13px;letter-spacing:0.1em;cursor:pointer;transition:all 0.2s;">💬 Enquire on WhatsApp</button>
+      </div>
+    </div>
+    <div style="max-width:640px;margin:0 auto;width:100%;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px;margin-bottom:20px;">
+        <div class="form-label" style="margin-bottom:10px;">Describe your dream…</div>
+        <textarea class="dream-input" id="dream-text" rows="4" placeholder="Last night I dreamed of…"></textarea>
+        <div style="margin:12px 0;">
+          <div class="form-label" style="margin-bottom:8px;">Mood on waking</div>
+          <div class="dream-mood" id="dream-mood-row">
+            <div class="mood-btn" data-mood="peaceful" onclick="selectMood(this)">😌</div>
+            <div class="mood-btn" data-mood="anxious" onclick="selectMood(this)">😰</div>
+            <div class="mood-btn" data-mood="confused" onclick="selectMood(this)">😕</div>
+            <div class="mood-btn" data-mood="joyful" onclick="selectMood(this)">😊</div>
+            <div class="mood-btn" data-mood="fearful" onclick="selectMood(this)">😨</div>
+            <div class="mood-btn" data-mood="mysterious" onclick="selectMood(this)">🌙</div>
+            <div class="mood-btn" data-mood="powerful" onclick="selectMood(this)">⚡</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;">
+          <button class="submit-btn" style="flex:1;" onclick="saveDream()">✨ Save & Draw My Card</button>
+          <button class="submit-btn" style="flex:0 0 50px;background:rgba(255,255,255,0.06);color:var(--muted);" onclick="clearDreamForm()" title="Clear">✕</button>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+        <div style="font-family:'Cinzel',serif;font-size:13px;color:var(--gold);">✦ Your Dream Log</div>
+        <button onclick="clearAllDreams()" style="background:none;border:none;color:var(--dim);font-size:14px;cursor:pointer;font-family:inherit;">Clear all</button>
+      </div>
+      <div id="dream-log"></div>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="footer"><div class="container">
+  <div class="footer-grid">
+    <div class="footer-brand"><span class="logo-text">JYOGI</span>
+      <p>Vedic astrology, personalised reports and traditional crystal remedies by a practitioner with 20+ years of experience.</p>
+      <div class="tagline">Ancient Wisdom. Intelligent Guidance.</div></div>
+    <div class="footer-col"><h4>Quick Links</h4><a href="/tools.html#astrology">Kundli</a><a href="/tools.html#astrology">Reports</a><a href="/#consult">Consultations</a><a href="/crystals.html">Crystals</a></div>
+    <div class="footer-col"><h4>Resources</h4><a href="/blog/index.html">Blog</a><a href="/tools.html">Free Tools</a><a href="/blog/sade-sati.html">Sade Sati Guide</a></div>
+    <div class="footer-col"><h4>Support</h4><a href="/privacy.html">Privacy Policy</a><a href="/refund-policy.html">Refund Policy</a></div>
+    <div class="footer-col"><h4>Connect</h4><a href="https://www.youtube.com/@jyogi1008" target="_blank" rel="noopener">YouTube @jyogi1008</a><a href="https://instagram.com/jyogi.tarot" target="_blank" rel="noopener">Instagram @jyogi.tarot</a><a href="https://wa.me/919437794561" target="_blank" rel="noopener">WhatsApp</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Jyogi.in — All rights reserved</span>
+    <span class="footer-pay"><svg class="icon"><use href="#i-lock"/></svg>Secure payments via Razorpay</span></div>
+</div></footer>
+<script src="assets/shared.js"></script>
+<script>
+const DREAM_KEY='jyogi_dreams';
+
+const DREAM_KEYWORDS={
+  water:['water','ocean','river','rain','flood','swim','sea','lake','wave'],
+  flying:['fly','flying','float','soar','sky','cloud','bird'],
+  falling:['fall','falling','drop','plunge','cliff','abyss'],
+  chasing:['chase','chased','run','escape','flee','follow'],
+  family:['mother','father','mom','dad','sister','brother','child','baby','family'],
+  death:['death','die','dead','funeral','grave','cemetery'],
+  snake:['snake','serpent','cobra','naga'],
+  temple:['temple','god','goddess','prayer','puja','mandir','deity','divine'],
+};
+
+const DREAM_TAG_MEANINGS={
+  water:'Emotions & the unconscious',flying:'Freedom & aspiration',falling:'Loss of control',
+  chasing:'Avoidance & anxiety',family:'Karmic bonds',death:'Transformation',
+  snake:'Kundalini energy & healing',temple:'Spiritual calling'
+};
+
+var _dreamMood='peaceful';
+
+function selectMood(el){
+  _dreamMood=el.dataset.mood;
+  document.querySelectorAll('.mood-btn').forEach(b=>b.classList.remove('sel'));
+  el.classList.add('sel');
+}
+
+function saveDream(){
+  const text=document.getElementById('dream-text').value.trim();
+  if(!text){alert('Please describe your dream first.');return;}
+  const dreams=getDreams();
+  // Draw a tarot card for this dream
+  const card=(typeof TAROT_CARDS!=='undefined') ? TAROT_CARDS[Math.floor(Math.random()*TAROT_CARDS.length)] : null;
+  const isRev=Math.random()<0.35;
+  const entry={
+    id:Date.now(),
+    text,
+    mood:_dreamMood,
+    date:new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}),
+    card: card ? card.name : null,
+    cardDisplay: card ? card.name.replace(/_/g,' ').replace(/^\d+\s/,'') : null,
+    cardReversed: card ? isRev : false,
+    cardMsg: card ? (isRev ? card.shadow : card.meaning) : null,
+    tags:extractDreamTags(text)
+  };
+  dreams.unshift(entry);
+  if(dreams.length>30) dreams.pop();
+  try{ localStorage.setItem(DREAM_KEY, JSON.stringify(dreams)); }catch(e){}
+  clearDreamForm();
+  renderDreamLog();
+}
+
+function getDreams(){
+  try{ const d=localStorage.getItem(DREAM_KEY); return d?JSON.parse(d):[]; }
+  catch(e){ return []; }
+}
+
+function clearDreamForm(){
+  document.getElementById('dream-text').value='';
+  _dreamMood='peaceful';
+  document.querySelectorAll('.mood-btn').forEach(b=>b.classList.remove('sel'));
+}
+
+function clearAllDreams(){
+  if(!confirm('Clear all dream entries?')) return;
+  try{ localStorage.removeItem(DREAM_KEY); }catch(e){}
+  renderDreamLog();
+}
+
+function extractDreamTags(text){
+  const lower=text.toLowerCase();
+  const found=[];
+  Object.entries(DREAM_KEYWORDS).forEach(([tag,words])=>{
+    if(words.some(w=>lower.includes(w))) found.push(tag);
+  });
+  return found.slice(0,4);
+}
+
+function renderDreamLog(){
+  const dreams=getDreams();
+  const el=document.getElementById('dream-log');
+  if(!el) return;
+  if(!dreams.length){
+    el.innerHTML='<div class="dream-empty">✦ Your dream log is empty. Record your first dream above and receive a tarot guidance card.</div>';
+    return;
+  }
+  el.innerHTML=dreams.map(d=>`
+    <div class="dream-entry">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+        <div class="dream-date">${d.date}</div>
+        <div style="font-size:18px;">${{peaceful:'😌',anxious:'😰',confused:'😕',joyful:'😊',fearful:'😨',mysterious:'🌙',powerful:'⚡'}[d.mood]||'😌'}</div>
+      </div>
+      <div class="dream-text">${d.text.length>200?d.text.slice(0,200)+'…':d.text}</div>
+      ${d.tags.length?'<div class="dream-tags">'+d.tags.map(t=>`<span class="dream-tag" title="${DREAM_TAG_MEANINGS[t]||''}">✦ ${t}</span>`).join('')+'</div>':''}
+      <div style="margin-top:10px;background:rgba(167,139,250,0.06);border:1px solid rgba(167,139,250,0.2);border-radius:10px;padding:10px;">
+        <div style="font-size:14px;letter-spacing:0.2em;color:var(--violet);margin-bottom:4px;">TAROT GUIDANCE • ${d.cardDisplay}${d.cardReversed?' (Reversed)':''}</div>
+        <div style="font-size:14px;color:var(--muted);line-height:1.6;">${(d.cardMsg||'').slice(0,120)}…</div>
+        <div style="font-size:13px;color:var(--violet);margin-top:6px;cursor:pointer;" onclick="openWhatsApp('Hi Jyogi, I had a dream and received the ${d.cardDisplay} card. I want to understand this deeper.')">Enquire on WhatsApp →</div>
+      </div>
+    </div>
+  `).join('');
+}
+(function(){ renderDreamLog(); })();
+</script>
+</body>
+</html>

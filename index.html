@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jyogi — Ancient Wisdom. Clear Guidance. Better Decisions.</title>
+<meta name="description" content="Vedic astrology, Tarot, numerology and personally-prepared crystal remedies from a practitioner with 20+ years of experience. Swiss Ephemeris precision — personal interpretation.">
+<link rel="canonical" href="https://jyogi.in/">
+<link rel="icon" href="/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<!-- Cormorant Garamond for display headings -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap">
+
+<!-- Self-hosted Inter (body) -->
+<link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/v25-fonts.css">
+
+<!-- Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VMKLQJ64RV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VMKLQJ64RV', { anonymize_ip: true, client_storage: 'none' });
+</script>
+
+<style>
+/* ══════════════════════════════════════════════════════
+   JYOGI V2.6 — SACRED WATERS DESIGN SYSTEM
+   ══════════════════════════════════════════════════════ */
+:root {
+  /* ── Palette */
+  --void:          #0C1828;
+  --void-soft:     #112438;
+  --void-mid:      #1A3248;
+  --teal:          #2A8F82;
+  --teal-glow:     #3DBFB0;
+  --teal-deep:     #1E7A6E;
+  --teal-dim:      rgba(42,143,130,.10);
+  --teal-border:   rgba(42,143,130,.25);
+  --gold:          #B8912E;
+  --gold-light:    #D4A94D;
+  --gold-muted:    rgba(184,145,46,.15);
+  --parchment:     #F6F2EB;
+  --parchment-warm:#EDE7DC;
+  --cream:         #FDFBF8;
+  --text-pri:      #1C1810;
+  --text-sec:      #4A4540;
+  --text-dim:      #8A847C;
+  --border:        rgba(28,24,16,.07);
+  --border-gold:   rgba(184,145,46,.2);
+
+  /* ── Legacy tokens (used by crystals / tool pages that import this file) */
+  --ivory:         #F6F2EB;
+  --ivory-warm:    #EDE7DC;
+  --ivory-deep:    #E4DDD1;
+  --white:         #FFF;
+  --navy:          #0C1828;
+  --navy-soft:     #112438;
+  --navy-mid:      #1A3248;
+  --gold-dark:     #9A7822;
+
+  /* ── Type */
+  --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-body:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* ── Scale */
+  --f-hero:   clamp(2.75rem, 6.5vw, 5.25rem);
+  --f-h1:     clamp(1.875rem, 3.5vw, 2.75rem);
+  --f-h2:     clamp(1.375rem, 2.2vw, 1.875rem);
+  --f-h3:     clamp(1.05rem, 1.4vw, 1.25rem);
+  --f-body:   1rem;
+  --f-small:  .875rem;
+  --f-xs:     .75rem;
+  --f-xxs:    .6875rem;
+
+  /* ── Spacing */
+  --max-width: 1160px;
+  --gutter-desk: 1.5rem;
+  --gutter-tab:  1.25rem;
+  --gutter-mob:  1rem;
+  --section-pad: clamp(3.5rem, 7vw, 6rem);
+  --header-h:    64px;
+  --r-card:      12px;
+  --r-btn:       100px;
+  --r-sm:        6px;
+
+  /* ── Motion */
+  --ease:     cubic-bezier(.4,0,.2,1);
+  --dur-fast: 150ms;
+  --dur-norm: 240ms;
+
+  /* ── Shadows */
+  --sh-sm:  0 1px 4px rgba(12,24,40,.06);
+  --sh-md:  0 4px 18px rgba(12,24,40,.08);
+  --sh-lg:  0 10px 38px rgba(12,24,40,.12);
+
+  /* ── Theme tokens (light default) */
+  --bg:           var(--parchment);
+  --bg-alt:       var(--parchment-warm);
+  --fg:           var(--text-pri);
+  --fg-sec:       var(--text-sec);
+  --fg-dim:       var(--text-dim);
+  --card-bg:      #FFF;
+  --card-border:  var(--border);
+  --header-bg:    rgba(12,24,40,.94);
+}
+
+/* ── Dark mode */
+body.dark-mode {
+  --bg:           var(--void);
+  --bg-alt:       var(--void-soft);
+  --fg:           #EDE8DF;
+  --fg-sec:       #B0AAA0;
+  --fg-dim:       #6A655E;
+  --card-bg:      var(--void-soft);
+  --card-border:  rgba(255,255,255,.07);
+  --ivory:        var(--void);
+  --ivory-warm:   var(--void-soft);
+  --ivory-deep:   var(--void-mid);
+  --white:        var(--void-soft);
+  --text-primary: #EDE8DF;
+  --text-secondary: #B0AAA0;
+  --text-muted:   #6A655E;
+  --border:       rgba(255,255,255,.07);
+  --border-gold:  rgba(184,145,46,.25);
+}
+body.warm-mode {
+  --bg:           #F5EEDD;
+  --bg-alt:       #EFE3C8;
+  --ivory:        #F5EEDD;
+  --ivory-warm:   #EFE3C8;
+  --ivory-deep:   #E6D6AE;
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-body);
+  font-size: var(--f-body);
+  line-height: 1.6;
+  color: var(--fg);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background var(--dur-norm) var(--ease), color var(--dur-norm) var(--ease);
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font-family: inherit; }
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; line-height: 1.2; color: var(--fg); }
+::selection { background: rgba(42,143,130,.2); }
+:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; } }
+
+/* ── UTILITIES ── */
+.icon { width: 1em; height: 1em; display: inline-block; vertical-align: -.125em; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.wrap { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--gutter-desk); }
+.section { padding: var(--section-pad) 0; }
+
+/* ── BUTTONS ── */
+.btn { display: inline-flex; align-items: center; gap: .5rem; font-weight: 500; font-size: var(--f-small); border: none; border-radius: var(--r-btn); padding: .8125rem 1.75rem; transition: all var(--dur-norm) var(--ease); cursor: pointer; }
+.btn-teal { background: var(--teal); color: #fff; }
+.btn-teal:hover { background: var(--teal-glow); transform: translateY(-1px); box-shadow: 0 8px 28px rgba(42,143,130,.35); }
+.btn-ghost { background: transparent; color: rgba(237,232,223,.65); border: 1px solid rgba(255,255,255,.14); }
+.btn-ghost:hover { border-color: rgba(255,255,255,.35); color: #EDE8DF; }
+.btn-outline { background: transparent; border: 1px solid var(--card-border); color: var(--fg); padding: .75rem 1.625rem; }
+.btn-outline:hover { border-color: var(--teal); color: var(--teal); }
+.btn-sm { padding: .5rem 1.125rem; font-size: var(--f-xs); }
+/* Legacy support */
+.btn-primary { background: var(--teal); color: #fff; }
+.btn-primary:hover { background: var(--teal-glow); transform: translateY(-1px); }
+.btn-gold { background: linear-gradient(135deg,var(--gold),var(--gold-dark,#9A7822)); color: #fff; }
+.btn-gold:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(184,145,46,.3); }
+.btn-wa { background: var(--void); color: #fff; border: 1px solid rgba(184,145,46,.3); }
+.btn-wa:hover { background: var(--void-soft); border-color: var(--gold); }
+.wa-ico { color: #25D366; fill: currentColor; stroke: none; }
+
+/* ── ORNAMENT ── */
+.ornament {
+  display: flex; align-items: center; gap: .75rem;
+  font-family: var(--font-display); font-style: italic;
+  font-size: var(--f-small); color: var(--gold); letter-spacing: .04em;
+}
+.ornament::before, .ornament::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-muted), transparent);
+}
+
+/* ════════════════════════════════════
+   HEADER
+   ════════════════════════════════════ */
+.header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(12,24,40,.94);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  transition: background var(--dur-norm) var(--ease);
+}
+.header-inner {
+  max-width: var(--max-width); margin: 0 auto;
+  padding: 0 var(--gutter-desk);
+  display: flex; align-items: center; justify-content: space-between;
+  height: var(--header-h);
+}
+.logo { display: flex; align-items: center; gap: .625rem; }
+.logo-mark { width: 34px; height: 34px; flex-shrink: 0; }
+.logo-text {
+  font-family: var(--font-display); font-size: 1.125rem;
+  font-weight: 400; color: #EDE8DF; letter-spacing: .08em;
+}
+.nav-links { display: flex; gap: 2px; }
+.nav-link {
+  font-size: var(--f-small); font-weight: 400;
+  color: rgba(237,232,223,.6);
+  padding: .3rem .75rem; border-radius: var(--r-sm);
+  transition: color var(--dur-fast) var(--ease);
+}
+.nav-link:hover, .nav-link.active { color: #EDE8DF; }
+.nav-right { display: flex; align-items: center; gap: .75rem; }
+.lang-pill { display: flex; gap: 2px; border: 1px solid rgba(255,255,255,.1); border-radius: var(--r-btn); padding: 2px; }
+.lang-btn { font-size: 10px; font-weight: 600; color: rgba(237,232,223,.45); padding: 4px 8px; border-radius: var(--r-btn); border: none; background: none; cursor: pointer; transition: all var(--dur-fast); }
+.lang-btn.active { background: rgba(42,143,130,.2); color: var(--teal-glow); }
+.theme-btn { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); color: rgba(237,232,223,.6); font-size: 14px; transition: all var(--dur-fast); }
+.theme-btn:hover { border-color: var(--teal-border); color: #EDE8DF; }
+.nav-cta { font-size: var(--f-xs); padding: .5rem 1.125rem; }
+.nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: .5rem; min-height: 44px; min-width: 44px; align-items: center; justify-content: center; }
+.nav-toggle span { width: 22px; height: 2px; background: rgba(237,232,223,.8); border-radius: 2px; }
+
+/* Mobile drawer */
+.mobile-backdrop { position: fixed; inset: 0; z-index: 198; background: rgba(10,10,25,.6); opacity: 0; pointer-events: none; transition: opacity .3s; }
+.mobile-backdrop.open { opacity: 1; pointer-events: auto; }
+.mobile-drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(74vw,290px); z-index: 199; background: var(--void-soft); border-left: 1px solid rgba(255,255,255,.07); transform: translateX(100%); transition: transform .3s var(--ease); display: flex; flex-direction: column; overflow-y: auto; }
+.mobile-drawer.open { transform: translateX(0); }
+.drawer-head { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; border-bottom: 1px solid rgba(255,255,255,.07); }
+.drawer-close { width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,.07); border: none; display: flex; align-items: center; justify-content: center; color: rgba(237,232,223,.6); font-size: .875rem; }
+.drawer-links a { display: flex; align-items: center; gap: .75rem; padding: .875rem 1.25rem; font-size: .9375rem; font-weight: 400; color: rgba(237,232,223,.65); border-bottom: 1px solid rgba(255,255,255,.05); min-height: 48px; transition: color var(--dur-fast); }
+.drawer-links a:hover { color: #EDE8DF; }
+.drawer-links a .icon { width: 17px; height: 17px; color: var(--teal); }
+.drawer-settings { padding: .5rem 1.25rem 1rem; border-bottom: 1px solid rgba(255,255,255,.05); }
+.drawer-settings-row { display: flex; align-items: center; justify-content: space-between; padding: .75rem 0; }
+.drawer-settings-label { font-size: var(--f-xs); font-weight: 600; color: rgba(237,232,223,.4); letter-spacing: .04em; text-transform: uppercase; }
+.drawer-settings .theme-btn { width: auto; height: auto; border-radius: var(--r-btn); padding: 6px 12px; font-size: var(--f-xs); }
+.drawer-cta { padding: 1.25rem; margin-top: auto; }
+.drawer-cta .btn { width: 100%; justify-content: center; }
+
+/* ════════════════════════════════════
+   HERO
+   ════════════════════════════════════ */
+.hero {
+  background: var(--void);
+  min-height: 100vh; min-height: 100dvh;
+  display: flex; flex-direction: column;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 75% 55% at 25% 115%, rgba(42,143,130,.13), transparent),
+    radial-gradient(ellipse 50% 40% at 85% 15%, rgba(184,145,46,.06), transparent);
+  pointer-events: none;
+}
+.hero::after {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 8% 12%, rgba(255,255,255,.55), transparent),
+    radial-gradient(1px 1px at 15% 58%, rgba(255,255,255,.35), transparent),
+    radial-gradient(1.5px 1.5px at 25% 7%, rgba(255,255,255,.7), transparent),
+    radial-gradient(1px 1px at 32% 82%, rgba(255,255,255,.3), transparent),
+    radial-gradient(1px 1px at 42% 35%, rgba(255,255,255,.4), transparent),
+    radial-gradient(1.5px 1.5px at 55% 18%, rgba(255,255,255,.5), transparent),
+    radial-gradient(1px 1px at 58% 72%, rgba(255,255,255,.25), transparent),
+    radial-gradient(1px 1px at 68% 45%, rgba(255,255,255,.45), transparent),
+    radial-gradient(1px 1px at 75% 88%, rgba(255,255,255,.3), transparent),
+    radial-gradient(1.5px 1.5px at 82% 28%, rgba(255,255,255,.55), transparent),
+    radial-gradient(1px 1px at 88% 62%, rgba(255,255,255,.2), transparent),
+    radial-gradient(1px 1px at 93% 8%, rgba(255,255,255,.4), transparent),
+    radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,.2), transparent),
+    radial-gradient(1px 1px at 3% 40%, rgba(255,255,255,.3), transparent);
+  pointer-events: none;
+  animation: twinkle 9s ease-in-out infinite alternate;
+}
+@keyframes twinkle { 0% { opacity: .6; } 100% { opacity: 1; } }
+
+.hero-content {
+  flex: 1; display: flex; flex-direction: column; justify-content: center;
+  position: relative; z-index: 1;
+  max-width: var(--max-width); margin: 0 auto; width: 100%;
+  padding: calc(var(--header-h) + 3rem) var(--gutter-desk) 0;
+}
+.hero-eyebrow {
+  font-size: var(--f-xs); letter-spacing: .2em; text-transform: uppercase;
+  color: var(--teal-glow); font-weight: 400;
+  display: flex; align-items: center; gap: .75rem;
+  margin-bottom: 2.5rem;
+}
+.hero-eyebrow::before { content: '✦'; font-size: .65em; color: var(--gold); }
+.hero-title {
+  font-family: var(--font-display);
+  font-size: var(--f-hero);
+  font-weight: 300; line-height: 1.06;
+  color: #EDE8DF;
+  margin-bottom: 1.75rem;
+  text-wrap: balance; max-width: 14ch;
+}
+.hero-title em { font-style: italic; color: var(--teal-glow); font-weight: 300; }
+.hero-subtitle {
+  font-size: clamp(1rem, 1.3vw, 1.0625rem);
+  color: rgba(237,232,223,.55); line-height: 1.7;
+  max-width: 46ch; margin-bottom: 2.75rem;
+}
+.hero-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+
+.hero-trust {
+  margin-top: auto;
+  padding: 2rem var(--gutter-desk);
+  border-top: 1px solid rgba(255,255,255,.06);
+  display: flex; gap: clamp(1.5rem, 4vw, 3rem); flex-wrap: wrap;
+  position: relative; z-index: 1;
+  max-width: var(--max-width); margin-left: auto; margin-right: auto; width: 100%;
+}
+.trust-num {
+  font-family: var(--font-display);
+  font-size: clamp(1.375rem, 2.5vw, 1.875rem);
+  font-weight: 400; color: #EDE8DF; line-height: 1; display: block;
+}
+.trust-label { font-size: var(--f-xs); letter-spacing: .08em; text-transform: uppercase; color: rgba(237,232,223,.35); margin-top: .3rem; display: block; }
+
+/* ════════════════════════════════════
+   SKY STRIP
+   ════════════════════════════════════ */
+.sky-strip {
+  background: var(--void-soft);
+  border-top: 1px solid rgba(42,143,130,.2);
+  position: relative; z-index: 2;
+}
+.sky-inner {
+  max-width: var(--max-width); margin: 0 auto;
+  padding: .9375rem var(--gutter-desk);
+  display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+}
+.sky-badge {
+  font-size: var(--f-xs); letter-spacing: .14em; text-transform: uppercase;
+  color: var(--teal); font-weight: 500;
+  padding-right: 1.5rem; border-right: 1px solid rgba(255,255,255,.08);
+  white-space: nowrap; flex-shrink: 0;
+}
+.sky-items { display: flex; gap: clamp(1rem, 2.5vw, 2rem); flex-wrap: wrap; flex: 1; }
+.sky-item-label { font-size: var(--f-xxs); letter-spacing: .1em; text-transform: uppercase; color: rgba(237,232,223,.3); display: block; }
+.sky-item-val { font-size: var(--f-small); color: rgba(237,232,223,.75); }
+.sky-item-val.good { color: var(--teal-glow); }
+.sky-item-val.warn { color: #E8936A; }
+.sky-link { font-size: var(--f-xs); color: rgba(237,232,223,.3); letter-spacing: .06em; margin-left: auto; white-space: nowrap; transition: color var(--dur-fast); }
+.sky-link:hover { color: var(--teal-glow); }
+
+/* ════════════════════════════════════
+   PATHWAYS
+   ════════════════════════════════════ */
+.pathways { background: var(--bg); }
+.pathways-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem; margin-top: 2.5rem;
+}
+.pathway-card {
+  background: var(--card-bg); border: 1px solid var(--card-border);
+  border-radius: var(--r-card); padding: 2.25rem 1.75rem 2rem;
+  transition: all var(--dur-norm) var(--ease);
+  position: relative; overflow: hidden; cursor: pointer; display: block;
+}
+.pathway-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--teal); opacity: 0; transition: opacity var(--dur-norm); }
+.pathway-card:hover { transform: translateY(-3px); border-color: var(--teal-border); box-shadow: 0 12px 40px rgba(42,143,130,.08); }
+.pathway-card:hover::after { opacity: 1; }
+.pw-icon { width: 48px; height: 48px; background: var(--teal-dim); border-radius: 12px; display: grid; place-items: center; margin-bottom: 1.5rem; transition: background var(--dur-norm); }
+.pw-icon .icon { width: 22px; height: 22px; color: var(--teal); }
+.pathway-card:hover .pw-icon { background: rgba(42,143,130,.18); }
+.pw-title { font-family: var(--font-display); font-size: var(--f-h2); font-weight: 400; color: var(--fg); margin-bottom: .625rem; line-height: 1.2; }
+.pw-desc { font-size: var(--f-small); color: var(--fg-sec); line-height: 1.65; margin-bottom: 1.5rem; }
+.pw-link { font-size: var(--f-xs); letter-spacing: .1em; text-transform: uppercase; color: var(--teal); font-weight: 500; display: inline-flex; align-items: center; gap: .4rem; transition: gap var(--dur-norm); }
+.pathway-card:hover .pw-link { gap: .7rem; }
+
+/* tool chips row */
+.tools-mini-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 1.25rem; }
+.tool-mini {
+  background: var(--card-bg); border: 1px solid var(--card-border);
+  border-radius: 10px; padding: 1.125rem 1rem;
+  display: flex; align-items: center; gap: .75rem;
+  transition: all var(--dur-norm) var(--ease); cursor: pointer;
+}
+.tool-mini:hover { border-color: var(--teal-border); transform: translateY(-1px); }
+.tm-icon { width: 36px; height: 36px; flex-shrink: 0; background: var(--teal-dim); border-radius: 8px; display: grid; place-items: center; font-size: 1rem; }
+.tm-name { font-size: var(--f-small); font-weight: 500; color: var(--fg); }
+.tm-sub { font-size: var(--f-xs); color: var(--fg-dim); margin-top: .1rem; }
+
+/* ════════════════════════════════════
+   PRACTITIONER
+   ════════════════════════════════════ */
+.practitioner { background: var(--bg-alt); }
+.prac-inner { display: grid; grid-template-columns: 110px 1fr; gap: 2.5rem; align-items: start; }
+.prac-photo-wrap { width: 110px; height: 110px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: linear-gradient(145deg, var(--teal) 0%, var(--void-mid) 100%); box-shadow: 0 0 0 3px var(--bg-alt), 0 0 0 5px var(--teal-border); }
+.prac-photo-wrap img { width: 100%; height: 100%; object-fit: cover; }
+.prac-photo-fallback { width: 110px; height: 110px; border-radius: 50%; flex-shrink: 0; background: linear-gradient(145deg, var(--teal) 0%, var(--void-mid) 100%); box-shadow: 0 0 0 3px var(--bg-alt), 0 0 0 5px var(--teal-border); display: grid; place-items: center; font-family: var(--font-display); font-style: italic; font-size: 2.5rem; color: white; font-weight: 300; }
+.prac-name { font-family: var(--font-display); font-size: var(--f-h1); font-weight: 400; color: var(--fg); line-height: 1.2; margin-bottom: .375rem; }
+.prac-title { font-size: var(--f-xs); letter-spacing: .14em; text-transform: uppercase; color: var(--teal); font-weight: 500; margin-bottom: 1.25rem; }
+.prac-text { font-size: var(--f-body); color: var(--fg-sec); line-height: 1.75; max-width: 58ch; margin-bottom: 1.5rem; }
+.prac-quote { border-left: 2px solid var(--gold); padding: 1rem 1.25rem; background: rgba(184,145,46,.06); border-radius: 0 var(--r-sm) var(--r-sm) 0; margin-bottom: 1.5rem; }
+.prac-quote blockquote { font-family: var(--font-display); font-style: italic; font-size: 1rem; color: var(--fg); line-height: 1.6; }
+.prac-stats { display: flex; gap: 2rem; flex-wrap: wrap; padding-top: 1.25rem; border-top: 1px solid var(--card-border); }
+.ps-num { font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; color: var(--fg); line-height: 1; display: block; }
+.ps-label { font-size: var(--f-xs); color: var(--fg-dim); letter-spacing: .06em; margin-top: .2rem; }
+
+/* ════════════════════════════════════
+   SERVICES
+   ════════════════════════════════════ */
+.services { background: var(--void); color: #EDE8DF; position: relative; overflow: hidden; }
+.services::before { content: ''; position: absolute; top: -120px; right: -120px; width: 420px; height: 420px; background: radial-gradient(circle, rgba(42,143,130,.07) 0%, transparent 68%); pointer-events: none; }
+.services .ornament { color: var(--gold-light); }
+.services .ornament::before, .services .ornament::after { background: linear-gradient(90deg, transparent, rgba(212,169,77,.2), transparent); }
+.services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-top: 2.5rem; }
+.service-card {
+  background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--r-card); padding: 2rem;
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 1.5rem;
+  transition: all var(--dur-norm) var(--ease);
+}
+.service-card:hover { background: rgba(255,255,255,.07); border-color: var(--teal-border); }
+.sc-content { flex: 1; }
+.sc-name { font-family: var(--font-display); font-size: var(--f-h3); font-weight: 400; color: #EDE8DF; margin-bottom: .375rem; }
+.sc-desc { font-size: var(--f-small); color: rgba(237,232,223,.55); line-height: 1.6; margin-bottom: .875rem; }
+.sc-features { display: flex; flex-wrap: wrap; gap: .4rem; }
+.sc-feat { font-size: var(--f-xs); color: rgba(237,232,223,.45); padding: .2rem .55rem; border: 1px solid rgba(255,255,255,.08); border-radius: 100px; }
+.sc-price { text-align: right; flex-shrink: 0; }
+.sc-amount { font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; color: #EDE8DF; display: block; }
+.sc-duration { font-size: var(--f-xs); color: rgba(237,232,223,.4); margin-top: .15rem; }
+.sc-link { font-size: var(--f-xs); letter-spacing: .08em; text-transform: uppercase; color: var(--teal-glow); font-weight: 500; display: inline-flex; align-items: center; gap: .35rem; margin-top: .875rem; }
+
+/* ════════════════════════════════════
+   CRYSTALS
+   ════════════════════════════════════ */
+.crystals-section { background: var(--bg); }
+.crystal-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-top: 2rem; }
+.crystal-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--r-card); overflow: hidden; transition: all var(--dur-norm) var(--ease); display: flex; flex-direction: column; }
+.crystal-card:hover { box-shadow: var(--sh-lg); transform: translateY(-3px); border-color: var(--teal-border); }
+.crystal-img { width: 100%; aspect-ratio: 1; background: var(--bg-alt); position: relative; overflow: hidden; }
+.crystal-img img { width: 100%; height: 100%; object-fit: cover; }
+.crystal-tag { position: absolute; top: 10px; left: 10px; font-size: 10px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; padding: 4px 9px; border-radius: var(--r-btn); background: rgba(255,255,255,.94); border: 1px solid var(--border); color: var(--text-pri); z-index: 2; }
+.crystal-info { padding: 1rem; display: flex; flex-direction: column; flex: 1; }
+.crystal-name { font-family: var(--font-display); font-size: .9375rem; font-weight: 400; line-height: 1.3; margin-bottom: 2px; color: var(--fg); }
+.crystal-tagline { font-size: var(--f-xs); color: var(--fg-dim); line-height: 1.5; margin-bottom: .75rem; flex: 1; }
+.crystal-price-row { display: flex; align-items: baseline; gap: 7px; margin-bottom: .75rem; }
+.crystal-price { font-weight: 600; font-size: 1rem; color: var(--fg); }
+.crystal-og { font-size: var(--f-xs); color: var(--fg-dim); text-decoration: line-through; }
+.crystal-card .btn { width: 100%; justify-content: center; padding: 9px; font-size: 11px; border-radius: var(--r-sm); }
+
+/* ════════════════════════════════════
+   HOW IT WORKS
+   ════════════════════════════════════ */
+.how { background: var(--bg-alt); }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2.5rem; position: relative; text-align: center; }
+.steps::before { content: ''; position: absolute; top: 26px; left: 16.66%; right: 16.66%; height: 1px; background: linear-gradient(90deg, var(--border-gold), var(--gold), var(--border-gold)); opacity: .4; }
+.step-icon { width: 54px; height: 54px; margin: 0 auto 1.25rem; border-radius: 50%; background: var(--card-bg); border: 1.5px solid var(--border-gold); display: flex; align-items: center; justify-content: center; color: var(--gold); position: relative; z-index: 1; box-shadow: 0 0 0 5px var(--bg-alt); }
+.step-icon .icon { width: 22px; height: 22px; }
+.step-n { font-size: 10px; font-weight: 600; letter-spacing: .14em; color: var(--teal); margin-bottom: 5px; text-transform: uppercase; }
+.step h3 { font-family: var(--font-display); font-size: var(--f-h3); font-weight: 400; margin-bottom: .375rem; color: var(--fg); }
+.step p { font-size: var(--f-small); color: var(--fg-sec); line-height: 1.6; max-width: 260px; margin: 0 auto; }
+
+/* ════════════════════════════════════
+   TESTIMONIALS
+   ════════════════════════════════════ */
+.testimonials { background: var(--bg); }
+.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2rem; }
+.testi-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--r-card); padding: 1.75rem; }
+.testi-stars { color: var(--gold); font-size: .875rem; letter-spacing: 2px; margin-bottom: .875rem; }
+.testi-text { font-size: var(--f-small); color: var(--fg-sec); line-height: 1.75; margin-bottom: 1rem; font-style: italic; }
+.testi-name { font-size: var(--f-xs); font-weight: 600; color: var(--fg); }
+.testi-loc { color: var(--fg-dim); font-weight: 400; }
+
+/* ════════════════════════════════════
+   LEARN / BLOG
+   ════════════════════════════════════ */
+.learn { background: var(--bg-alt); }
+.learn-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
+.learn-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--r-card); overflow: hidden; transition: all var(--dur-norm) var(--ease); display: flex; flex-direction: column; }
+.learn-card:hover { transform: translateY(-3px); border-color: var(--teal-border); box-shadow: 0 12px 32px rgba(42,143,130,.07); }
+.lc-thumb { position: relative; overflow: hidden; background: var(--void); display: flex; align-items: center; justify-content: center; }
+.lc-thumb svg { width: 100%; height: 100%; }
+.lc-body { padding: 1.5rem 1.5rem 1.75rem; flex: 1; display: flex; flex-direction: column; }
+.lc-tag { font-size: var(--f-xs); letter-spacing: .12em; text-transform: uppercase; color: var(--teal); font-weight: 500; margin-bottom: .625rem; }
+.lc-title { font-family: var(--font-display); font-size: var(--f-h3); font-weight: 400; color: var(--fg); line-height: 1.35; margin-bottom: .5rem; text-wrap: balance; }
+.lc-excerpt { font-size: var(--f-small); color: var(--fg-sec); line-height: 1.6; flex: 1; }
+.lc-more { margin-top: .875rem; font-size: var(--f-xs); font-weight: 600; color: var(--teal); display: flex; align-items: center; gap: 4px; }
+
+/* ════════════════════════════════════
+   CTA SECTION
+   ════════════════════════════════════ */
+.cta-section { background: var(--void); position: relative; overflow: hidden; }
+.cta-section::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 120%, rgba(42,143,130,.16), transparent);
+  pointer-events: none;
+}
+.cta-inner { position: relative; z-index: 1; text-align: center; padding: clamp(4rem, 8vw, 6rem) var(--gutter-desk); max-width: var(--max-width); margin: 0 auto; }
+.cta-orn { font-family: var(--font-display); font-style: italic; font-size: var(--f-small); color: var(--gold); letter-spacing: .06em; margin-bottom: 1.75rem; }
+.cta-title { font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 3.25rem); font-weight: 300; line-height: 1.12; color: #EDE8DF; margin-bottom: 1rem; text-wrap: balance; }
+.cta-title em { font-style: italic; color: var(--teal-glow); }
+.cta-sub { font-size: var(--f-body); color: rgba(237,232,223,.5); line-height: 1.7; max-width: 46ch; margin: 0 auto 2.5rem; }
+.cta-btns { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+.cta-note { margin-top: 1.75rem; font-size: var(--f-xs); color: rgba(237,232,223,.25); letter-spacing: .06em; }
+
+/* ════════════════════════════════════
+   AUTHORITY / YT
+   ════════════════════════════════════ */
+.authority { background: var(--bg); }
+.authority-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 2rem; margin-top: 2rem; align-items: start; }
+.authority-stats { display: flex; flex-direction: column; gap: 1rem; }
+.stat-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--r-card); padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1.25rem; }
+.stat-num { font-family: var(--font-display); font-size: 1.625rem; font-weight: 400; color: var(--fg); white-space: nowrap; min-width: 66px; }
+.stat-lbl { font-size: var(--f-xs); color: var(--fg-dim); line-height: 1.45; }
+.stat-lbl strong { color: var(--fg); display: block; font-size: var(--f-small); font-weight: 500; }
+.yt-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--r-card); overflow: hidden; }
+.yt-ph { aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 1rem; background: linear-gradient(135deg, var(--void), var(--void-soft)); color: rgba(255,255,255,.5); }
+.yt-play { width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,.12); display: flex; align-items: center; justify-content: center; color: #fff; }
+.yt-info { padding: 1rem 1.25rem; border-top: 1px solid var(--card-border); display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.yt-info h4 { font-family: var(--font-display); font-size: 1rem; font-weight: 400; margin-bottom: 2px; color: var(--fg); }
+.yt-info p { font-size: var(--f-xs); color: var(--fg-dim); }
+
+/* ════════════════════════════════════
+   FOOTER
+   ════════════════════════════════════ */
+.footer { background: var(--void); color: rgba(255,255,255,.5); padding: 3.5rem 0 2rem; }
+.footer-grid { display: grid; grid-template-columns: 1.6fr repeat(4, 1fr); gap: 2rem; margin-bottom: 3rem; }
+.footer-brand .logo-text { color: #EDE8DF; display: block; margin-bottom: .75rem; font-family: var(--font-display); font-size: 1.125rem; letter-spacing: .08em; }
+.footer-brand p { font-size: var(--f-xs); line-height: 1.65; max-width: 230px; margin-bottom: .75rem; }
+.footer-brand .tagline { font-family: var(--font-display); font-style: italic; font-size: var(--f-xs); color: var(--gold-light); }
+.footer-col h4 { font-size: 10px; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: .875rem; }
+.footer-col a { display: block; font-size: var(--f-xs); color: rgba(255,255,255,.45); padding: 3px 0; transition: color var(--dur-fast); }
+.footer-col a:hover { color: var(--teal-glow); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.07); padding-top: 1.25rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; font-size: var(--f-xs); color: rgba(255,255,255,.25); flex-wrap: wrap; }
+
+/* ════════════════════════════════════
+   SECTION HEADER HELPERS
+   ════════════════════════════════════ */
+.sec-head { margin-bottom: 0; }
+.sec-head + * { margin-top: 2.5rem; }
+.sec-hl { display: block; font-size: var(--f-xxs); font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--teal); margin-bottom: 1.25rem; }
+.sec-title { font-family: var(--font-display); font-size: var(--f-h1); font-weight: 400; color: var(--fg); line-height: 1.2; text-wrap: balance; }
+.sec-title em { font-style: italic; color: var(--teal); }
+.sec-title.on-dark { color: #EDE8DF; }
+.sec-title.on-dark em { color: var(--teal-glow); }
+.sec-sub { font-size: var(--f-small); color: var(--fg-sec); line-height: 1.7; max-width: 52ch; margin-top: .75rem; }
+.sec-sub.on-dark { color: rgba(237,232,223,.5); }
+.sec-center { text-align: center; }
+.sec-center .sec-sub { margin-left: auto; margin-right: auto; }
+
+/* ════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .wrap, .hero-content, .hero-trust { padding-left: var(--gutter-tab); padding-right: var(--gutter-tab); }
+  .pathways-grid { grid-template-columns: repeat(2, 1fr); }
+  .tools-mini-row { grid-template-columns: repeat(2, 1fr); }
+  .crystal-grid { grid-template-columns: repeat(3, 1fr); }
+  .footer-grid { grid-template-columns: 1.4fr 1fr 1fr; }
+  .authority-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 896px) {
+  .nav-links, .nav-cta { display: none; }
+  .nav-toggle { display: flex; }
+  .lang-pill { display: none; }
+}
+@media (max-width: 820px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .service-card { flex-direction: column; }
+  .sc-price { text-align: left; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .testi-card:nth-child(3) { display: none; }
+  .learn-grid { grid-template-columns: repeat(2, 1fr); }
+  .learn-card:nth-child(3) { display: none; }
+  .steps { grid-template-columns: 1fr; gap: 1.5rem; }
+  .steps::before { display: none; }
+  .prac-inner { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+  .prac-text { margin-left: auto; margin-right: auto; }
+  .prac-stats { justify-content: center; }
+  .prac-quote { text-align: left; }
+  .crystal-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .wrap, .hero-content, .hero-trust { padding-left: var(--gutter-mob); padding-right: var(--gutter-mob); }
+  .hero-title { max-width: none; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { width: 100%; justify-content: center; }
+  .hero-trust { gap: 1.25rem; }
+  .sky-inner { flex-direction: column; align-items: flex-start; }
+  .sky-link { margin-left: 0; }
+  .pathways-grid { grid-template-columns: 1fr; }
+  .tools-mini-row { grid-template-columns: 1fr; }
+  .learn-grid { grid-template-columns: 1fr; }
+  .learn-card:nth-child(3) { display: flex; }
+  .testi-card:nth-child(3) { display: flex; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .footer-bottom { justify-content: center; text-align: center; }
+}
+@media (max-width: 400px) {
+  .crystal-grid { gap: .5rem; }
+  .footer-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- SVG symbol sprites (unchanged) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-chart" viewBox="0 0 24 24"><path d="M12 2 22 12 12 22 2 12Z"/><path d="M12 7 17 12 12 17 7 12Z"/></symbol>
+<symbol id="i-crystal" viewBox="0 0 24 24"><path d="M12 2 20 9l-8 13L4 9Z"/><path d="M4 9h16M12 2v20"/></symbol>
+<symbol id="i-report" viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6Z"/><path d="M15 2v5h5M9 12h7M9 16h7"/></symbol>
+<symbol id="i-talk" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.5 7.2L3 21l1.8-6.5A8 8 0 1 1 21 12Z"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+<symbol id="i-om" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18 4.5 4.5 0 0 1 0-9 4.5 4.5 0 0 0 0-9Z"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M5 5l1.8 1.8M17.2 17.2 19 19M19 5l-1.8 1.8M6.8 17.2 5 19"/></symbol>
+<symbol id="i-cards" viewBox="0 0 24 24"><rect x="3" y="5" width="11" height="15" rx="2"/><path d="M17 7l4 1.4-3.5 11"/></symbol>
+<symbol id="i-compat" viewBox="0 0 24 24"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></symbol>
+<symbol id="i-guide" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></symbol>
+<symbol id="i-num" viewBox="0 0 24 24"><path d="M9 4v16M15 4v16M4 9h16M4 15h16"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14A8.5 8.5 0 0 1 10 4a8.5 8.5 0 1 0 10 10Z"/></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><path d="M21 3 10.5 13.5M21 3l-6.8 18-3.7-7.5L3 10.1Z"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="2.5"/></symbol>
+<symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 13h18M12 9v12M12 9S9.5 4 7 6s5 3 5 3ZM12 9s2.5-5 5-3-5 3-5 3Z"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5 20 12 7 19.5Z"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></symbol>
+<symbol id="i-saturn" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><ellipse cx="12" cy="12" rx="10" ry="3"/></symbol>
+<symbol id="i-wa" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.84-.2-.49-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.22.25-.87.85-.87 2.07s.89 2.4 1.02 2.56c.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29Z"/></symbol>
+</defs></svg>
+
+<!-- Mobile backdrop + drawer -->
+<div class="mobile-backdrop" id="mob-backdrop" onclick="closeMobileNav()"></div>
+<nav class="mobile-drawer" id="mob-drawer" aria-label="Mobile navigation">
+  <div class="drawer-head">
+    <span class="logo-text">JYOGI</span>
+    <button class="drawer-close" onclick="closeMobileNav()" aria-label="Close menu">✕</button>
+  </div>
+  <div class="drawer-links">
+    <a href="/"><svg class="icon"><use href="#i-sun"/></svg>Home</a>
+    <a href="/kundli.html"><svg class="icon"><use href="#i-chart"/></svg>Kundli</a>
+    <a href="/tarot.html"><svg class="icon"><use href="#i-cards"/></svg>Tarot</a>
+    <a href="/compatibility.html"><svg class="icon"><use href="#i-compat"/></svg>Compatibility</a>
+    <a href="/crystals.html"><svg class="icon"><use href="#i-crystal"/></svg>Crystals</a>
+    <a href="/#learn" onclick="closeMobileNav()"><svg class="icon"><use href="#i-guide"/></svg>Learn</a>
+    <a href="/#about" onclick="closeMobileNav()"><svg class="icon"><use href="#i-om"/></svg>About</a>
+    <a href="/apply"><svg class="icon"><use href="#i-talk"/></svg>Apply for Consultation</a>
+  </div>
+  <div class="drawer-settings">
+    <div class="drawer-settings-row">
+      <span class="drawer-settings-label">Appearance</span>
+      <button class="theme-btn" id="theme-btn-mob" onclick="cycleTheme()" aria-label="Change appearance">
+        <span id="theme-icon-mob">☀️</span> <span id="theme-label-mob">Light</span>
+      </button>
+    </div>
+  </div>
+  <div class="drawer-cta">
+    <a href="/apply" class="btn btn-teal" style="width:100%;justify-content:center">Apply for a Consultation</a>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <svg class="logo-mark" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="19" cy="19" r="18" fill="#0C1828" stroke="#2A8F82" stroke-width="1"/>
+        <path d="M19 5L33 19L19 33L5 19Z" stroke="url(#lg-teal)" stroke-width="1.5" fill="none"/>
+        <path d="M19 10L28 19L19 28L10 19Z" stroke="url(#lg-teal)" stroke-width="1" fill="none" opacity="0.5"/>
+        <text x="19" y="23" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="12" font-weight="400" fill="#3DBFB0" font-style="italic">J</text>
+        <defs><linearGradient id="lg-teal" x1="5" y1="5" x2="33" y2="33"><stop stop-color="#3DBFB0"/><stop offset="1" stop-color="#1E7A6E"/></linearGradient></defs>
+      </svg>
+      <span class="logo-text">JYOGI</span>
+    </a>
+    <nav class="nav-links">
+      <a href="/" class="nav-link active">Home</a>
+      <a href="/kundli.html" class="nav-link">Kundli</a>
+      <a href="/tarot.html" class="nav-link">Tarot</a>
+      <a href="/crystals.html" class="nav-link">Crystals</a>
+      <a href="/tools.html" class="nav-link">Tools</a>
+      <a href="/#learn" class="nav-link">Learn</a>
+      <a href="/#about" class="nav-link">About</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang-pill">
+        <button class="lang-btn active" data-lang="en" onclick="setSiteLang('en')">EN</button>
+        <button class="lang-btn" data-lang="hi" onclick="setSiteLang('hi')">हि</button>
+        <button class="lang-btn" data-lang="or" onclick="setSiteLang('or')">ଓ</button>
+      </div>
+      <button class="theme-btn" id="theme-btn" onclick="cycleTheme()" aria-label="Change appearance"><span id="theme-icon">☀️</span></button>
+      <a href="/apply" class="btn btn-teal nav-cta">Apply</a>
+    </div>
+    <button class="nav-toggle" onclick="openMobileNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Vedic Astrology · Tarot · Sacred Crystals</div>
+    <h1 class="hero-title">The sky has <em>always known</em> your path.</h1>
+    <p class="hero-subtitle">Twenty years of Vedic and Tarot wisdom, personalized for you — not a chatbot, not a feed. A real practitioner, a real reading.</p>
+    <div class="hero-actions">
+      <a class="btn btn-teal" href="/apply">Apply for a Consultation →</a>
+      <a class="btn btn-ghost" href="/tools.html">Explore the free tools</a>
+    </div>
+  </div>
+  <div class="hero-trust">
+    <div>
+      <span class="trust-num">2M+</span>
+      <span class="trust-label">YouTube Views</span>
+    </div>
+    <div>
+      <span class="trust-num">20+</span>
+      <span class="trust-label">Years of Practice</span>
+    </div>
+    <div>
+      <span class="trust-num">Swiss</span>
+      <span class="trust-label">Ephemeris Engine</span>
+    </div>
+    <div>
+      <span class="trust-num">En · हि · ଓ</span>
+      <span class="trust-label">Three Languages</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TODAY'S SKY ═══ -->
+<div class="sky-strip">
+  <div class="sky-inner">
+    <span class="sky-badge" id="sky-date">Today's Sky</span>
+    <div class="sky-items" id="sky-items">
+      <div class="sky-item">
+        <span class="sky-item-label">Vara</span>
+        <span class="sky-item-val" id="sky-vara">—</span>
+      </div>
+      <div class="sky-item">
+        <span class="sky-item-label">Tithi</span>
+        <span class="sky-item-val good" id="sky-tithi">—</span>
+      </div>
+      <div class="sky-item">
+        <span class="sky-item-label">Yoga</span>
+        <span class="sky-item-val good" id="sky-yoga">—</span>
+      </div>
+      <div class="sky-item">
+        <span class="sky-item-label">Rahu Kaal</span>
+        <span class="sky-item-val warn" id="sky-rahu">—</span>
+      </div>
+    </div>
+    <a class="sky-link" href="/muhurta.html">Full Panchang →</a>
+  </div>
+</div>
+
+<!-- ═══ THREE PATHWAYS ═══ -->
+<section class="section pathways">
+  <div class="wrap">
+    <div class="ornament">Three Pathways</div>
+    <div style="height:1.5rem"></div>
+    <div class="sec-center">
+      <h2 class="sec-title">Ancient wisdom, <em>precise computation</em></h2>
+      <p class="sec-sub" style="margin-left:auto;margin-right:auto">Start from what's on your mind — Vedic charts, Tarot draws, or sacred crystal guidance.</p>
+    </div>
+    <div class="pathways-grid">
+      <a class="pathway-card" href="/kundli.html">
+        <div class="pw-icon"><svg class="icon"><use href="#i-chart"/></svg></div>
+        <div class="pw-title">Vedic Astrology</div>
+        <p class="pw-desc">Your Kundli, Vimshottari Dasha tree, Sade Sati analysis, and planetary remedies — computed with Swiss Ephemeris, read by a practitioner.</p>
+        <span class="pw-link">Open your chart →</span>
+      </a>
+      <a class="pathway-card" href="/tarot.html">
+        <div class="pw-icon"><svg class="icon"><use href="#i-cards"/></svg></div>
+        <div class="pw-title">Tarot</div>
+        <p class="pw-desc">Single card to Celtic Cross — love, career, life direction. Draw from the Jyogi Light Seer's deck with guided interpretation for every spread.</p>
+        <span class="pw-link">Draw your cards →</span>
+      </a>
+      <a class="pathway-card" href="/crystals.html">
+        <div class="pw-icon"><svg class="icon"><use href="#i-crystal"/></svg></div>
+        <div class="pw-title">Sacred Crystals</div>
+        <p class="pw-desc">Bracelets hand-cleansed and prescribed by planet, chakra, and your chart — not décor, but directed remedy prepared with Sankalp.</p>
+        <span class="pw-link">Find your stone →</span>
+      </a>
+    </div>
+    <!-- Mini tool chips -->
+    <div class="tools-mini-row">
+      <a class="tool-mini" href="/compatibility.html">
+        <div class="tm-icon">☽</div>
+        <div><div class="tm-name">Compatibility</div><div class="tm-sub">Vedic match</div></div>
+      </a>
+      <a class="tool-mini" href="/muhurta.html">
+        <div class="tm-icon">✦</div>
+        <div><div class="tm-name">Muhurta</div><div class="tm-sub">Auspicious timing</div></div>
+      </a>
+      <a class="tool-mini" href="/numerology.html">
+        <div class="tm-icon">△</div>
+        <div><div class="tm-name">Numerology</div><div class="tm-sub">Life path & cycles</div></div>
+      </a>
+      <a class="tool-mini" href="/sade-sati-calculator.html">
+        <div class="tm-icon">◯</div>
+        <div><div class="tm-name">Sade Sati</div><div class="tm-sub">Saturn transit</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRACTITIONER ═══ -->
+<section class="section practitioner" id="about">
+  <div class="wrap">
+    <div class="ornament">The Practitioner</div>
+    <div style="height:2rem"></div>
+    <div class="prac-inner">
+      <div id="prac-photo-container">
+        <img src="images/jyogi-photo.jpg" alt="Jyogi — Vedic Astrologer"
+          style="width:110px;height:110px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 3px var(--bg-alt),0 0 0 5px var(--teal-border)"
+          onerror="this.outerHTML='<div class=\'prac-photo-fallback\'>J</div>'">
+      </div>
+      <div>
+        <div class="prac-name">Jyotirmoy Giri</div>
+        <div class="prac-title">Vedic Astrologer · Crystal Practitioner · Tarot Reader · Odisha, India</div>
+        <p class="prac-text">Twenty years of practice across Vedic charts, Tarot, and crystal energy — live in three languages on YouTube, in person for those who seek depth over speed. Every reading is a conversation, not a report. I work with a limited number of clients each month, and every one is a person, not a ticket.</p>
+        <div class="prac-quote">
+          <blockquote>"Technology supports the calculations. Jyogi brings the interpretation and personal guidance."</blockquote>
+        </div>
+        <div class="prac-stats">
+          <div><span class="ps-num">20+</span><span class="ps-label">Years of practice</span></div>
+          <div><span class="ps-num">2M+</span><span class="ps-label">YouTube views</span></div>
+          <div><span class="ps-num">9.7K+</span><span class="ps-label">Community</span></div>
+          <div><span class="ps-num">En · हि · ଓ</span><span class="ps-label">Three languages</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ═══ -->
+<section class="section services" id="consult">
+  <div class="wrap">
+    <div class="ornament">Consultations</div>
+    <div style="height:1.5rem"></div>
+    <div class="sec-center">
+      <h2 class="sec-title on-dark">Personal guidance, <em>by application</em></h2>
+      <p class="sec-sub on-dark" style="margin-left:auto;margin-right:auto">Each session is one-on-one with Jyogi. Apply with your concern — confirmed bookings only, limited slots monthly.</p>
+    </div>
+    <div class="services-grid">
+      <a class="service-card" href="/apply">
+        <div class="sc-content">
+          <div class="sc-name">Full Vedic Reading</div>
+          <p class="sc-desc">Complete birth chart analysis, Dasha periods, Sade Sati, planetary remedies, and life predictions. Includes a PDF report.</p>
+          <div class="sc-features">
+            <span class="sc-feat">Birth chart</span>
+            <span class="sc-feat">Mahadasha</span>
+            <span class="sc-feat">Remedies</span>
+            <span class="sc-feat">PDF report</span>
+          </div>
+          <span class="sc-link">Apply now →</span>
+        </div>
+        <div class="sc-price">
+          <span class="sc-amount">₹1,500</span>
+          <span class="sc-duration">60 min</span>
+        </div>
+      </a>
+      <a class="service-card" href="/apply">
+        <div class="sc-content">
+          <div class="sc-name">Live Tarot Session</div>
+          <p class="sc-desc">Focused Tarot reading on love, career, or life direction — drawn and interpreted live over video or voice call.</p>
+          <div class="sc-features">
+            <span class="sc-feat">Live draw</span>
+            <span class="sc-feat">Interpretation</span>
+            <span class="sc-feat">Follow-up</span>
+          </div>
+          <span class="sc-link">Apply now →</span>
+        </div>
+        <div class="sc-price">
+          <span class="sc-amount">₹800</span>
+          <span class="sc-duration">30 min</span>
+        </div>
+      </a>
+      <a class="service-card" href="/apply">
+        <div class="sc-content">
+          <div class="sc-name">Crystal Prescription</div>
+          <p class="sc-desc">Gemstone recommendation based on your chart — prescribed by planet, chakra, and current Dasha. Includes care guide.</p>
+          <div class="sc-features">
+            <span class="sc-feat">Chart-based</span>
+            <span class="sc-feat">Sankalp</span>
+            <span class="sc-feat">Care guide</span>
+          </div>
+          <span class="sc-link">Apply now →</span>
+        </div>
+        <div class="sc-price">
+          <span class="sc-amount">₹500</span>
+          <span class="sc-duration">20 min</span>
+        </div>
+      </a>
+      <a class="service-card" href="/apply">
+        <div class="sc-content">
+          <div class="sc-name">Numerology Deep-Dive</div>
+          <p class="sc-desc">Life path number, personal year cycle, and name analysis — with practical guidance for the months ahead.</p>
+          <div class="sc-features">
+            <span class="sc-feat">Life path</span>
+            <span class="sc-feat">Yearly cycle</span>
+            <span class="sc-feat">Name analysis</span>
+          </div>
+          <span class="sc-link">Apply now →</span>
+        </div>
+        <div class="sc-price">
+          <span class="sc-amount">₹699</span>
+          <span class="sc-duration">30 min</span>
+        </div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:2rem">
+      <a class="btn btn-teal" href="/apply">Apply for a Consultation →</a>
+      <p style="margin-top:.875rem;font-size:var(--f-xs);color:rgba(237,232,223,.3)">Limited slots each month · Jyogi responds within 24 hours to confirm availability.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CRYSTALS ═══ -->
+<section class="section crystals-section" id="crystals">
+  <div class="wrap">
+    <div class="ornament">Personally Prepared by Jyogi</div>
+    <div style="height:1.5rem"></div>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+      <div>
+        <h2 class="sec-title">Crystal <em>Bracelets</em></h2>
+        <p class="sec-sub">Hand-cleansed with Sankalp after your birth details are verified.</p>
+      </div>
+      <a href="/crystals.html" class="btn btn-outline btn-sm">Explore all crystals →</a>
+    </div>
+    <div class="crystal-grid" id="featured-crystal-grid"></div>
+  </div>
+</section>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section class="section how" id="how">
+  <div class="wrap">
+    <div class="ornament">How It Works</div>
+    <div style="height:1.5rem"></div>
+    <h2 class="sec-title sec-center">Three steps <em>to clarity</em></h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-icon"><svg class="icon"><use href="#i-send"/></svg></div>
+        <div class="step-n">01</div>
+        <h3>Apply with your question</h3>
+        <p>A short form tells Jyogi what you are facing and what kind of guidance you need.</p>
+      </div>
+      <div class="step">
+        <div class="step-icon"><svg class="icon"><use href="#i-eye"/></svg></div>
+        <div class="step-n">02</div>
+        <h3>Jyogi reads your chart</h3>
+        <p>Traditional Vedic reading of your planetary positions, Dashas, and current transits.</p>
+      </div>
+      <div class="step">
+        <div class="step-icon"><svg class="icon"><use href="#i-gift"/></svg></div>
+        <div class="step-n">03</div>
+        <h3>Receive personal guidance</h3>
+        <p>Personalised insight and remedies via WhatsApp or a PDF report — directly from Jyogi.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section class="section testimonials">
+  <div class="wrap">
+    <div class="ornament">What Seekers Say</div>
+    <div style="height:1.5rem"></div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Jyogi read things in my chart I had never told anyone. The timing he gave for my career shift was accurate to the month. This is not generic astrology."</p>
+        <div class="testi-name">Priya M. <span class="testi-loc">— Mumbai</span></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"I was sceptical. After one session I understood why certain patterns kept repeating in my life. The crystal he prescribed has been with me since. Worth every rupee."</p>
+        <div class="testi-name">Rohan S. <span class="testi-loc">— Bengaluru</span></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Jyogi does not just tell you what you want to hear. He told me the difficult truth about my Saturn period — and gave me a clear path through it. That kind of honesty is rare."</p>
+        <div class="testi-name">Kavitha R. <span class="testi-loc">— Chennai</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LEARN ═══ -->
+<section class="section learn" id="learn">
+  <div class="wrap">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem">
+      <div>
+        <div class="ornament" style="justify-content:flex-start;max-width:12rem">From Jyogi's Desk</div>
+        <div style="height:.875rem"></div>
+        <h2 class="sec-title">Understand <em>your chart,</em><br>understand your life</h2>
+      </div>
+      <a href="/blog/index.html" class="btn btn-outline btn-sm">Read all articles →</a>
+    </div>
+    <div class="learn-grid">
+      <a href="/blog/free-kundli-online.html" class="learn-card">
+        <div class="lc-thumb">
+          <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#0C1828"/>
+            <g fill="none" stroke="#2A8F82" stroke-width="1" opacity=".5">
+              <rect x="100" y="18" width="124" height="124"/><path d="M100 18 224 142M224 18 100 142"/><path d="M162 18 224 80 162 142 100 80Z"/>
+            </g>
+            <circle cx="162" cy="80" r="3" fill="#3DBFB0" opacity=".8"/>
+          </svg>
+        </div>
+        <div class="lc-body">
+          <div class="lc-tag">Kundli Guide</div>
+          <div class="lc-title">How to Read Your Vedic Birth Chart: A Practitioner's Guide</div>
+          <p class="lc-excerpt">Interpret your Lagna, planetary positions and Dasha periods step by step — with real chart examples.</p>
+          <span class="lc-more">Read article →</span>
+        </div>
+      </a>
+      <a href="/blog/sade-sati.html" class="learn-card">
+        <div class="lc-thumb">
+          <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#0C1828"/>
+            <g fill="none" stroke="#B8912E" stroke-width="1" opacity=".45">
+              <circle cx="160" cy="80" r="30"/><ellipse cx="160" cy="80" rx="70" ry="24"/><ellipse cx="160" cy="80" rx="70" ry="24" transform="rotate(-22 160 80)"/>
+            </g>
+            <circle cx="160" cy="80" r="15" fill="#2A8F82" opacity=".2"/>
+          </svg>
+        </div>
+        <div class="lc-body">
+          <div class="lc-tag">Saturn Transit</div>
+          <div class="lc-title">Shani Sade Sati 2026: What It Actually Means</div>
+          <p class="lc-excerpt">Why the fear is worse than the reality — and what Saturn really asks of you during this 7.5-year period.</p>
+          <span class="lc-more">Read article →</span>
+        </div>
+      </a>
+      <a href="/blog/mangal-dosha-manglik.html" class="learn-card">
+        <div class="lc-thumb">
+          <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="160" fill="#0C1828"/>
+            <g fill="none" stroke="#2A8F82" stroke-width="1" opacity=".45">
+              <circle cx="130" cy="80" r="34"/><circle cx="190" cy="80" r="34"/>
+            </g>
+            <path d="M160 34v92" stroke="#B8912E" stroke-width="1" opacity=".4"/>
+          </svg>
+        </div>
+        <div class="lc-body">
+          <div class="lc-tag">Dosha Guide</div>
+          <div class="lc-title">Mangal Dosha (Manglik): Truth, Myths &amp; Remedies</div>
+          <p class="lc-excerpt">Classical rules versus modern panic — with the actual textual references and when remedies genuinely apply.</p>
+          <span class="lc-more">Read article →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ AUTHORITY / YT ═══ -->
+<section class="section authority" id="authority">
+  <div class="wrap">
+    <div class="ornament">Why Trust Jyogi</div>
+    <div style="height:1.5rem"></div>
+    <h2 class="sec-title">Real practice. <em>Real community.</em></h2>
+    <div class="authority-grid">
+      <div class="authority-stats">
+        <div class="stat-card">
+          <div class="stat-num">20+</div>
+          <div class="stat-lbl"><strong>Years of practice</strong>Vedic astrology, Tarot and crystal remedies</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">2M+</div>
+          <div class="stat-lbl"><strong>YouTube views</strong>@jyogi1008 — Vedic guidance content</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">9.7K+</div>
+          <div class="stat-lbl"><strong>Community</strong>Followers across YouTube and social</div>
+        </div>
+      </div>
+      <div class="yt-card">
+        <a class="yt-ph" href="https://www.youtube.com/@jyogi1008" target="_blank" rel="noopener">
+          <div class="yt-play"><svg class="icon" style="fill:currentColor;stroke:none"><use href="#i-play"/></svg></div>
+          <span style="font-size:var(--f-small);color:rgba(237,232,223,.5)">Watch on YouTube</span>
+        </a>
+        <div class="yt-info">
+          <div><h4>@jyogi1008</h4><p>Weekly Vedic insights in English, Hindi &amp; Odia</p></div>
+          <a href="https://www.youtube.com/@jyogi1008" target="_blank" rel="noopener" class="btn btn-outline btn-sm">Visit channel</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-orn">✦ Applications open — limited monthly ✦</div>
+    <h2 class="cta-title">Ready for your <em>real reading?</em></h2>
+    <p class="cta-sub">A short application tells me what you're facing. I respond personally within 24 hours. Not a chatbot. Not a marketplace.</p>
+    <div class="cta-btns">
+      <a class="btn btn-teal" href="/apply">Apply for a Consultation →</a>
+      <a class="btn btn-ghost" href="https://wa.me/919437794561" rel="noopener">
+        <svg class="icon wa-ico" style="width:.9em;height:.9em"><use href="#i-wa"/></svg>
+        Talk on WhatsApp
+      </a>
+    </div>
+    <div class="cta-note">✦ Vedic · Tarot · Crystal · Numerology &nbsp;·&nbsp; En · हि · ଓ</div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo-text">JYOGI</span>
+        <p>Vedic astrology, Tarot, and sacred crystals — twenty years of practice, one practitioner.</p>
+        <div class="tagline">Ancient Wisdom. Intelligent Guidance.</div>
+      </div>
+      <div class="footer-col">
+        <h4>Tools</h4>
+        <a href="/kundli.html">Birth Chart</a>
+        <a href="/tarot.html">Tarot Spreads</a>
+        <a href="/compatibility.html">Compatibility</a>
+        <a href="/muhurta.html">Muhurta</a>
+        <a href="/numerology.html">Numerology</a>
+        <a href="/sade-sati-calculator.html">Sade Sati</a>
+      </div>
+      <div class="footer-col">
+        <h4>Learn</h4>
+        <a href="/blog/index.html">Blog</a>
+        <a href="/blog/free-kundli-online.html">Vedic Basics</a>
+        <a href="/blog/sade-sati.html">Sade Sati Guide</a>
+        <a href="/blog/mangal-dosha-manglik.html">Mangal Dosha</a>
+      </div>
+      <div class="footer-col">
+        <h4>Consult</h4>
+        <a href="/apply">Apply for Reading</a>
+        <a href="/crystals.html">Sacred Crystals</a>
+        <a href="/#about">About Jyogi</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="https://www.youtube.com/@jyogi1008" target="_blank" rel="noopener">YouTube @jyogi1008</a>
+        <a href="https://instagram.com/jyogi.tarot" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://wa.me/919437794561" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/refund-policy.html">Refund Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Jyogi.in — All rights reserved</span>
+      <span style="display:flex;align-items:center;gap:6px"><svg class="icon" style="width:13px;height:13px;color:#5A8A6A"><use href="#i-lock"/></svg>Secure payments via Razorpay</span>
+    </div>
+  </div>
+</footer>
+
+<script src="crystals_data.js"></script>
+<script>
+/* ─── CRYSTALS ─── */
+var V25_OPT_BASE = {
+  shani_bracelet:'shani_bracelet', money_magnet:'money_magnet',
+  seven_chakra:'seven_chakra', rose_quartz_love:'rose_quartz', pyrite_solo:'pyrite_solo'
+};
+var V25_FACTUAL_TAG = {
+  shani_bracelet:'Saturn Support', money_magnet:'Wealth',
+  seven_chakra:'Featured', rose_quartz_love:'Relationships', pyrite_solo:'Wealth'
+};
+function renderFeaturedCrystals(){
+  var grid = document.getElementById('featured-crystal-grid');
+  if (!grid || typeof BRACELETS === 'undefined') return;
+  var order = ['shani_bracelet','money_magnet','seven_chakra','rose_quartz_love','pyrite_solo'];
+  var slugs = (typeof CRYSTAL_SLUGS !== 'undefined') ? CRYSTAL_SLUGS : {};
+  var html = order.map(function(id){
+    var b = BRACELETS.find(function(x){ return x.id === id; });
+    if (!b) return '';
+    var base = V25_OPT_BASE[id];
+    var tag = V25_FACTUAL_TAG[id] || 'Featured';
+    var href = slugs[id] ? slugs[id] : ('crystals/' + id + '.html');
+    var origPrice = parseInt(String(b.original).replace(/[^\d]/g,''),10);
+    var curPrice = parseInt(String(b.price).replace(/[^\d]/g,''),10);
+    var hasDiscount = origPrice > curPrice;
+    var imgTag = base
+      ? '<picture><source type="image/avif" srcset="image/opt/'+base+'-640.avif">'
+        + '<source type="image/webp" srcset="image/opt/'+base+'-640.webp">'
+        + '<img src="image/opt/'+base+'-640.jpg" alt="'+b.name+'" width="400" height="400" loading="lazy" decoding="async"></picture>'
+      : '<img src="'+b.img+'" alt="'+b.name+'" width="400" height="400" loading="lazy" decoding="async">';
+    return '<article class="crystal-card">'
+      + '<div class="crystal-img"><span class="crystal-tag">'+tag+'</span>'+imgTag+'</div>'
+      + '<div class="crystal-info"><div class="crystal-name">'+b.name+'</div>'
+      + '<p class="crystal-tagline">'+(b.tagline||'')+'</p>'
+      + '<div class="crystal-price-row"><span class="crystal-price">'+b.price+'</span>'
+      + (hasDiscount ? '<span class="crystal-og">'+b.original+'</span>' : '') + '</div>'
+      + '<a href="'+href+'" class="btn btn-primary">View Details</a></div></article>';
+  }).join('');
+  grid.innerHTML = html;
+}
+renderFeaturedCrystals();
+
+/* ─── MOBILE NAV ─── */
+function openMobileNav(){document.getElementById('mob-backdrop').classList.add('open');document.getElementById('mob-drawer').classList.add('open');document.body.style.overflow='hidden';}
+function closeMobileNav(){document.getElementById('mob-backdrop').classList.remove('open');document.getElementById('mob-drawer').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMobileNav();});
+
+/* ─── THEME ─── */
+function applyThemeState(theme){
+  document.body.classList.remove('dark-mode','warm-mode');
+  if(theme==='dark') document.body.classList.add('dark-mode');
+  else if(theme==='warm') document.body.classList.add('warm-mode');
+  var icon = theme==='dark'?'🌙':theme==='warm'?'📜':'☀️';
+  var label = theme==='dark'?'Dark':theme==='warm'?'Warm':'Light';
+  var i1=document.getElementById('theme-icon'); if(i1) i1.textContent=icon;
+  var i2=document.getElementById('theme-icon-mob'); if(i2) i2.textContent=icon;
+  var l2=document.getElementById('theme-label-mob'); if(l2) l2.textContent=label;
+  var b1=document.getElementById('theme-btn'); if(b1) b1.setAttribute('aria-label','Appearance: '+label+'. Click to change.');
+}
+function cycleTheme(){
+  var c=document.body.classList.contains('dark-mode')?'dark':document.body.classList.contains('warm-mode')?'warm':'light';
+  var n=c==='light'?'dark':c==='dark'?'warm':'light';
+  applyThemeState(n);
+  try{localStorage.setItem('jyogi_theme',n);}catch(e){}
+}
+
+/* ─── LANGUAGE ─── */
+function setSiteLang(lang){
+  document.documentElement.setAttribute('lang',lang);
+  document.querySelectorAll('.lang-btn').forEach(function(b){
+    b.classList.toggle('active',b.getAttribute('data-lang')===lang);
+  });
+  try{localStorage.setItem('jyogi_lang',lang);}catch(e){}
+}
+
+/* ─── TODAY'S SKY (Vara + Rahu Kaal by day of week) ─── */
+(function(){
+  var now = new Date();
+  var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var varas = ['Ravivara (Sun)','Somavara (Moon)','Mangalavara (Mars)','Budhavara (Mercury)','Guruvara (Jupiter)','Shukravara (Venus)','Shanivara (Saturn)'];
+  var rahuKaal = ['4:30–6:00','7:30–9:00','15:00–16:30','12:00–13:30','13:30–15:00','10:30–12:00','9:00–10:30'];
+  var yoga = ['Vishkambha','Preeti','Ayushman','Saubhagya','Shobhana','Atiganda','Sukarma','Dhriti','Shoola','Ganda','Vriddhi','Dhruva','Vyaghata','Harshana','Vajra','Siddhi','Vyatipata','Variyan','Parigha','Shiva','Siddha','Sadhya','Shubha','Shukla','Brahma','Indra','Vaidhriti'];
+  var tithis = ['Pratipada','Dwitiya','Tritiya','Chaturthi','Panchami','Shashti','Saptami','Ashtami','Navami','Dashami','Ekadashi','Dwadashi','Trayodashi','Chaturdashi','Purnima','Pratipada','Dwitiya','Tritiya','Chaturthi','Panchami','Shashti','Saptami','Ashtami','Navami','Dashami','Ekadashi','Dwadashi','Trayodashi','Chaturdashi','Amavasya'];
+  var doy = Math.floor((now - new Date(now.getFullYear(),0,0))/86400000);
+  var dow = now.getDay();
+  var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  document.getElementById('sky-date').textContent = "Today's Sky · " + now.getDate() + ' ' + months[now.getMonth()];
+  document.getElementById('sky-vara').textContent = varas[dow];
+  document.getElementById('sky-tithi').textContent = tithis[doy % 30];
+  document.getElementById('sky-yoga').textContent = yoga[doy % 27];
+  document.getElementById('sky-rahu').textContent = rahuKaal[dow] + ' IST ⚠';
+})();
+
+/* ─── RESTORE SAVED PREFERENCES ─── */
+(function(){
+  try{
+    var theme=localStorage.getItem('jyogi_theme');
+    if(theme==='dark'||theme==='warm') applyThemeState(theme);
+    var lang=localStorage.getItem('jyogi_lang');
+    if(lang==='hi'||lang==='or') setSiteLang(lang);
+  }catch(e){}
+})();
+</script>
+</body>
+</html>

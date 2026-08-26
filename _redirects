@@ -1,0 +1,3 @@
+# Intentionally minimal. /api/* returns a genuine 404 via functions/api/[[path]].js
+# (or the top-level 404.html if that alone yields a 404 on this host — test first).
+# Clean-URL and canonical redirects are deferred to Phase 1.

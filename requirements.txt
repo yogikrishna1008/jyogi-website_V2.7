@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+pyswisseph
+geopy
+openai
+requests
+python-multipart
+reportlab
+pytz

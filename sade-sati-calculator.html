@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Sade Sati &amp; Shani Dhaiya Calculator — Check Your Saturn Transit | Jyogi</title>
+<meta name="description" content="Find out if you're currently in Sade Sati or Shani Dhaiya (Kantaka Shani) based on your Moon sign — free calculator using real planetary positions.">
+<link rel="canonical" href="https://jyogi.in/sade-sati-calculator.html">
+<link rel="icon" href="/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="fonts/playfair-display-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/v25-fonts.css">
+<link rel="stylesheet" href="assets/shared.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VMKLQJ64RV"></script>
+<style>
+/* Calculator-specific styles — reuses .astro-form-wrap/.form-* tokens
+ * already defined in shared.css, only adds what's unique to this page. */
+.ss-result{background:rgba(0,0,0,0.3);border:1px solid rgba(255,195,64,0.15);border-radius:14px;padding:28px;margin-top:24px;display:none;}
+.ss-result.visible{display:block;}
+.ss-status{font-family:'Cinzel',serif;font-size:22px;color:var(--gold);text-align:center;margin-bottom:6px;}
+.ss-status.ss-none{color:#7fd88f;}
+.ss-substatus{text-align:center;color:var(--muted);font-size:15px;margin-bottom:20px;}
+.ss-phase-row{display:flex;gap:10px;justify-content:center;margin-bottom:20px;flex-wrap:wrap;}
+.ss-phase-pill{padding:8px 16px;border-radius:20px;font-size:13px;letter-spacing:.05em;border:1px solid rgba(255,195,64,.25);color:var(--muted);}
+.ss-phase-pill.active{background:rgba(255,195,64,.15);border-color:var(--gold);color:var(--gold);font-weight:600;}
+.ss-detail{background:rgba(0,0,0,.25);border-radius:10px;padding:16px 20px;margin-top:14px;font-size:15px;line-height:1.7;color:var(--text);}
+.ss-detail strong{color:var(--gold);}
+.ss-note{margin-top:18px;padding:14px 18px;background:rgba(43,122,11,.06);border:1px dashed rgba(43,122,11,.25);border-radius:10px;font-size:13px;color:var(--muted);font-style:italic;line-height:1.6;}
+.ss-dhaiya-box{margin-top:16px;padding:16px 20px;background:rgba(255,100,60,.06);border:1px solid rgba(255,100,60,.2);border-radius:10px;}
+.ss-dhaiya-box.hidden{display:none;}
+.ss-cta{margin-top:24px;text-align:center;}
+.ampm-toggle{display:flex;gap:6px;margin-left:4px;align-self:stretch;}
+.ampm-option{flex:1;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,195,64,0.2);border-radius:10px;background:rgba(10,5,30,0.7);color:#6b5e44;font-family:'Cormorant SC',serif;font-size:13px;letter-spacing:0.1em;cursor:pointer;transition:all 0.2s;-webkit-tap-highlight-color:transparent;min-height:60px;}
+.ampm-option.active{background:rgba(255,195,64,0.15);border-color:var(--gold);color:var(--gold);font-weight:bold;}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-chart" viewBox="0 0 24 24"><path d="M12 2 22 12 12 22 2 12Z"/><path d="M12 7 17 12 12 17 7 12Z"/></symbol>
+<symbol id="i-crystal" viewBox="0 0 24 24"><path d="M12 2 20 9l-8 13L4 9Z"/><path d="M4 9h16M12 2v20"/></symbol>
+<symbol id="i-report" viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6Z"/><path d="M15 2v5h5M9 12h7M9 16h7"/></symbol>
+<symbol id="i-talk" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.5 7.2L3 21l1.8-6.5A8 8 0 1 1 21 12Z"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+<symbol id="i-om" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18 4.5 4.5 0 0 1 0-9 4.5 4.5 0 0 0 0-9Z"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M5 5l1.8 1.8M17.2 17.2 19 19M19 5l-1.8 1.8M6.8 17.2 5 19"/></symbol>
+<symbol id="i-cards" viewBox="0 0 24 24"><rect x="3" y="5" width="11" height="15" rx="2"/><path d="M17 7l4 1.4-3.5 11"/></symbol>
+<symbol id="i-compat" viewBox="0 0 24 24"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></symbol>
+<symbol id="i-guide" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></symbol>
+<symbol id="i-num" viewBox="0 0 24 24"><path d="M9 4v16M15 4v16M4 9h16M4 15h16"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14A8.5 8.5 0 0 1 10 4a8.5 8.5 0 1 0 10 10Z"/></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><path d="M21 3 10.5 13.5M21 3l-6.8 18-3.7-7.5L3 10.1Z"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="2.5"/></symbol>
+<symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 13h18M12 9v12M12 9S9.5 4 7 6s5 3 5 3ZM12 9s2.5-5 5-3-5 3-5 3Z"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5 20 12 7 19.5Z"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></symbol>
+<symbol id="i-wa" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.84-.2-.49-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.22.25-.87.85-.87 2.07s.89 2.4 1.02 2.56c.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29Z"/></symbol>
+</defs></svg>
+
+<div class="mobile-backdrop" id="mob-backdrop" onclick="closeMobileNav()"></div>
+<nav class="mobile-drawer" id="mob-drawer" aria-label="Mobile navigation">
+  <div class="drawer-head"><span class="logo-text" style="font-size:.9375rem;color:var(--navy)">JYOGI</span>
+    <button class="drawer-close" onclick="closeMobileNav()" aria-label="Close menu">✕</button></div>
+  <div class="drawer-links">
+    <a href="/"><svg class="icon"><use href="#i-sun"/></svg>Home</a>
+    <a href="/tools.html#astrology"><svg class="icon"><use href="#i-chart"/></svg>Kundli</a>
+    <a href="/tools.html#tarot"><svg class="icon"><use href="#i-cards"/></svg>Tarot</a>
+    <a href="/tools.html#astrology"><svg class="icon"><use href="#i-report"/></svg>Reports</a>
+    <a href="/#consult" onclick="closeMobileNav()"><svg class="icon"><use href="#i-talk"/></svg>Consultations</a>
+    <a href="/crystals.html"><svg class="icon"><use href="#i-crystal"/></svg>Crystals</a>
+    <a href="/blog/index.html"><svg class="icon"><use href="#i-cards"/></svg>Blog</a>
+    <a href="/#about" onclick="closeMobileNav()"><svg class="icon"><use href="#i-om"/></svg>About</a>
+  </div>
+  <div class="drawer-settings">
+    <!-- V2.5: language selector intentionally hidden on this homepage —
+         the new copy has no Hindi/Odia translation yet, so offering the
+         switch here would be misleading. Full homepage i18n is the
+         immediate next task (see release notes). The underlying
+         setSiteLang() mechanism is untouched and unremoved, ready to
+         re-enable this control once translations are wired in. -->
+    <div class="drawer-settings-row">
+      <span class="drawer-settings-label">Appearance</span>
+      <button class="theme-btn" id="theme-btn-mob" onclick="cycleTheme()" aria-label="Change appearance">
+        <span id="theme-icon-mob">☀️</span> <span id="theme-label-mob">Light</span>
+      </button>
+    </div>
+  </div>
+  <div class="drawer-cta"><a href="https://wa.me/919437794561" rel="noopener" class="btn btn-wa"><svg class="icon wa-ico"><use href="#i-wa"/></svg>Talk to Jyogi</a></div>
+</nav>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <svg class="logo-mark" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="19" cy="19" r="18" fill="#1A1B3A" stroke="#C4993D" stroke-width="1"/>
+        <path d="M19 5L33 19L19 33L5 19Z" stroke="url(#lg)" stroke-width="1.5" fill="none"/>
+        <path d="M19 10L28 19L19 28L10 19Z" stroke="url(#lg)" stroke-width="1" fill="none" opacity="0.5"/>
+        <text x="19" y="23" text-anchor="middle" font-family="'Playfair Display',serif" font-size="12" font-weight="600" fill="#C4993D">J</text>
+        <defs><linearGradient id="lg" x1="5" y1="5" x2="33" y2="33"><stop stop-color="#D4A94D"/><stop offset="1" stop-color="#A67C2E"/></linearGradient></defs>
+      </svg>
+      <span class="logo-text">JYOGI</span>
+    </a>
+    <nav class="nav-links">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/tools.html#astrology" class="nav-link">Kundli</a>
+      <a href="/tools.html#tarot" class="nav-link">Tarot</a>
+      <a href="/tools.html#astrology" class="nav-link">Reports</a>
+      <a href="/#consult" class="nav-link">Consultations</a>
+      <a href="/crystals.html" class="nav-link">Crystals</a>
+      <a href="/blog/index.html" class="nav-link">Blog</a>
+      <a href="/#about" class="nav-link">About</a>
+    </nav>
+    <div class="nav-right">
+      <!-- V2.5: language selector intentionally hidden on this homepage —
+           see matching comment in the mobile drawer above. -->
+      <button class="theme-btn" id="theme-btn" onclick="cycleTheme()" aria-label="Change appearance"><span id="theme-icon">☀️</span></button>
+      <a href="https://wa.me/919437794561" rel="noopener" class="btn btn-wa btn-sm nav-cta" aria-label="Talk to Jyogi on WhatsApp"><svg class="icon wa-ico"><use href="#i-wa"/></svg><span class="wa-label">Talk to Jyogi</span></a>
+    </div>
+    <button class="nav-toggle" onclick="openMobileNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main style="padding-top:calc(62px + 20px)">
+<section id="sade-sati" style="padding:60px 20px;">
+  <div class="container" style="max-width:900px;margin:0 auto;">
+    <div class="sec-header" style="text-align:center;margin-bottom:36px;">
+      <div class="sec-badge">✦ SHANI TRANSIT ✦</div>
+      <h1 class="sec-title" style="font-size:clamp(24px,5vw,38px);">Sade Sati &amp; Shani Dhaiya Calculator</h1>
+      <p style="color:var(--muted);font-size:16px;max-width:600px;margin:12px auto 0;">Enter your date of birth to find out if Saturn is currently transiting your Sade Sati or Dhaiya houses — calculated from your actual Moon sign, not a generic prediction.</p>
+    </div>
+
+    <div class="astro-form-wrap">
+      <div class="form-grid">
+        <div class="form-group full">
+          <label class="form-label">DATE OF BIRTH</label>
+          <div class="picker-row hybrid-picker-row">
+            <div class="hybrid-picker">
+              <input class="picker-btn hybrid-input empty" id="dob-day-input" type="text" inputmode="numeric" maxlength="2" autocomplete="bday-day" placeholder="Day" aria-label="Day of birth" oninput="syncDateInput('day', this.value)" onblur="normalizeDateInput('day')" onkeydown="dateInputKey(event,'month')">
+              <button type="button" class="picker-drop-btn" onclick="openPicker('day')" aria-label="Scroll-select day">&#9660;</button>
+            </div>
+            <div class="hybrid-picker">
+              <input class="picker-btn hybrid-input empty" id="dob-month-input" type="text" inputmode="numeric" maxlength="2" autocomplete="bday-month" placeholder="Month" aria-label="Month of birth" oninput="syncDateInput('month', this.value)" onblur="normalizeDateInput('month')" onkeydown="dateInputKey(event,'year')">
+              <button type="button" class="picker-drop-btn" onclick="openPicker('month')" aria-label="Scroll-select month">&#9660;</button>
+            </div>
+            <div class="hybrid-picker">
+              <input class="picker-btn hybrid-input empty" id="dob-year-input" type="text" inputmode="numeric" maxlength="4" autocomplete="bday-year" placeholder="Year" aria-label="Year of birth" oninput="syncDateInput('year', this.value)" onblur="normalizeDateInput('year')" onkeydown="dateInputKey(event,'done')">
+              <button type="button" class="picker-drop-btn" onclick="openPicker('year')" aria-label="Scroll-select year">&#9660;</button>
+            </div>
+          </div>
+          <input type="hidden" id="dob-day" value="">
+          <input type="hidden" id="dob-month" value="">
+          <input type="hidden" id="dob-year" value="">
+        </div>
+
+        <div class="form-group full">
+          <label class="form-label">TIME OF BIRTH (optional, improves accuracy near sign changes)</label>
+          <div class="picker-row hybrid-picker-row">
+            <div class="hybrid-picker">
+              <input class="picker-btn hybrid-input empty" id="time-hour-input" type="text" inputmode="numeric" maxlength="2" placeholder="Hour" aria-label="Hour of birth" oninput="syncTimeInput('hour', this.value)" onblur="normalizeTimeInput('hour')" onkeydown="timeInputKey(event,'min')">
+              <button type="button" class="picker-drop-btn" onclick="openPicker('hour')" aria-label="Scroll-select hour">&#9660;</button>
+            </div>
+            <div class="hybrid-picker">
+              <input class="picker-btn hybrid-input empty" id="time-min-input" type="text" inputmode="numeric" maxlength="2" placeholder="Min" aria-label="Minute of birth" oninput="syncTimeInput('min', this.value)" onblur="normalizeTimeInput('min')" onkeydown="timeInputKey(event,'ampm')">
+              <button type="button" class="picker-drop-btn" onclick="openPicker('min')" aria-label="Scroll-select minute">&#9660;</button>
+            </div>
+            <div class="ampm-toggle">
+              <button type="button" class="ampm-option active" id="ampm-am" onclick="setAMPM('AM')">AM</button>
+              <button type="button" class="ampm-option" id="ampm-pm" onclick="setAMPM('PM')">PM</button>
+            </div>
+          </div>
+          <input type="hidden" id="time-hour" value="12">
+          <input type="hidden" id="time-min" value="00">
+          <input type="hidden" id="time-ampm" value="AM">
+        </div>
+      </div>
+
+      <button class="submit-btn" onclick="calcSadeSati()">🪐 Check My Shani Transit</button>
+
+      <div class="ss-result" id="ss-result"></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer"><div class="container">
+  <div class="footer-grid">
+    <div class="footer-brand"><span class="logo-text">JYOGI</span>
+      <p>Vedic astrology, personalised reports and traditional crystal remedies by a practitioner with 20+ years of experience.</p>
+      <div class="tagline">Ancient Wisdom. Intelligent Guidance.</div></div>
+    <div class="footer-col"><h4>Quick Links</h4><a href="/tools.html#astrology">Kundli</a><a href="/tools.html#astrology">Reports</a><a href="/#consult">Consultations</a><a href="/crystals.html">Crystals</a></div>
+    <div class="footer-col"><h4>Resources</h4><a href="/blog/index.html">Blog</a><a href="/tools.html">Free Tools</a><a href="/blog/sade-sati.html">Sade Sati Guide</a></div>
+    <div class="footer-col"><h4>Support</h4><a href="/privacy.html">Privacy Policy</a><a href="/refund-policy.html">Refund Policy</a></div>
+    <div class="footer-col"><h4>Connect</h4><a href="https://www.youtube.com/@jyogi1008" target="_blank" rel="noopener">YouTube @jyogi1008</a><a href="https://instagram.com/jyogi.tarot" target="_blank" rel="noopener">Instagram @jyogi.tarot</a><a href="https://wa.me/919437794561" target="_blank" rel="noopener">WhatsApp</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Jyogi.in — All rights reserved</span>
+    <span class="footer-pay"><svg class="icon"><use href="#i-lock"/></svg>Secure payments via Razorpay</span></div>
+</div></footer>
+
+<div class="picker-overlay" id="picker-overlay">
+  <div class="picker-bg" onclick="closePicker()"></div>
+  <div class="picker-sheet">
+    <div class="picker-head">
+      <span class="picker-head-title" id="picker-title">Select</span>
+      <button class="picker-head-close" onclick="closePicker()">&#10005;</button>
+    </div>
+    <div class="picker-kbd-wrap">
+      <input type="text" inputmode="numeric" id="picker-kbd-input" class="picker-kbd-input"
+             placeholder="Type here…" autocomplete="off"
+             oninput="pickerKbdInput(this)" onkeydown="pickerKbdKey(event)">
+      <button type="button" class="picker-kbd-go" onclick="pickerKbdConfirm()">OK</button>
+    </div>
+    <div class="picker-kbd-hint" id="picker-kbd-hint">or pick from the list below</div>
+    <div class="picker-items g4" id="picker-items"></div>
+  </div>
+</div>
+
+<!-- Shared infrastructure -->
+<script src="assets/shared.js"></script>
+<!-- Ephemeris engine — needed for natal Moon position (calcMoon/toJD/getLahiri/toSid) -->
+<script src="assets/ephemeris.js"></script>
+
+<script>
+/* ══════════════════════════════════════════════════════════════════
+   Sade Sati / Shani Dhaiya calculation.
+
+   RULE SOURCE (updated 2026-08-19): this calculator originally
+   followed the site's Sade Sati article's FAQ schema ("4th or 8th"
+   for Dhaiya), which turned out to be the article's own outlier — the
+   article's detailed table and body text consistently use a 4-house
+   model (4th/7th/8th/10th) with named classical terms for each house.
+   Confirmed with the site owner which version reflects actual intent
+   (4-house model) and updated to match. The FAQ schema itself was
+   separately corrected by the owner in the same pass; this file's
+   logic and that fix are two independent edits kept in sync by hand,
+   not by shared code — if the rule ever changes again, both need
+   updating together.
+
+   Sade Sati: Saturn transiting the 12th, 1st, or 2nd sign from natal
+   Moon (12th = Rising phase, 1st/own sign = Peak/Janma Shani phase,
+   2nd = Setting phase). 2.5 years per sign, 7.5 years total.
+
+   Shani Dhaiya (Ardha Sade Sati / Kantaka Shani): Saturn transiting
+   the 4th, 7th, 8th, or 10th sign from natal Moon — Ardha Ashtama,
+   Saptamesh Shani, Ashtamesh Shani, and Dashamesh Shani respectively,
+   matching the names used in the blog article's own reference table.
+   ~2.5 years per house, shorter than Sade Sati, considered separately
+   significant.
+
+   Verified against the blog article's own worked 2026 example before
+   shipping: with Saturn in Pisces, Moon=Pisces -> Peak, Moon=Aquarius
+   -> Setting, Moon=Aries -> Rising, Moon=Sagittarius -> Dhaiya(4th,
+   Ardha Ashtama), Moon=Kanya/Virgo -> Dhaiya(7th, Saptamesh Shani),
+   Moon=Leo -> Dhaiya(8th, Ashtamesh Shani), Moon=Gemini -> Dhaiya
+   (10th, Dashamesh Shani) — all seven independently confirmed to
+   match this formula before shipping this update.
+   ══════════════════════════════════════════════════════════════════ */
+
+function calcSadeSati(){
+  var d = parseInt(document.getElementById('dob-day').value, 10);
+  var m = parseInt(document.getElementById('dob-month').value, 10);
+  var y = parseInt(document.getElementById('dob-year').value, 10);
+  if (!d || !m || !y) { alert('Please enter your date of birth.'); return; }
+
+  var hr12 = parseInt(document.getElementById('time-hour').value, 10) || 12;
+  var min = parseInt(document.getElementById('time-min').value, 10) || 0;
+  var ampm = document.getElementById('time-ampm').value || 'AM';
+  var hr24 = hr12 % 12 + (ampm === 'PM' ? 12 : 0);
+  var timeProvided = document.getElementById('time-hour-input').value !== '';
+  var decHr = hr24 + min/60;
+
+  var jd = toJD(y, m, d, decHr);
+  var moonLon = calcMoon(jd);
+  var moonSignIdx = Math.floor(moonLon / 30);
+
+  var todayJD = TODAY_JD;
+  var saturnLon = calcSaturn(todayJD);
+  var saturnSignIdx = Math.floor(saturnLon / 30);
+
+  // 1-indexed house-from-Moon: 1 = same sign as Moon, 12 = sign before, 2 = sign after
+  var houseFromMoon = ((saturnSignIdx - moonSignIdx + 12) % 12) + 1;
+
+  var moonSignName = RASHIS[moonSignIdx];
+  var saturnSignName = RASHIS[saturnSignIdx];
+
+  var inSadeSati = (houseFromMoon === 12 || houseFromMoon === 1 || houseFromMoon === 2);
+  var phase = houseFromMoon === 12 ? 'rising' : houseFromMoon === 1 ? 'peak' : houseFromMoon === 2 ? 'setting' : null;
+  // Dhaiya / Kantaka Shani: 4th, 7th, 8th, or 10th from Moon — matching the
+  // site's own detailed reference table (Ardha Ashtama / Saptamesh Shani /
+  // Ashtamesh Shani / Dashamesh Shani), not the earlier "4th or 8th only"
+  // shorthand this calculator originally used.
+  var DHAIYA_NAMES = {4:'Ardha Ashtama', 7:'Saptamesh Shani', 8:'Ashtamesh Shani', 10:'Dashamesh Shani'};
+  var inDhaiya = (houseFromMoon in DHAIYA_NAMES);
+  var dhaiyaHouse = inDhaiya ? houseFromMoon : null;
+  var dhaiyaName = inDhaiya ? DHAIYA_NAMES[houseFromMoon] : null;
+
+  var html = '';
+  if (inSadeSati) {
+    var phaseLabel = phase === 'rising' ? 'Rising Phase (Saturn entering)' : phase === 'peak' ? 'Peak — Janma Shani' : 'Setting Phase (Saturn exiting)';
+    html += '<div class="ss-status">You are currently in Sade Sati</div>';
+    html += '<div class="ss-substatus">Moon sign: <strong style="color:var(--gold)">' + moonSignName + '</strong> · Saturn is currently in <strong style="color:var(--gold)">' + saturnSignName + '</strong></div>';
+    html += '<div class="ss-phase-row">';
+    html += '<span class="ss-phase-pill' + (phase==='rising'?' active':'') + '">Rising</span>';
+    html += '<span class="ss-phase-pill' + (phase==='peak'?' active':'') + '">Peak (Janma Shani)</span>';
+    html += '<span class="ss-phase-pill' + (phase==='setting'?' active':'') + '">Setting</span>';
+    html += '</div>';
+    html += '<div class="ss-detail">You are in the <strong>' + phaseLabel + '</strong> of your Sade Sati. Saturn takes roughly 2.5 years to cross each sign, so this phase is one part of the full 7.5-year cycle. <a href="/blog/sade-sati.html" style="color:var(--gold)">Read the full Sade Sati guide →</a></div>';
+  } else {
+    html += '<div class="ss-status ss-none">You are not currently in Sade Sati</div>';
+    html += '<div class="ss-substatus">Moon sign: <strong style="color:var(--gold)">' + moonSignName + '</strong> · Saturn is currently in <strong style="color:var(--gold)">' + saturnSignName + '</strong> (house ' + houseFromMoon + ' from your Moon)</div>';
+  }
+
+  if (inDhaiya) {
+    html += '<div class="ss-dhaiya-box"><strong style="color:#ff9d6f;">Shani Dhaiya (Kantaka Shani) is currently active</strong><br>'
+          + 'Saturn is transiting your ' + dhaiyaHouse + 'th house from Moon — <strong>' + dhaiyaName + '</strong>, a ~2.5-year period distinct from full Sade Sati. '
+          + '<a href="/blog/sade-sati.html#dhaiya" style="color:#ff9d6f">Learn more about Dhaiya →</a></div>';
+  }
+
+  if (!timeProvided) {
+    html += '<div class="ss-note">⚠ No birth time entered — noon was used as a default. Your Moon sign is normally accurate for this purpose, but if your birth date falls within ~1 day of a Moon sign change, providing your exact birth time will give a more reliable result.</div>';
+  }
+
+  html += '<div class="ss-cta"><a href="https://wa.me/919437794561?text=' + encodeURIComponent('Hi Jyogi, I checked my Sade Sati status (Moon sign: ' + moonSignName + ') and would like guidance.') + '" class="btn btn-wa" style="display:inline-flex;">💬 Ask Jyogi About This</a></div>';
+
+  var resultEl = document.getElementById('ss-result');
+  resultEl.innerHTML = html;
+  resultEl.classList.add('visible');
+  resultEl.scrollIntoView({behavior:'smooth', block:'nearest'});
+
+  if (typeof gtag === 'function') {
+    gtag('event', 'sadesati_calculated', { moon_sign: moonSignName, in_sade_sati: inSadeSati, in_dhaiya: inDhaiya });
+  }
+  if (typeof saveLog === 'function') {
+    saveLog({ type:'sadesati_check', moon_sign: moonSignName, phase: phase, dhaiya: inDhaiya });
+  }
+}
+
+(function(){
+  try{
+    var saved = localStorage.getItem('jyogi_theme');
+    if(saved) setTheme(saved);
+  }catch(e){}
+})();
+</script>
+</body>
+</html>

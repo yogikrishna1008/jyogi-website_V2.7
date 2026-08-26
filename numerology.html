@@ -1,0 +1,1797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VMKLQJ64RV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VMKLQJ64RV', { anonymize_ip: true, client_storage: 'none' });
+</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Numerology — Jyogi · Pythagorean · Chaldean · Vedic · Lo Shu</title>
+<meta name="description" content="Discover your Pythagorean, Chaldean and Vedic numerology numbers. Life Path, Destiny, Soul Urge, Lo Shu Grid, Name Correction, and Compatibility by Jyogi.">
+<link rel="canonical" href="https://jyogi.in/numerology.html">
+<link rel="stylesheet" href="/assets/core.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Cormorant+SC:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ── Numerology page tokens ─────────────────────────────────── */
+:root {
+  --num-violet: #7c3aed;
+  --num-violet2: #a78bfa;
+  --num-violet-bg: rgba(124,58,237,0.08);
+  --num-teal: #0d9488;
+  --num-teal2: #2dd4bf;
+  --num-teal-bg: rgba(13,148,136,0.08);
+  --num-gold-bg: rgba(255,195,64,0.07);
+  --num-rose: #e11d48;
+  --num-rose-bg: rgba(225,29,72,0.07);
+  --grid-gap: 12px;
+}
+/* mobile hamburger button — was completely unstyled, now matches site pattern */
+.mobile-menu-btn{display:none;background:rgba(255,255,255,0.07);border:1px solid var(--border);border-radius:10px;width:38px;height:38px;color:var(--gold);font-size:18px;cursor:pointer;align-items:center;justify-content:center;}
+@media(max-width:900px){
+  .mobile-menu-btn{display:flex;}
+  .nav-links{display:none;}
+}
+
+/* ── Page hero ──────────────────────────────────────────────── */
+.num-hero {
+  min-height: 52vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%,
+    rgba(124,58,237,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 100%,
+    rgba(255,195,64,0.12) 0%, transparent 60%),
+    var(--bg2);
+  padding: 100px 24px 60px;
+  position: relative; overflow: hidden;
+}
+.num-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Ccircle cx='30' cy='30' r='1' fill='rgba(255,195,64,0.15)'/%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.5;
+}
+.hero-eyebrow {
+  font-family: 'Cormorant SC', serif;
+  font-size: 11px; letter-spacing: 0.3em;
+  color: var(--num-violet2); margin-bottom: 16px;
+  position: relative;
+}
+.num-hero h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(28px, 5vw, 52px);
+  font-weight: 400; color: var(--text);
+  line-height: 1.2; margin-bottom: 16px;
+  position: relative;
+}
+.num-hero h1 span { color: var(--gold); }
+.num-hero p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(15px, 2.5vw, 18px);
+  color: var(--muted); max-width: 540px;
+  line-height: 1.7; position: relative;
+}
+
+/* ── Section common ─────────────────────────────────────────── */
+.num-section {
+  max-width: 920px; margin: 0 auto;
+  padding: 0 20px 60px;
+}
+.section-header {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 28px; padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.section-num {
+  font-family: 'Cormorant SC', serif;
+  font-size: 10px; letter-spacing: 0.25em;
+  color: var(--dim); min-width: 24px;
+}
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(16px, 3vw, 22px);
+  font-weight: 400; color: var(--text);
+}
+.section-badge {
+  font-family: 'Cormorant SC', serif;
+  font-size: 9px; letter-spacing: 0.2em;
+  background: var(--num-violet-bg);
+  border: 1px solid rgba(167,139,250,0.2);
+  color: var(--num-violet2);
+  padding: 3px 10px; border-radius: 100px;
+}
+
+/* ── Input form ─────────────────────────────────────────────── */
+.num-form {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px; padding: 32px;
+  margin-bottom: 40px;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px; margin-bottom: 20px;
+}
+.form-field { display: flex; flex-direction: column; gap: 6px; }
+.form-label {
+  font-family: 'Cormorant SC', serif;
+  font-size: 10px; letter-spacing: 0.2em;
+  color: var(--dim);
+}
+.form-input {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 9px; padding: 11px 14px;
+  color: var(--text); font-family: 'Cormorant Garamond', serif;
+  font-size: 15px; transition: border-color 0.2s;
+  width: 100%;
+}
+.form-input:focus {
+  outline: none; border-color: var(--num-violet2);
+  background: rgba(124,58,237,0.05);
+}
+.form-input::placeholder { color: var(--dim); }
+select.form-input {
+  cursor: pointer;
+  background: rgba(255,255,255,0.04);
+  -webkit-appearance: none;
+}
+.tabs-row {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.tab-chip {
+  padding: 7px 16px; border-radius: 100px;
+  border: 1px solid var(--border); background: transparent;
+  color: var(--muted); font-family: 'Cormorant SC', serif;
+  font-size: 10px; letter-spacing: 0.15em;
+  cursor: pointer; transition: all 0.18s;
+}
+.tab-chip.active {
+  background: var(--num-violet-bg);
+  border-color: rgba(167,139,250,0.35);
+  color: var(--num-violet2);
+}
+.tab-chip:hover:not(.active) { border-color: var(--bhi); color: var(--text); }
+
+/* ── Submit / WhatsApp buttons ──────────────────────────────── */
+.btn-primary {
+  background: linear-gradient(135deg, var(--num-violet), #5b21b6);
+  color: #fff; border: none; border-radius: 12px;
+  padding: 13px 32px; font-family: 'Cormorant SC', serif;
+  font-size: 13px; letter-spacing: 0.2em;
+  cursor: pointer; transition: all 0.2s;
+  box-shadow: 0 4px 20px rgba(124,58,237,0.35);
+}
+.btn-primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; filter: none; transform: none; }
+.btn-wa {
+  background: linear-gradient(135deg, #25D366, #1da851);
+  color: #fff; border: none; border-radius: 12px;
+  padding: 13px 28px; font-family: 'Cormorant SC', serif;
+  font-size: 13px; letter-spacing: 0.15em;
+  cursor: pointer; transition: all 0.2s; display: inline-flex;
+  align-items: center; gap: 8px; text-decoration: none;
+}
+.btn-wa:hover { filter: brightness(1.08); }
+.btn-pdf {
+  background: var(--num-gold-bg);
+  border: 1px solid rgba(255,195,64,0.3);
+  color: var(--gold); border-radius: 12px;
+  padding: 13px 28px; font-family: 'Cormorant SC', serif;
+  font-size: 13px; letter-spacing: 0.15em;
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-pdf:hover { background: rgba(255,195,64,0.15); }
+.btn-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+
+/* ── Results container ──────────────────────────────────────── */
+#num-results { display: none; }
+#num-results.visible { display: block; }
+
+/* ── KPI cards ──────────────────────────────────────────────── */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px; margin-bottom: 28px;
+}
+.kpi-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px; padding: 18px 14px;
+  text-align: center; transition: border-color 0.2s;
+}
+.kpi-card:hover { border-color: var(--bhi); }
+.kpi-card.gold { border-color: rgba(255,195,64,0.3); background: var(--num-gold-bg); }
+.kpi-card.violet { border-color: rgba(167,139,250,0.3); background: var(--num-violet-bg); }
+.kpi-card.teal { border-color: rgba(45,212,191,0.3); background: var(--num-teal-bg); }
+.kpi-number {
+  font-family: 'Cinzel', serif;
+  font-size: 36px; color: var(--gold);
+  line-height: 1; margin-bottom: 6px;
+}
+.kpi-card.violet .kpi-number { color: var(--num-violet2); }
+.kpi-card.teal .kpi-number { color: var(--num-teal2); }
+.kpi-label {
+  font-family: 'Cormorant SC', serif;
+  font-size: 9px; letter-spacing: 0.22em;
+  color: var(--dim); display: block; margin-bottom: 4px;
+}
+.kpi-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 12px; color: var(--muted); font-style: italic;
+}
+.master-badge {
+  display: inline-block;
+  background: rgba(255,195,64,0.15);
+  border: 1px solid rgba(255,195,64,0.4);
+  border-radius: 4px; padding: 1px 6px;
+  font-size: 10px; color: var(--gold);
+  font-family: 'Cormorant SC', serif;
+  letter-spacing: 0.1em; margin-left: 4px;
+}
+
+/* ── System comparison table ────────────────────────────────── */
+.systems-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px; margin-bottom: 32px;
+}
+.system-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px; padding: 20px;
+}
+.system-card-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 14px; padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.system-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%; flex-shrink: 0;
+}
+.system-name {
+  font-family: 'Cinzel', serif;
+  font-size: 12px; color: var(--text); letter-spacing: 0.05em;
+}
+.system-row {
+  display: flex; justify-content: space-between;
+  align-items: center; padding: 5px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 13px;
+}
+.system-row:last-child { border: none; }
+.system-row-label {
+  font-family: 'Cormorant SC', serif;
+  font-size: 10px; letter-spacing: 0.12em; color: var(--dim);
+}
+.system-row-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px; color: var(--gold); font-weight: 500;
+}
+
+/* ── Lo Shu Grid ────────────────────────────────────────────── */
+.loshu-wrap {
+  display: flex; gap: 32px; flex-wrap: wrap;
+  align-items: flex-start; margin-bottom: 28px;
+}
+.loshu-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 4px; flex-shrink: 0;
+}
+.loshu-cell {
+  width: 72px; height: 72px;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 10px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  transition: all 0.2s; cursor: default;
+}
+.loshu-cell.present {
+  background: var(--num-violet-bg);
+  border-color: rgba(167,139,250,0.35);
+}
+.loshu-cell.strong {
+  background: rgba(255,195,64,0.1);
+  border-color: rgba(255,195,64,0.4);
+}
+.loshu-cell.absent {
+  background: var(--num-rose-bg);
+  border-color: rgba(225,29,72,0.2);
+  opacity: 0.7;
+}
+.loshu-digit {
+  font-family: 'Cinzel', serif; font-size: 20px;
+  color: var(--num-violet2); line-height: 1;
+}
+.loshu-cell.absent .loshu-digit { color: var(--dim); }
+.loshu-cell.strong .loshu-digit { color: var(--gold); }
+.loshu-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; color: var(--dim); margin-top: 2px;
+}
+.loshu-legend { flex: 1; min-width: 220px; }
+.loshu-lesson-list { list-style: none; padding: 0; margin: 0; }
+.loshu-lesson-item {
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 13px;
+}
+.loshu-num-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: var(--num-rose);
+  background: var(--num-rose-bg);
+  border: 1px solid rgba(225,29,72,0.2);
+  border-radius: 6px; padding: 2px 7px;
+  flex-shrink: 0;
+}
+.loshu-lesson-text { font-family: 'Cormorant Garamond', serif; color: var(--muted); }
+
+/* ── Strength bar ───────────────────────────────────────────── */
+.strength-bar-wrap { margin-bottom: 8px; }
+.strength-label-row {
+  display: flex; justify-content: space-between;
+  font-family: 'Cormorant SC', serif; font-size: 10px;
+  letter-spacing: 0.15em; color: var(--dim); margin-bottom: 5px;
+}
+.strength-track {
+  height: 8px; background: rgba(255,255,255,0.06);
+  border-radius: 100px; overflow: hidden;
+}
+.strength-fill {
+  height: 100%; border-radius: 100px;
+  background: linear-gradient(90deg, var(--num-violet), var(--num-violet2));
+  transition: width 1s cubic-bezier(0.16,1,0.3,1);
+}
+.strength-fill.gold { background: linear-gradient(90deg, var(--gold2), var(--gold)); }
+.strength-fill.teal { background: linear-gradient(90deg, var(--num-teal), var(--num-teal2)); }
+
+/* ── Name Correction panel ──────────────────────────────────── */
+.correction-score {
+  display: flex; align-items: center; gap: 20px;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 20px 24px; margin-bottom: 20px;
+}
+.score-ring {
+  flex-shrink: 0; width: 72px; height: 72px;
+  border-radius: 50%; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  border: 3px solid var(--gold);
+}
+.score-ring.good { border-color: var(--num-teal2); }
+.score-ring.moderate { border-color: var(--gold); }
+.score-ring.low { border-color: var(--num-rose); }
+.score-pct {
+  font-family: 'Cinzel', serif; font-size: 20px;
+  color: var(--gold); line-height: 1;
+}
+.score-ring.good .score-pct { color: var(--num-teal2); }
+.score-ring.low .score-pct { color: var(--num-rose); }
+.suggestion-card {
+  background: var(--num-gold-bg);
+  border: 1px solid rgba(255,195,64,0.2);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 10px 10px 0; padding: 12px 16px;
+  margin-bottom: 10px;
+}
+.suggestion-name {
+  font-family: 'Cinzel', serif; font-size: 15px;
+  color: var(--text); margin-bottom: 4px;
+}
+.suggestion-reason {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; color: var(--muted); font-style: italic;
+}
+
+/* ── Compatibility ──────────────────────────────────────────── */
+.compat-overall {
+  text-align: center; padding: 28px;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 16px; margin-bottom: 20px;
+}
+.compat-score-big {
+  font-family: 'Cinzel', serif;
+  font-size: 56px; color: var(--gold); line-height: 1;
+}
+.compat-label-big {
+  font-family: 'Cormorant SC', serif;
+  font-size: 11px; letter-spacing: 0.25em;
+  color: var(--dim); margin-top: 6px;
+}
+.compat-axes {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px; margin-bottom: 20px;
+}
+@media(max-width: 480px) { .compat-axes { grid-template-columns: 1fr; } }
+.compat-axis-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 14px;
+}
+.axis-label {
+  font-family: 'Cormorant SC', serif; font-size: 9px;
+  letter-spacing: 0.2em; color: var(--dim); margin-bottom: 6px;
+}
+.axis-score {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 22px; color: var(--gold); font-weight: 500;
+}
+.axis-verdict {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 12px; color: var(--muted); margin-top: 2px;
+}
+
+/* ── Forecast ───────────────────────────────────────────────── */
+.forecast-strip {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 12px; margin-bottom: 24px;
+}
+@media(max-width: 500px) { .forecast-strip { grid-template-columns: 1fr; } }
+.forecast-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 18px;
+}
+.forecast-period {
+  font-family: 'Cormorant SC', serif; font-size: 9px;
+  letter-spacing: 0.22em; color: var(--dim); margin-bottom: 8px;
+}
+.forecast-num {
+  font-family: 'Cinzel', serif; font-size: 40px;
+  color: var(--num-violet2); line-height: 1; margin-bottom: 6px;
+}
+.forecast-theme {
+  font-family: 'Cormorant SC', serif; font-size: 11px;
+  color: var(--text); letter-spacing: 0.08em; margin-bottom: 8px;
+}
+.forecast-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; color: var(--muted); line-height: 1.55;
+}
+
+/* ── Planes ─────────────────────────────────────────────────── */
+.planes-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media(max-width: 480px) { .planes-grid { grid-template-columns: 1fr; } }
+.plane-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 16px;
+}
+.plane-name {
+  font-family: 'Cinzel', serif; font-size: 13px;
+  color: var(--text); margin-bottom: 4px;
+}
+.plane-pct {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: var(--dim); float: right;
+}
+.plane-card.dominant { border-color: rgba(255,195,64,0.4); }
+.plane-card.dominant .plane-name { color: var(--gold); }
+
+/* ── Karmic blocks ──────────────────────────────────────────── */
+.karmic-item {
+  background: var(--num-rose-bg); border: 1px solid rgba(225,29,72,0.2);
+  border-left: 3px solid var(--num-rose);
+  border-radius: 0 10px 10px 0; padding: 12px 16px; margin-bottom: 10px;
+}
+.karmic-title {
+  font-family: 'Cinzel', serif; font-size: 13px;
+  color: var(--text); margin-bottom: 4px;
+}
+.karmic-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; color: var(--muted); font-style: italic;
+}
+.lesson-item {
+  background: var(--num-violet-bg); border: 1px solid rgba(167,139,250,0.2);
+  border-left: 3px solid var(--num-violet2);
+  border-radius: 0 10px 10px 0; padding: 12px 16px; margin-bottom: 8px;
+}
+
+/* ── CTA panel ──────────────────────────────────────────────── */
+.num-cta {
+  background: linear-gradient(135deg, var(--card), rgba(124,58,237,0.08));
+  border: 1px solid rgba(167,139,250,0.25);
+  border-radius: 20px; padding: 36px 32px;
+  text-align: center; margin: 40px 0;
+}
+.cta-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(18px, 3vw, 24px);
+  color: var(--gold); margin-bottom: 10px;
+}
+.cta-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px; color: var(--muted);
+  max-width: 480px; margin: 0 auto 24px;
+  font-style: italic; line-height: 1.6;
+}
+
+/* ── Spinner ────────────────────────────────────────────────── */
+.spinner {
+  display: inline-block; width: 20px; height: 20px;
+  border: 2px solid rgba(167,139,250,0.2);
+  border-top-color: var(--num-violet2);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Tabs for result sections ───────────────────────────────── */
+.result-tabs {
+  display: flex; gap: 4px; flex-wrap: wrap;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 28px; padding-bottom: 0;
+}
+.result-tab {
+  padding: 9px 18px; font-family: 'Cormorant SC', serif;
+  font-size: 10px; letter-spacing: 0.18em;
+  color: var(--dim); cursor: pointer; border: none;
+  background: none; transition: all 0.18s;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+.result-tab.active {
+  color: var(--num-violet2);
+  border-bottom-color: var(--num-violet2);
+}
+.result-panel { display: none; }
+.result-panel.active { display: block; }
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media(max-width: 600px) {
+  .num-form { padding: 20px 16px; }
+  .loshu-cell { width: 60px; height: 60px; }
+  .loshu-digit { font-size: 17px; }
+  .correction-score { flex-direction: column; text-align: center; }
+}
+</style>
+<script src="site_config.js"></script>
+</head>
+<body>
+
+<!-- Nav (matches site) -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">
+      <!-- ══ LOGO — to change the logo, replace the <svg>...</svg> block below ══
+           Easiest swap options:
+             1) Replace with an <img src="/your-logo.svg" style="width:100%;height:100%;">
+             2) Or edit the paths/gradient colors below directly
+           This exact SVG is also used in index_master.html's nav — keep both in sync. -->
+      <div class="nav-logo-glyph"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;" role="img" aria-label="Jyogi logo">
+        <defs>
+          <linearGradient id="navLogoGoldNum" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FFD978"/>
+            <stop offset="50%" stop-color="#D4AF37"/>
+            <stop offset="100%" stop-color="#9A7B16"/>
+          </linearGradient>
+        </defs>
+        <circle cx="100" cy="100" r="98" fill="#0B1220"/>
+        <path d="M100 18 L182 100 L100 182 L18 100 Z" fill="none" stroke="url(#navLogoGoldNum)" stroke-width="5"/>
+        <path d="M100 18 L100 182 M18 100 L182 100 M100 18 L52 64 M100 18 L148 64 M100 182 L52 136 M100 182 L148 136 M18 100 L64 52 M18 100 L64 148 M182 100 L136 52 M182 100 L136 148"
+              stroke="url(#navLogoGoldNum)" stroke-width="2" opacity="0.55" fill="none"/>
+        <text x="100" y="124" font-family="Georgia, 'Times New Roman', serif" font-size="68" font-weight="700" fill="url(#navLogoGoldNum)" text-anchor="middle">J</text>
+      </svg></div>
+      <div>
+        <span class="nav-logo-text">Jyogi</span>
+        <span class="nav-logo-sub">✦ Vedic · Tarot · Sacred ✦</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html#astrology">Astrology</a>
+      <a class="nav-link" href="index.html#tarot">Tarot</a>
+      <a class="nav-link" href="numerology.html" style="color:var(--gold);">Numerology</a>
+      <a class="nav-link" href="crystals.html">Crystals</a>
+      <a class="nav-link nav-wa" href="https://wa.me/919437794561?text=Hi Jyogi! I would like to book a session." target="_blank">
+        💬 Book Reading
+      </a>
+    </div>
+    <button class="mobile-menu-btn" onclick="toggleMobileNav()" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<!-- Mobile nav drawer (was missing — button had nothing to open) -->
+<div class="mobile-nav-backdrop" id="mobile-nav-backdrop" onclick="toggleMobileNav()"></div>
+<div class="mobile-nav" id="mobile-nav">
+  <div class="mob-drawer-head">
+    <div class="mob-drawer-brand">✦ Jyogi</div>
+    <button class="mob-drawer-close" onclick="toggleMobileNav()" aria-label="Close menu">✕</button>
+  </div>
+  <div class="mob-drawer-body">
+    <a class="nav-link" href="index.html#astrology">Astrology</a>
+    <a class="nav-link" href="index.html#tarot">Tarot</a>
+    <a class="nav-link" href="numerology.html" style="color:var(--gold);">✦ Numerology</a>
+    <a class="nav-link" href="crystals.html">Crystals</a>
+    <a class="nav-link nav-wa" href="https://wa.me/919437794561?text=Hi Jyogi! I would like to book a session." target="_blank">💬 Book Reading</a>
+  </div>
+</div>
+<script src="/assets/core.js" defer></script>
+
+<!-- Hero -->
+<div class="num-hero">
+  <p class="hero-eyebrow">✦ JYOGI AI · NUMEROLOGY ENGINE ✦</p>
+  <h1>Your <span>Numbers</span> Tell<br>The Whole Story</h1>
+  <p>Pythagorean · Chaldean · Vedic · Kabbalah · Lo Shu Grid<br>
+     Name Correction · Compatibility · Personal Year Forecast</p>
+</div>
+
+<!-- ── MAIN CONTENT ────────────────────────────────────────── -->
+<main style="background:var(--bg); min-height:60vh; padding-top:48px;">
+
+<div class="num-section">
+
+  <!-- ── INPUT FORM ── -->
+  <div class="num-form">
+    <div class="section-header" style="margin-bottom:20px;">
+      <span class="section-num">01</span>
+      <span class="section-title">Your Birth Details</span>
+    </div>
+
+    <!-- Mode selector -->
+    <div class="tabs-row" id="mode-tabs">
+      <button class="tab-chip active" onclick="setMode('single',this)">Personal Reading</button>
+      <button class="tab-chip" onclick="setMode('compat',this)">Compatibility</button>
+    </div>
+
+    <!-- Single person -->
+    <div id="form-single">
+      <div class="form-grid">
+        <div class="form-field" style="grid-column: 1 / -1;">
+          <label class="form-label">FULL NAME (as used in daily life)</label>
+          <input type="text" id="num-name" class="form-input"
+            placeholder="e.g. Jyotirmoy Giri"
+            autocomplete="off">
+        </div>
+        <div class="form-field">
+          <label class="form-label">DATE OF BIRTH</label>
+          <div class="picker-row">
+            <button type="button" class="picker-btn empty" id="num-btn-day"
+              onclick="numOpenPicker('day')">
+              <span id="num-lbl-day">Day</span><span class="chv">&#9660;</span>
+            </button>
+            <button type="button" class="picker-btn empty" id="num-btn-month"
+              onclick="numOpenPicker('month')">
+              <span id="num-lbl-month">Month</span><span class="chv">&#9660;</span>
+            </button>
+            <button type="button" class="picker-btn empty" id="num-btn-year"
+              onclick="numOpenPicker('year')">
+              <span id="num-lbl-year">Year</span><span class="chv">&#9660;</span>
+            </button>
+          </div>
+          <input type="hidden" id="num-dob-day"   value="">
+          <input type="hidden" id="num-dob-month" value="">
+          <input type="hidden" id="num-dob-year"  value="">
+        </div>
+        <div class="form-field">
+          <label class="form-label">GENDER</label>
+          <select id="num-gender" class="form-input">
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Compatibility extra fields -->
+    <div id="form-compat" style="display:none;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; flex-wrap:wrap;">
+        <div>
+          <p style="font-family:'Cormorant SC',serif;font-size:10px;letter-spacing:0.2em;
+                     color:var(--num-violet2);margin-bottom:12px;">PERSON 1</p>
+          <div class="form-field" style="margin-bottom:12px;">
+            <label class="form-label">NAME</label>
+            <input type="text" id="c-name1" class="form-input" placeholder="First person">
+          </div>
+          <div class="form-field">
+            <label class="form-label">DATE OF BIRTH</label>
+            <div class="picker-row">
+              <button type="button" class="picker-btn empty" id="c-btn-day1"
+                onclick="numOpenPicker('day','c-dob1-day','c-btn-day1','c-lbl-day1')">
+                <span id="c-lbl-day1">Day</span><span class="chv">&#9660;</span>
+              </button>
+              <button type="button" class="picker-btn empty" id="c-btn-month1"
+                onclick="numOpenPicker('month','c-dob1-month','c-btn-month1','c-lbl-month1')">
+                <span id="c-lbl-month1">Month</span><span class="chv">&#9660;</span>
+              </button>
+              <button type="button" class="picker-btn empty" id="c-btn-year1"
+                onclick="numOpenPicker('year','c-dob1-year','c-btn-year1','c-lbl-year1')">
+                <span id="c-lbl-year1">Year</span><span class="chv">&#9660;</span>
+              </button>
+            </div>
+            <input type="hidden" id="c-dob1-day"   value="">
+            <input type="hidden" id="c-dob1-month" value="">
+            <input type="hidden" id="c-dob1-year"  value="">
+          </div>
+        </div>
+        <div>
+          <p style="font-family:'Cormorant SC',serif;font-size:10px;letter-spacing:0.2em;
+                     color:var(--gold);margin-bottom:12px;">PERSON 2</p>
+          <div class="form-field" style="margin-bottom:12px;">
+            <label class="form-label">NAME</label>
+            <input type="text" id="c-name2" class="form-input" placeholder="Second person">
+          </div>
+          <div class="form-field">
+            <label class="form-label">DATE OF BIRTH</label>
+            <div class="picker-row">
+              <button type="button" class="picker-btn empty" id="c-btn-day2"
+                onclick="numOpenPicker('day','c-dob2-day','c-btn-day2','c-lbl-day2')">
+                <span id="c-lbl-day2">Day</span><span class="chv">&#9660;</span>
+              </button>
+              <button type="button" class="picker-btn empty" id="c-btn-month2"
+                onclick="numOpenPicker('month','c-dob2-month','c-btn-month2','c-lbl-month2')">
+                <span id="c-lbl-month2">Month</span><span class="chv">&#9660;</span>
+              </button>
+              <button type="button" class="picker-btn empty" id="c-btn-year2"
+                onclick="numOpenPicker('year','c-dob2-year','c-btn-year2','c-lbl-year2')">
+                <span id="c-lbl-year2">Year</span><span class="chv">&#9660;</span>
+              </button>
+            </div>
+            <input type="hidden" id="c-dob2-day"   value="">
+            <input type="hidden" id="c-dob2-month" value="">
+            <input type="hidden" id="c-dob2-year"  value="">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px; display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+      <button class="btn-primary" id="calc-btn" onclick="calculate()">
+        Calculate Numerology
+      </button>
+      <span id="calc-status" style="font-family:'Cormorant SC',serif;font-size:11px;
+             letter-spacing:0.15em;color:var(--dim);"></span>
+    </div>
+  </div>
+
+  <!-- ── RESULTS ── -->
+  <div id="num-results">
+
+    <!-- Result tabs -->
+    <div class="result-tabs" id="result-tabs">
+      <button class="result-tab active" onclick="showTab('tab-overview',this)">Overview</button>
+      <button class="result-tab" onclick="showTab('tab-systems',this)">All Systems</button>
+      <button class="result-tab" onclick="showTab('tab-loshu',this)">Lo Shu Grid</button>
+      <button class="result-tab" onclick="showTab('tab-name',this)">Name Correction</button>
+      <button class="result-tab" onclick="showTab('tab-forecast',this)">Forecast</button>
+      <button class="result-tab" onclick="showTab('tab-karmic',this)">Karmic</button>
+      <button class="result-tab" id="tab-compat-btn" onclick="showTab('tab-compat',this)"
+              style="display:none;">Compatibility</button>
+    </div>
+
+    <!-- ── TAB: OVERVIEW ── -->
+    <div class="result-panel active" id="tab-overview">
+      <div class="kpi-grid" id="kpi-grid"></div>
+      <div id="vedic-lords-row" style="margin-bottom:24px;"></div>
+      <div class="planes-grid" id="planes-grid"></div>
+    </div>
+
+    <!-- ── TAB: ALL SYSTEMS ── -->
+    <div class="result-panel" id="tab-systems">
+      <div class="systems-grid" id="systems-grid"></div>
+    </div>
+
+    <!-- ── TAB: LO SHU GRID ── -->
+    <div class="result-panel" id="tab-loshu">
+      <div class="loshu-wrap">
+        <div class="loshu-grid" id="loshu-grid"></div>
+        <div class="loshu-legend">
+          <p style="font-family:'Cinzel',serif;font-size:13px;color:var(--text);
+                     margin-bottom:12px;">Absent Numbers — Karmic Lessons</p>
+          <ul class="loshu-lesson-list" id="loshu-lessons"></ul>
+          <div id="loshu-arrows" style="margin-top:16px;"></div>
+        </div>
+      </div>
+      <div id="loshu-present-row" style="margin-top:12px;"></div>
+    </div>
+
+    <!-- ── TAB: NAME CORRECTION ── -->
+    <div class="result-panel" id="tab-name">
+      <div class="correction-score" id="correction-score"></div>
+      <div id="correction-detail"></div>
+      <div id="correction-suggestions"></div>
+    </div>
+
+    <!-- ── TAB: FORECAST ── -->
+    <div class="result-panel" id="tab-forecast">
+      <div class="forecast-strip" id="forecast-strip"></div>
+      <div id="forecast-detail"></div>
+    </div>
+
+    <!-- ── TAB: KARMIC ── -->
+    <div class="result-panel" id="tab-karmic">
+      <div id="karmic-debts"></div>
+      <div id="karmic-lessons"></div>
+    </div>
+
+    <!-- ── TAB: COMPATIBILITY ── -->
+    <div class="result-panel" id="tab-compat">
+      <div id="compat-result"></div>
+    </div>
+
+    <!-- CTA -->
+    <div class="num-cta" id="num-cta">
+      <div class="cta-title" id="cta-headline">✦ Your Reading Is Ready</div>
+      <p class="cta-sub" id="cta-sub-text">
+        Download your free report — then book a session with Jyogi to go deeper.
+      </p>
+      <!-- Free PDF download — no gate -->
+      <div class="btn-row" style="justify-content:center;margin-bottom:14px;">
+        <button class="btn-primary" id="pdf-num-btn" onclick="downloadNumReport()"
+          style="background:linear-gradient(135deg,var(--num-violet),#5b21b6);">
+          ↓ Free PDF Report
+        </button>
+      </div>
+      <div id="pdf-num-status" style="margin-top:4px;margin-bottom:12px;
+           font-family:'Cormorant SC',serif;font-size:11px;letter-spacing:0.12em;
+           color:var(--muted);min-height:16px;text-align:center;"></div>
+      <!-- Divider -->
+      <div style="border-top:1px solid var(--border);margin:12px 0;"></div>
+      <p style="font-family:'Cormorant SC',serif;font-size:9px;letter-spacing:0.22em;
+                color:var(--dim);margin-bottom:12px;">WANT TO GO DEEPER?</p>
+      <!-- Personalised WA CTAs — updated by renderReport() -->
+      <div id="wa-cta-row" class="btn-row" style="justify-content:center;flex-wrap:wrap;gap:10px;">
+        <a id="wa-cta-btn" href="https://wa.me/919437794561" target="_blank" class="btn-wa">
+          💬 Book a Reading — Free
+        </a>
+      </div>
+    </div>
+
+  </div><!-- /num-results -->
+
+</div><!-- /num-section -->
+</main>
+
+<!-- ── Date Picker Overlay (same design as main site) ── -->
+<div class="picker-overlay" id="num-picker-overlay">
+  <div class="picker-bg" onclick="numClosePicker()"></div>
+  <div class="picker-sheet">
+    <div class="picker-head">
+      <span class="picker-head-title" id="num-picker-title">Select</span>
+      <button class="picker-head-close" onclick="numClosePicker()">&#10005;</button>
+    </div>
+    <div class="picker-items g4" id="num-picker-items"></div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer style="background:var(--bg2);border-top:1px solid var(--border);
+  padding:32px 20px;text-align:center;">
+  <p style="font-family:'Cormorant SC',serif;font-size:10px;letter-spacing:0.2em;
+             color:var(--dim);">
+    © 2026 JYOGI AI · VEDIC ASTROLOGY · NUMEROLOGY · TAROT · SACRED CRYSTALS
+  </p>
+  <p style="font-family:'Cormorant Garamond',serif;font-size:12px;color:var(--dim);
+             margin-top:6px;font-style:italic;">
+    jyogi.in · Calculations via Pythagorean, Chaldean & Vedic systems
+  </p>
+</footer>
+
+<!-- astro_engine.js reference removed — numerology logic is fully inline -->
+<script>
+// ═══════════════════════════════════════════════════════════════
+// NUMEROLOGY ENGINE (client-side port of numerology_engine.py)
+// ═══════════════════════════════════════════════════════════════
+
+const API_BASE = 'https://jyogi-api.onrender.com';
+let currentMode = 'single';
+let lastReport  = null;
+
+// ── Pythagorean map ──────────────────────────────────────────
+const PYTH = {A:1,B:2,C:3,D:4,E:5,F:6,G:7,H:8,I:9,
+              J:1,K:2,L:3,M:4,N:5,O:6,P:7,Q:8,R:9,
+              S:1,T:2,U:3,V:4,W:5,X:6,Y:7,Z:8};
+const CHALD = {A:1,I:1,J:1,Q:1,Y:1,B:2,K:2,R:2,
+               C:3,G:3,L:3,S:3,D:4,M:4,T:4,
+               E:5,H:5,N:5,X:5,U:6,V:6,W:6,O:7,Z:7,F:8,P:8};
+const VOWELS = new Set('AEIOU');
+const MASTER = new Set([11,22,33]);
+
+function reduce(n) {
+  while (n > 9 && !MASTER.has(n)) {
+    n = String(n).split('').reduce((a,d) => a + parseInt(d), 0);
+  }
+  return n;
+}
+function sumLetters(name, map, filterFn) {
+  let t = 0;
+  for (const ch of name.toUpperCase()) {
+    if (filterFn(ch) && map[ch]) t += map[ch];
+  }
+  return t;
+}
+
+// ── Pythagorean ──────────────────────────────────────────────
+function pyth_life_path(dob) {
+  const [y,m,d] = dob.split('-').map(Number);
+  const rd = reduce(d);
+  const rm = reduce(m);
+  const ry = reduce(String(y).split('').reduce((a,x)=>a+Number(x),0));
+  return reduce(rd + rm + ry);
+}
+function pyth_destiny(name) {
+  return reduce(sumLetters(name, PYTH, c => PYTH[c]));
+}
+function pyth_soul_urge(name) {
+  return reduce(sumLetters(name, PYTH, c => VOWELS.has(c)));
+}
+function pyth_personality(name) {
+  const CONS = new Set(Object.keys(PYTH).filter(c => !VOWELS.has(c)));
+  return reduce(sumLetters(name, PYTH, c => CONS.has(c)));
+}
+function personal_year(dob, yr) {
+  const [,m,d] = dob.split('-').map(Number);
+  const rd = reduce(d), rm = reduce(m);
+  const ry = reduce(String(yr).split('').reduce((a,x)=>a+Number(x),0));
+  return reduce(rd + rm + ry);
+}
+
+// ── Chaldean ─────────────────────────────────────────────────
+function chald_value(name) {
+  const t = sumLetters(name, CHALD, c => !!CHALD[c]);
+  return { compound: t, final: reduce(t) };
+}
+function chald_soul_urge(name) {
+  const t = sumLetters(name, CHALD, c => VOWELS.has(c) && CHALD[c]);
+  return { compound: t, final: reduce(t) };
+}
+
+// ── Vedic/Ank ─────────────────────────────────────────────────
+const VEDIC_LORDS = {
+  1:'Sun (Surya)',2:'Moon (Chandra)',3:'Jupiter (Guru)',4:'Rahu',
+  5:'Mercury (Budha)',6:'Venus (Shukra)',7:'Ketu',8:'Saturn (Shani)',
+  9:'Mars (Mangal)',11:'Sun+Moon',22:'Sun+Saturn',33:'Jupiter (Master)'
+};
+function vedic_moolank(dob) {
+  // Moolank = digit sum of birth day (not the day number reduced as whole)
+  // e.g. day 29 → 2+9=11→ reduce → 2  (NOT reduce(29) which gives 11 Master)
+  // Standard Vedic method: always reduce to 1-9, no master numbers for Moolank
+  const dayStr = dob.split('-')[2];
+  const daySum = dayStr.split('').reduce((a,x)=>a+Number(x),0);
+  let v = daySum;
+  while (v > 9) v = String(v).split('').reduce((a,x)=>a+Number(x),0);
+  return { moolank: v, lord: VEDIC_LORDS[v]||'', day_raw: Number(dayStr), day_sum: daySum };
+}
+
+function vedic_kua(dob, gender) {
+  // Kua = year digit sum → Male: 11−sum, Female: 4+sum
+  const yr     = Number(dob.split('-')[0]);
+  let   yrSum  = String(yr).split('').reduce((a,x)=>a+Number(x),0);
+  while (yrSum > 9) yrSum = String(yrSum).split('').reduce((a,x)=>a+Number(x),0);
+  let kua = (gender === 'F') ? (4 + yrSum) : (11 - yrSum);
+  while (kua > 9) kua = String(kua).split('').reduce((a,x)=>a+Number(x),0);
+  if (kua === 0) kua = 9;
+  return kua;
+}
+
+// ── Kabbalah ──────────────────────────────────────────────────
+function kabbalah(name) {
+  let t = 0;
+  for (const ch of (name.split(' ')[0]||name).toUpperCase()) {
+    if (ch >= 'A' && ch <= 'Z') t += ch.charCodeAt(0) - 64;
+  }
+  while (t > 9) t = String(t).split('').reduce((a,x)=>a+Number(x),0);
+  return t;
+}
+
+// ── Lo Shu Grid ───────────────────────────────────────────────
+const LO_SHU_LAYOUT = [[4,9,2],[3,5,7],[8,1,6]];
+const LO_SHU_MEANINGS = {
+  1:'Intelligence, memory, communication',
+  2:'Intuition, sensitivity, emotional depth',
+  3:'Action, motivation, drive and energy',
+  4:'Practicality, hard work, organisation',
+  5:'Balance, freedom, adaptability — the fulcrum',
+  6:'Creative visualisation, imagination, home',
+  7:'Learning through sacrifice, patience, wisdom',
+  8:'Wisdom applied practically, business acumen',
+  9:'Idealism, ambition, higher purpose',
+};
+function lo_shu(dob, gender) {
+  // Vedic Lo Shu — data pool = raw DOB digits + Moolank + Bhagyank + Kua
+  // NEVER mix name-based Pythagorean Karmic Lessons here
+
+  // 1. Raw DOB digits (exclude zeros)
+  const rawDigits = dob.replace(/-/g,'').split('').map(Number).filter(d=>d>0);
+
+  // 2. Moolank = sum of birth day digits to single digit (not reduce of day number)
+  const dayStr  = dob.split('-')[2];
+  const moolRaw = dayStr.split('').reduce((a,x)=>a+Number(x),0);
+  const moolank = reduce(moolRaw);
+
+  // 3. Bhagyank = Life Path (full DOB reduced)
+  const bhagyank = pyth_life_path(dob);
+
+  // 4. Kua Number
+  const [yr] = dob.split('-').map(Number);
+  const yrSum = reduce(String(yr).split('').reduce((a,x)=>a+Number(x),0));
+  const kua = (gender==='F')
+    ? reduce(yrSum + 4)
+    : reduce(11 - yrSum) || 9;  // if result is 0 use 9
+
+  // 5. Build complete data pool
+  const pool = [...rawDigits, moolank, bhagyank, kua].filter(n=>n>=1&&n<=9);
+
+  const count = {};
+  for (let i=1;i<=9;i++) count[i] = pool.filter(d=>d===i).length;
+  const present = [1,2,3,4,5,6,7,8,9].filter(n=>count[n]>0);
+  const absent  = [1,2,3,4,5,6,7,8,9].filter(n=>count[n]===0);
+  const grid    = LO_SHU_LAYOUT.map(row => row.map(n => count[n]));
+
+  return { count, present, absent, grid, moolank, bhagyank, kua, pool };
+}
+
+// ── Name Correction ───────────────────────────────────────────
+const COMPAT_MAP = {
+  1:[1,3,5,9],2:[2,4,6,8],3:[1,3,5,9],4:[2,4,6,8],
+  5:[1,3,5,9],6:[2,4,6,8],7:[2,7,9],8:[2,4,6,8],9:[1,3,5,9]
+};
+function name_correction(name, dob) {
+  const lp     = pyth_life_path(dob);
+  const mool   = reduce(Number(dob.split('-')[2]));
+  const d_pyth = pyth_destiny(name);
+  const d_chald= chald_value(name).final;
+  const friendly = COMPAT_MAP[lp]||[];
+  let score = 0;
+  if (d_pyth  === lp)    score += 40;
+  else if (friendly.includes(d_pyth))  score += 25;
+  if (d_chald === lp)    score += 30;
+  else if (friendly.includes(d_chald)) score += 15;
+  if (d_pyth  === mool)  score += 15;
+  if (d_chald === mool)  score += 10;
+  score = Math.min(score, 100);
+  const harmony = score>=70 ? 'Excellent' : score>=45 ? 'Good' : score>=25 ? 'Moderate' : 'Challenging';
+  // Suggestions
+  const sugg = [];
+  if (score < 70) {
+    for (const letter of 'AEIOUBCDFGHJKLMNPQRSTVWXYZ') {
+      const test = name + letter;
+      const tv   = pyth_destiny(test);
+      if (friendly.includes(tv) && tv !== d_pyth) {
+        sugg.push({ modified: test, destiny: tv, letter, reason: `Destiny ${tv} aligns with Life Path ${lp}` });
+        if (sugg.length >= 3) break;
+      }
+    }
+  }
+  return { lp, mool, d_pyth, d_chald, score, harmony, is_lucky: score>=45, sugg };
+}
+
+// ── Compatibility ─────────────────────────────────────────────
+const COMPAT_PAIRS_MAP = {};
+[[1,1,8],[2,2,7],[3,3,9],[4,4,6],[5,5,8],[6,6,9],[7,7,7],[8,8,6],[9,9,8],
+ [1,5,9],[1,9,9],[1,3,8],[2,6,9],[2,8,8],[3,9,9],[4,8,8],[5,9,8],[6,9,8],
+ [1,2,7],[3,6,7],[4,6,8],[5,7,7],[2,9,8],[1,6,6],[1,7,6],[2,3,6],[2,7,7],
+ [3,5,7],[4,7,6],[5,6,6],[6,8,7],[7,9,7],[3,8,6],[1,4,4],[1,8,4],[2,4,4],
+ [3,4,3],[4,5,4],[4,9,4],[5,8,4],[6,7,4],[7,8,3],[8,9,5]].forEach(([a,b,s])=>{
+   COMPAT_PAIRS_MAP[`${Math.min(a,b)}_${Math.max(a,b)}`]=s;
+ });
+function compat_score(a,b){ return COMPAT_PAIRS_MAP[`${Math.min(a,b)}_${Math.max(a,b)}`]||5; }
+function compat_label(s){ return s>=8?'Excellent':s>=6?'Good':s>=4?'Moderate':'Challenging'; }
+function numerology_compat(n1,d1,n2,d2) {
+  const lp1=pyth_life_path(d1),lp2=pyth_life_path(d2);
+  const de1=pyth_destiny(n1),de2=pyth_destiny(n2);
+  const su1=pyth_soul_urge(n1),su2=pyth_soul_urge(n2);
+  const m1=reduce(Number(d1.split('-')[2])),m2=reduce(Number(d2.split('-')[2]));
+  const lps=compat_score(lp1,lp2),des=compat_score(de1,de2);
+  const sus=compat_score(su1,su2),mos=compat_score(m1,m2);
+  const overall=(lps*0.4+des*0.3+sus*0.2+mos*0.1).toFixed(1);
+  return {
+    p1:{name:n1,lp:lp1,destiny:de1,soul:su1},
+    p2:{name:n2,lp:lp2,destiny:de2,soul:su2},
+    scores:{lp:{s:lps,l:compat_label(lps)},destiny:{s:des,l:compat_label(des)},
+            soul:{s:sus,l:compat_label(sus)},moolank:{s:mos,l:compat_label(mos)}},
+    overall, overall_label:compat_label(overall), overall_pct:Math.round(overall*10)
+  };
+}
+
+// ── Personal Year forecast ────────────────────────────────────
+const PY_THEMES = {
+  1:['New Beginnings','Plant seeds, launch projects. What you start now shapes the next 9-year cycle.'],
+  2:['Cooperation','Patience, partnerships, diplomacy. Build alliances quietly.'],
+  3:['Expression','Creativity and self-expression peak. Joy is the currency.'],
+  4:['Foundation','Hard work and structure. Discipline now creates the platform.'],
+  5:['Change & Freedom','Expect the unexpected. Adaptability is your superpower.'],
+  6:['Responsibility','Family, home, and service. Relationships deepen. Commit.'],
+  7:['Introspection','Solitude, spiritual inquiry, and inner wisdom. Trust the unseen.'],
+  8:['Power & Wealth','Manifestation of material goals. Step up and claim.'],
+  9:['Completion','Release what no longer serves. Endings are openings.'],
+  11:['Illumination','Master Year: heightened intuition. Serve as a light-bearer.'],
+  22:['Master Builder','Master Year: legacy work. Vision + discipline = permanence.'],
+  33:['Master Teacher','Master Year: unconditional love. Teach and heal.'],
+};
+function get_forecast(dob) {
+  const today = new Date();
+  const yr=today.getFullYear(), mo=today.getMonth()+1, dy=today.getDate();
+  const py_val = personal_year(dob, yr);
+  const pm_val = reduce(py_val + mo);
+  const pd_val = reduce(pm_val + dy);
+  const t = n => PY_THEMES[n]||['',''];
+  return {
+    year  : {val:py_val, theme:t(py_val)[0], desc:t(py_val)[1], yr},
+    month : {val:pm_val, theme:t(pm_val)[0], desc:t(pm_val)[1], mo},
+    day   : {val:pd_val, theme:t(pd_val)[0], desc:t(pd_val)[1], dy},
+  };
+}
+
+// ── Planes of expression ──────────────────────────────────────
+const PLANES_MAP = {
+  Physical  : new Set('DELMSTW'),
+  Mental    : new Set('AEHIJLNOP'),
+  Emotional : new Set('BCFIKLMORSTUVWXZ'),
+  Intuitive : new Set('FIOPQY'),
+};
+function get_planes(name) {
+  const upper = name.toUpperCase().replace(/[^A-Z]/g,'');
+  const total = upper.length;
+  const res = {};
+  for (const [plane, letters] of Object.entries(PLANES_MAP)) {
+    const count = [...upper].filter(c=>letters.has(c)).length;
+    res[plane] = { count, pct: total ? Math.round(count/total*100) : 0 };
+  }
+  const dom = Object.entries(res).sort((a,b)=>b[1].count-a[1].count)[0][0];
+  res.dominant = dom;
+  return res;
+}
+
+// ── Karmic ────────────────────────────────────────────────────
+const KARMIC_DEBT_MEANINGS = {
+  13:'Debt of laziness — overcome shortcuts and past-life neglect.',
+  14:'Debt of misused freedom — overindulgence, addiction, abuse.',
+  16:'Debt of ego — the false self must dissolve for authentic identity.',
+  19:'Debt of misused power — learn to rely on and respect others.',
+};
+const KARMIC_LESSON_MEANINGS = {
+  1:'Learn self-reliance and original leadership.',
+  2:'Develop patience, diplomacy, and sensitivity.',
+  3:'Express creativity and joy without scattering energy.',
+  4:'Build discipline, order, and practical foundations.',
+  5:'Embrace change, freedom, and versatility.',
+  6:'Take on responsibility, nurturing, commitment.',
+  7:'Develop inner wisdom and trust your intuition.',
+  8:'Learn about material power, business, and authority.',
+  9:'Develop compassion, generosity, and detachment.',
+};
+function get_karmic(name, dob) {
+  /**
+   * Returns TWO strictly separated datasets:
+   *
+   * 1. karmic_debts   — from pre-reduction DOB sums (13/14/16/19)
+   *                     These are BIRTH-based, not name-based.
+   *
+   * 2. pyth_name_lessons — numbers 1-9 MISSING from the name's letters
+   *                     PYTHAGOREAN system only. NEVER merge with Lo Shu.
+   *
+   * The Lo Shu absent numbers (lo_shu().absent) are computed separately
+   * from the DOB data pool (raw digits + Moolank + Bhagyank + Kua).
+   * They are NOT the same as Pythagorean Name Lessons.
+   */
+  const [y,m,d] = dob.split('-').map(Number);
+
+  // ── Karmic Debts (DOB-based) ────────────────────────────────
+  const debts = [];
+  const daySum = String(d).split('').reduce((a,x)=>a+Number(x),0);
+  const yrSum  = String(y).split('').reduce((a,x)=>a+Number(x),0);
+  [d, daySum, yrSum].forEach(raw => {
+    if ([13,14,16,19].includes(raw) && !debts.find(x=>x.num===raw))
+      debts.push({ num: raw, meaning: KARMIC_DEBT_MEANINGS[raw] });
+  });
+  const dest_raw = sumLetters(name, PYTH, c=>!!PYTH[c]);
+  if ([13,14,16,19].includes(dest_raw) && !debts.find(x=>x.num===dest_raw))
+    debts.push({ num: dest_raw, meaning: KARMIC_DEBT_MEANINGS[dest_raw] });
+
+  // ── Pythagorean Name Lessons (NAME-based only) ──────────────
+  // Numbers 1-9 entirely absent from the letters of the full name.
+  // STRICT: never include DOB-derived numbers here.
+  const upper = name.toUpperCase();
+  const pyth_name_lessons = [];
+  for (let num = 1; num <= 9; num++) {
+    const letters_for_num = Object.entries(PYTH)
+      .filter(([,v]) => v === num)
+      .map(([k]) => k);
+    if (!letters_for_num.some(l => upper.includes(l))) {
+      pyth_name_lessons.push({ num, meaning: KARMIC_LESSON_MEANINGS[num] });
+    }
+  }
+
+  return { debts, pyth_name_lessons };
+}
+
+// ═══════════════════════════════════════════════════════════════
+// UI HELPERS
+// ═══════════════════════════════════════════════════════════════
+function setMode(mode, el) {
+  currentMode = mode;
+  document.querySelectorAll('#mode-tabs .tab-chip').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('form-single').style.display  = mode==='single' ? '' : 'none';
+  document.getElementById('form-compat').style.display  = mode==='compat' ? '' : 'none';
+  document.getElementById('tab-compat-btn').style.display = mode==='compat' ? '' : 'none';
+}
+
+function showTab(id, el) {
+  document.querySelectorAll('.result-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.result-tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  el.classList.add('active');
+}
+
+function masterBadge(n) {
+  return MASTER.has(n) ? `<span class="master-badge">MASTER</span>` : '';
+}
+
+// ═══════════════════════════════════════════════════════════════
+// CALCULATE
+// ═══════════════════════════════════════════════════════════════
+function calculate() {
+  const btn = document.getElementById('calc-btn');
+  const status = document.getElementById('calc-status');
+
+  if (currentMode === 'compat') {
+    const n1  = document.getElementById('c-name1').value.trim();
+    const n2  = document.getElementById('c-name2').value.trim();
+    const d1d = document.getElementById('c-dob1-day').value;
+    const d1m = document.getElementById('c-dob1-month').value;
+    const d1y = document.getElementById('c-dob1-year').value;
+    const d2d = document.getElementById('c-dob2-day').value;
+    const d2m = document.getElementById('c-dob2-month').value;
+    const d2y = document.getElementById('c-dob2-year').value;
+    const d1  = (d1y && d1m && d1d) ? (d1y+'-'+d1m+'-'+d1d) : '';
+    const d2  = (d2y && d2m && d2d) ? (d2y+'-'+d2m+'-'+d2d) : '';
+    if (!n1||!d1||!n2||!d2) {
+      status.textContent = 'Please fill all fields for both people.'; return;
+    }
+    renderCompat(n1,d1,n2,d2);
+    return;
+  }
+
+  const name   = document.getElementById('num-name').value.trim();
+  const dobDay = document.getElementById('num-dob-day').value;
+  const dobMon = document.getElementById('num-dob-month').value;
+  const dobYr  = document.getElementById('num-dob-year').value;
+  const dob    = (dobYr && dobMon && dobDay)
+    ? (dobYr + '-' + dobMon + '-' + dobDay)
+    : '';
+  const gender = document.getElementById('num-gender').value;
+
+  if (!name)   { status.textContent = 'Please enter your name.'; return; }
+  if (!dobYr)  { status.textContent = 'Please select your year of birth.'; return; }
+  if (!dobMon) { status.textContent = 'Please select your birth month.'; return; }
+  if (!dobDay) { status.textContent = 'Please select your birth day.'; return; }
+
+  btn.disabled = true;
+  status.innerHTML = '<span class="spinner"></span>';
+
+  // Small delay for perceived compute
+  setTimeout(() => {
+    renderReport(name, dob, gender);
+    btn.disabled = false;
+    status.textContent = '';
+  }, 600);
+}
+
+// ═══════════════════════════════════════════════════════════════
+// RENDER FULL REPORT
+// ═══════════════════════════════════════════════════════════════
+function renderReport(name, dob, gender) {
+  // Compute all values
+  const lp      = pyth_life_path(dob);
+  const dest    = pyth_destiny(name);
+  const su      = pyth_soul_urge(name);
+  const pers    = pyth_personality(name);
+  const py      = personal_year(dob, new Date().getFullYear());
+
+  const cv      = chald_value(name);
+  const csu     = chald_soul_urge(name);
+  const mool    = vedic_moolank(dob);
+  const kab     = kabbalah(name);
+  const ls      = lo_shu(dob, gender);
+  const nc      = name_correction(name, dob);
+  const fc      = get_forecast(dob);
+  const planes  = get_planes(name);
+  const karmic  = get_karmic(name, dob);
+
+  lastReport = {name,dob,gender,lp,dest,su,pers,py,cv,csu,mool,kab,ls,nc,fc,planes,karmic};
+
+  // ── KPI grid ────────────────────────────────────────────────
+  const kpiData = [
+    {num:lp,   label:'LIFE PATH',    sub:VEDIC_LORDS[lp]||'', cls:'gold'},
+    {num:dest, label:'DESTINY',      sub:'Expression',         cls:''},
+    {num:su,   label:'SOUL URGE',    sub:"Heart's Desire",     cls:'violet'},
+    {num:pers, label:'PERSONALITY',  sub:'Outer Self',         cls:''},
+    {num:py,   label:'PERSONAL YEAR',sub:new Date().getFullYear()+'', cls:'teal'},
+    {num:cv.final, label:'CHALDEAN', sub:'Name vibration',     cls:'violet'},
+    {num:mool.moolank, label:'MOOLANK', sub:mool.lord,         cls:''},
+    {num:kab,  label:'KABBALAH',     sub:'First name',         cls:'teal'},
+  ];
+  document.getElementById('kpi-grid').innerHTML = kpiData.map(k => `
+    <div class="kpi-card ${k.cls}">
+      <span class="kpi-label">${k.label}</span>
+      <div class="kpi-number">${k.num}${masterBadge(k.num)}</div>
+      <div class="kpi-sub">${k.sub||'—'}</div>
+    </div>`).join('');
+
+  // ── Vedic lords row ──────────────────────────────────────────
+  document.getElementById('vedic-lords-row').innerHTML = `
+    <div style="background:var(--card);border:1px solid var(--border);
+         border-radius:14px;padding:18px 20px;">
+      <p style="font-family:'Cinzel',serif;font-size:12px;color:var(--text);
+                margin-bottom:12px;">✦ Vedic Identity Numbers</p>
+      <div style="display:flex;gap:24px;flex-wrap:wrap;">
+        ${[
+           ['Moolank (Psychic)',    ls.moolank, VEDIC_LORDS[ls.moolank]||'—'],
+           ['Bhagyank (Life Path)', ls.bhagyank, VEDIC_LORDS[ls.bhagyank]||'—'],
+           ['Kua Number',          ls.kua, 'Auspicious direction energy'],
+           ['Namank (Name)',        cv.final, VEDIC_LORDS[cv.final]||'—']
+          ].map(([l,n,lord])=>`
+          <div>
+            <div style="font-family:'Cormorant SC',serif;font-size:9px;
+                         letter-spacing:0.2em;color:var(--dim);">${l}</div>
+            <div style="font-family:'Cinzel',serif;font-size:20px;color:var(--gold);">${n}</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:13px;
+                         color:var(--muted);font-style:italic;">${lord}</div>
+          </div>`).join('')}
+      </div>
+      <div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--border);
+           font-family:'Cormorant SC',serif;font-size:9px;letter-spacing:0.18em;
+           color:var(--dim);">
+        LO SHU DATA POOL · Raw DOB + Moolank + Bhagyank + Kua
+        · Missing: ${ls.absent.length ? ls.absent.join(', ') : 'None'}
+      </div>
+    </div>`;
+
+  // ── Planes ───────────────────────────────────────────────────
+  const planeColors = {Physical:'gold',Mental:'teal',Emotional:'violet',Intuitive:''};
+  document.getElementById('planes-grid').innerHTML =
+    ['Physical','Mental','Emotional','Intuitive'].map(p => `
+      <div class="plane-card ${planes.dominant===p?'dominant':''} ${planeColors[p]||''}">
+        <div class="plane-name">${p} Plane
+          <span class="plane-pct">${planes[p].pct}%</span>
+          ${planes.dominant===p?'<span class="master-badge">DOMINANT</span>':''}
+        </div>
+        <div class="strength-bar-wrap" style="margin-top:8px;">
+          <div class="strength-track">
+            <div class="strength-fill ${planeColors[p]||''}" style="width:${planes[p].pct}%"></div>
+          </div>
+        </div>
+      </div>`).join('');
+
+  // ── All systems ──────────────────────────────────────────────
+  const systems = [
+    {name:'Pythagorean',color:'#FFC340',rows:[
+      ['Life Path',lp],['Destiny',dest],['Soul Urge',su],['Personality',pers],['Personal Year',py]
+    ]},
+    {name:'Chaldean',color:'#a78bfa',rows:[
+      ['Name Value (compound)',cv.compound],['Name Value (final)',cv.final],
+      ['Soul Urge',csu.final],['Personality',chald_value(name.toUpperCase().replace(/[AEIOU]/g,'')||name).final]
+    ]},
+    {name:'Vedic / Ank',color:'#2dd4bf',rows:[
+      ['Moolank',mool.moolank],['Bhagyank',lp],
+      ['Namank',cv.final],['Lord',VEDIC_LORDS[mool.moolank]||'—']
+    ]},
+    {name:'Kabbalah',color:'#f472b6',rows:[
+      ['First Name Value',kab],['Meaning','See overview']
+    ]},
+  ];
+  document.getElementById('systems-grid').innerHTML = systems.map(sys => `
+    <div class="system-card">
+      <div class="system-card-header">
+        <div class="system-dot" style="background:${sys.color};"></div>
+        <span class="system-name">${sys.name}</span>
+      </div>
+      ${sys.rows.map(([l,v])=>`
+        <div class="system-row">
+          <span class="system-row-label">${l}</span>
+          <span class="system-row-val">${v}</span>
+        </div>`).join('')}
+    </div>`).join('');
+
+  // ── Lo Shu Grid ──────────────────────────────────────────────
+  document.getElementById('loshu-grid').innerHTML = ls.grid.map((row,ri) =>
+    row.map((count,ci) => {
+      const n = LO_SHU_LAYOUT[ri][ci];
+      const cls = count >= 3 ? 'strong' : count > 0 ? 'present' : 'absent';
+      return `<div class="loshu-cell ${cls}" title="${LO_SHU_MEANINGS[n]}">
+        <div class="loshu-digit">${n}</div>
+        <div class="loshu-count">${count > 0 ? '×'.repeat(Math.min(count,5)) : '∅'}</div>
+      </div>`;
+    }).join('')
+  ).join('');
+
+  document.getElementById('loshu-lessons').innerHTML = ls.absent.map(n => `
+    <li class="loshu-lesson-item">
+      <span class="loshu-num-badge">${n}</span>
+      <span class="loshu-lesson-text">${LO_SHU_MEANINGS[n]}</span>
+    </li>`).join('') || '<li style="color:var(--dim);font-size:13px;padding:8px 0;">No absent numbers — all energies present.</li>';
+
+  document.getElementById('loshu-present-row').innerHTML = `
+    <div style="background:var(--card);border:1px solid var(--border);
+         border-radius:10px;padding:14px 16px;margin-top:10px;font-size:13px;">
+      <div style="font-family:'Cormorant SC',serif;font-size:9px;letter-spacing:0.22em;
+                   color:var(--dim);margin-bottom:8px;">VEDIC DATA POOL</div>
+      <div style="font-family:'Cormorant Garamond',serif;color:var(--muted);line-height:1.8;">
+        Raw DOB digits + Moolank (${ls.moolank}) + Bhagyank / Life Path (${ls.bhagyank})
+        + Kua (${ls.kua})
+      </div>
+      <div style="margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:11px;
+                   color:var(--dim);">
+        Pool: [${ls.pool.join(', ')}]
+        &nbsp;·&nbsp; Missing: ${ls.absent.length ? ls.absent.join(', ') : 'None — all present'}
+      </div>
+    </div>`;
+
+  // ── Name Correction ──────────────────────────────────────────
+  const scoreClass = nc.score>=70?'good':nc.score>=45?'moderate':'low';
+  document.getElementById('correction-score').innerHTML = `
+    <div class="score-ring ${scoreClass}">
+      <div class="score-pct">${nc.score}</div>
+      <div style="font-size:11px;color:var(--dim);">/ 100</div>
+    </div>
+    <div>
+      <div style="font-family:'Cinzel',serif;font-size:16px;color:var(--text);
+                   margin-bottom:4px;">${nc.harmony}</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:14px;
+                   color:var(--muted);">Life Path ${nc.lp} · Destiny ${nc.d_pyth} (Pyth) · ${nc.d_chald} (Chaldean)</div>
+      <div style="font-family:'Cormorant SC',serif;font-size:10px;letter-spacing:0.15em;
+                   color:${nc.is_lucky?'var(--green-lt)':'var(--rose)'};margin-top:6px;">
+        ${nc.is_lucky ? '✓ Name vibrates with your destiny' : '⚠ Name creates tension with Life Path'}
+      </div>
+    </div>`;
+
+  document.getElementById('correction-suggestions').innerHTML = nc.sugg.length ? `
+    <p style="font-family:'Cinzel',serif;font-size:13px;color:var(--text);
+               margin:16px 0 10px;">Name Adjustment Suggestions</p>
+    ${nc.sugg.map(s=>`
+      <div class="suggestion-card">
+        <div class="suggestion-name">${s.modified}</div>
+        <div class="suggestion-reason">+ "${s.letter}" → Destiny becomes ${s.destiny} · ${s.reason}</div>
+      </div>`).join('')}
+    <p style="font-size:12px;color:var(--dim);font-style:italic;margin-top:10px;">
+      Consult Jyogi for personalised name correction with Chaldean + astrological alignment.</p>` : `
+    <p style="font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--green-lt);
+               margin-top:12px;">✓ Your name is already well-aligned. No changes needed.</p>`;
+
+  // ── Forecast ─────────────────────────────────────────────────
+  document.getElementById('forecast-strip').innerHTML = [
+    {label:'PERSONAL YEAR', ...fc.year},
+    {label:'PERSONAL MONTH', ...fc.month},
+    {label:'PERSONAL DAY', ...fc.day},
+  ].map(f => `
+    <div class="forecast-card">
+      <div class="forecast-period">${f.label} ${f.yr||f.mo||f.dy}</div>
+      <div class="forecast-num">${f.val}</div>
+      <div class="forecast-theme">${f.theme}</div>
+      <div class="forecast-desc">${f.desc}</div>
+    </div>`).join('');
+
+  // ── Karmic ───────────────────────────────────────────────────
+  document.getElementById('karmic-debts').innerHTML = `
+    <div style="font-family:'Cinzel',serif;font-size:14px;color:var(--text);margin-bottom:12px;">
+      Karmic Debts <span style="font-family:'Cormorant SC',serif;font-size:9px;
+      letter-spacing:0.18em;color:var(--dim);">(FROM BIRTH DATE)</span>
+    </div>
+    ${karmic.debts.length ? karmic.debts.map(d=>`
+      <div class="karmic-item">
+        <div class="karmic-title">Debt ${d.num}</div>
+        <div class="karmic-desc">${d.meaning}</div>
+      </div>`).join('') :
+      '<p style="color:var(--green-lt);font-size:14px;">✓ No major karmic debts detected.</p>'}
+
+    <div style="margin-top:20px;padding:12px 16px;background:var(--num-violet-bg);
+         border:1px solid rgba(167,139,250,0.2);border-radius:10px;">
+      <div style="font-family:'Cinzel',serif;font-size:11px;color:var(--num-violet2);
+                   letter-spacing:0.06em;margin-bottom:6px;">
+        Lo Shu Missing Numbers <span style="font-family:'Cormorant SC',serif;font-size:9px;
+        letter-spacing:0.18em;color:var(--dim);">(FROM DOB + MOOLANK + BHAGYANK + KUA)</span>
+      </div>
+      ${ls.absent.length
+        ? ls.absent.map(n=>`<span style="display:inline-block;margin:2px 4px;padding:3px 10px;
+             background:var(--num-rose-bg);border:1px solid rgba(225,29,72,0.25);
+             border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:12px;
+             color:var(--num-rose);">${n}</span>`).join('')
+        : '<span style="color:var(--green-lt);font-size:13px;">✓ All Lo Shu numbers present</span>'}
+      <div style="margin-top:8px;font-family:'Cormorant Garamond',serif;font-size:12px;
+                   color:var(--dim);font-style:italic;">
+        These are Vedic birth-date energies only. Not related to name letters.
+      </div>
+    </div>`;
+
+  document.getElementById('karmic-lessons').innerHTML = `
+    <div style="margin-top:20px;">
+      <div style="font-family:'Cinzel',serif;font-size:14px;color:var(--text);
+                   margin-bottom:6px;">Pythagorean Name Lessons
+        <span style="font-family:'Cormorant SC',serif;font-size:9px;letter-spacing:0.18em;
+        color:var(--dim);">(FROM NAME LETTERS ONLY — NEVER MIXED WITH LO SHU)</span>
+      </div>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--dim);
+                 font-style:italic;margin-bottom:12px;">
+        Numbers 1–9 with no corresponding letter in the full name.
+        Separate system from Lo Shu Grid.
+      </p>
+      ${karmic.pyth_name_lessons.length ? karmic.pyth_name_lessons.map(l=>`
+        <div class="lesson-item">
+          <div class="karmic-title">Lesson ${l.num}</div>
+          <div class="karmic-desc">${l.meaning}</div>
+        </div>`).join('')
+        : '<p style="color:var(--green-lt);font-size:14px;">✓ All number energies present in name.</p>'}
+    </div>`;
+
+  // ── Update CTA section — personalised WA buttons ────────────
+  const _baseWa = 'https://wa.me/919437794561?text=';
+
+  // Headline + sub based on name correction score
+  const _headline = nc.score < 25
+    ? '⚠ Your Name Is Working Against You'
+    : nc.score < 70
+    ? '✦ Your Reading Is Ready'
+    : '✦ Your Name Is Well Aligned';
+  const _sub = nc.score < 25
+    ? 'Your name harmony score is ' + nc.score + '/100. Your name vibrates against your Life Path ' + lp + '. A small change can shift everything.'
+    : nc.score < 70
+    ? 'Download your free PDF, then book a session with Jyogi to go deeper into your numbers.'
+    : 'Your name aligns well with your destiny. Download your free report to explore the full picture.';
+
+  const _ctaH = document.getElementById('cta-headline');
+  const _ctaS = document.getElementById('cta-sub-text');
+  if (_ctaH) _ctaH.textContent = _headline;
+  if (_ctaS) _ctaS.textContent = _sub;
+
+  // Build personalised WA buttons
+  const _row = document.getElementById('wa-cta-row');
+  if (_row) {
+    const _msgs = [];
+
+    // Always: general reading
+    _msgs.push({
+      label: '💬 Book a Free 10-min Chat',
+      msg: 'Namaste Jyogi 🙏 I just got my numerology reading on jyogi.in.\n' +
+           'Name: ' + name + ' | DOB: ' + dob + '\n' +
+           'Life Path: ' + lp + ' | Destiny: ' + dest + ' | Soul Urge: ' + su + '\n' +
+           "I'd like to book a quick chat about my numbers."
+    });
+
+    // If name correction score is low: name correction CTA
+    if (nc.score < 70) {
+      _msgs.push({
+        label: '✏ Fix My Name (Score: ' + nc.score + '/100)',
+        msg: "Hi Jyogi 🙏 My name correction score is " + nc.score + '/100.\n' +
+             'Name: ' + name + ' | Life Path: ' + lp + '\n' +
+             'Can you help me with a personalised name correction?'
+      });
+    }
+
+    // If Lo Shu has absent numbers: crystal remedy CTA
+    if (ls.absent.length >= 3) {
+      _msgs.push({
+        label: '💎 Crystal Remedy for Missing Energies',
+        msg: "Hi Jyogi 🙏 My Lo Shu Grid is missing numbers: " + ls.absent.join(', ') + '.\n' +
+             'Name: ' + name + ' | DOB: ' + dob + '\n' +
+             'Can you suggest crystals to balance these missing energies?'
+      });
+    }
+
+    // Business naming CTA (always available)
+    _msgs.push({
+      label: '🏢 Business Name Analysis',
+      msg: "Hi Jyogi 🙏 I'd like a numerology analysis for my business name.\n" +
+           'My name: ' + name + ' | Life Path: ' + lp + '\n' +
+           'Please guide me on a lucky business name aligned with my numbers.'
+    });
+
+    _row.innerHTML = _msgs.map((m, i) =>
+      '<a href="' + _baseWa + encodeURIComponent(m.msg) + '" target="_blank" class="' +
+      (i === 0 ? 'btn-wa' : 'btn-pdf') + '" style="' +
+      (i > 0 ? 'background:var(--num-violet-bg);border:1px solid rgba(167,139,250,0.3);color:var(--num-violet2);border-radius:12px;padding:11px 20px;font-family:Cormorant SC,serif;font-size:12px;letter-spacing:0.15em;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;' : '') +
+      '">' + m.label + '</a>'
+    ).join('');
+  }
+
+  // Show results
+  document.getElementById('num-results').className = 'visible';
+  document.getElementById('num-results').scrollIntoView({behavior:'smooth',block:'start'});
+
+  // Reset to overview tab
+  showTab('tab-overview', document.querySelector('.result-tab'));
+}
+
+// ═══════════════════════════════════════════════════════════════
+// RENDER COMPATIBILITY
+// ═══════════════════════════════════════════════════════════════
+function renderCompat(n1,d1,n2,d2) {
+  const r = numerology_compat(n1,d1,n2,d2);
+  const pct = r.overall_pct;
+  const color = pct>=70?'var(--green-lt)':pct>=50?'var(--gold)':'var(--rose)';
+
+  document.getElementById('compat-result').innerHTML = `
+    <div class="compat-overall">
+      <div class="compat-score-big" style="color:${color};">${r.overall}</div>
+      <div style="font-size:11px;color:var(--dim);font-family:'Cormorant SC',serif;
+                   letter-spacing:0.1em;">OUT OF 10</div>
+      <div class="compat-label-big">${r.overall_label} Compatibility</div>
+      <div style="margin-top:10px;font-family:'Cormorant Garamond',serif;
+                   font-size:14px;color:var(--muted);">
+        ${n1} <span style="color:var(--gold);">✦</span> ${n2}
+      </div>
+    </div>
+    <div class="compat-axes">
+      ${Object.entries(r.scores).map(([k,v])=>`
+        <div class="compat-axis-card">
+          <div class="axis-label">${k.toUpperCase().replace('_',' ')}</div>
+          <div class="axis-score" style="color:${v.s>=7?'var(--green-lt)':v.s>=5?'var(--gold)':'var(--rose)'};">${v.s}/10</div>
+          <div class="axis-verdict">${v.l}</div>
+        </div>`).join('')}
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;">
+      ${[r.p1,r.p2].map(p=>`
+        <div style="background:var(--card);border:1px solid var(--border);
+                     border-radius:12px;padding:16px;">
+          <div style="font-family:'Cinzel',serif;font-size:13px;color:var(--text);
+                       margin-bottom:10px;">${p.name}</div>
+          ${[['Life Path',p.lp],['Destiny',p.destiny],['Soul Urge',p.soul]].map(([l,v])=>`
+            <div style="display:flex;justify-content:space-between;padding:4px 0;
+                         border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px;">
+              <span style="font-family:'Cormorant SC',serif;font-size:9px;
+                             letter-spacing:0.15em;color:var(--dim);">${l}</span>
+              <span style="font-family:'JetBrains Mono',monospace;color:var(--gold);">${v}</span>
+            </div>`).join('')}
+        </div>`).join('')}
+    </div>`;
+
+  document.getElementById('num-results').className = 'visible';
+  showTab('tab-compat', document.getElementById('tab-compat-btn'));
+  document.getElementById('tab-compat-btn').style.display = '';
+  document.getElementById('num-results').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ═══════════════════════════════════════════════════════════════
+// PDF DOWNLOAD
+// ═══════════════════════════════════════════════════════════════
+async function downloadNumReport() {
+  if (!lastReport) { alert('Generate your reading first.'); return; }
+  const statusEl = document.getElementById('pdf-num-status');
+  const btn      = document.getElementById('pdf-num-btn');
+  btn.disabled   = true;
+  btn.textContent = '⏳ Building…';
+  statusEl.textContent = 'Generating your free report (15–20s)…';
+
+  const dob = lastReport.dob;   // stored as YYYY-MM-DD when renderReport ran
+  if (!dob) {
+    statusEl.textContent = 'Please generate your reading first.';
+    btn.disabled = false; btn.textContent = '↓ Free PDF Report';
+    return;
+  }
+  const [y,m,d] = dob.split('-').map(Number);
+
+  try {
+    const res = await fetch(API_BASE + '/api/numerology-report', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        name: lastReport.name,
+        year: y, month: m, day: d,
+        gender: lastReport.gender,
+      })
+    });
+    if (!res.ok) throw new Error('API ' + res.status);
+    const blob = await res.blob();
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href     = url;
+    a.download = 'Jyogi_Numerology_' + lastReport.name.replace(/\s+/g,'_') + '.pdf';
+    a.click();
+    URL.revokeObjectURL(url);
+    statusEl.textContent = '✓ Your free report downloaded!';
+    setTimeout(()=>{ statusEl.textContent=''; }, 4000);
+  } catch(err) {
+    // Fallback: open WA to request PDF manually
+    statusEl.innerHTML = '⚠ Server busy. <a href="https://wa.me/919437794561?text=' +
+      encodeURIComponent('Hi Jyogi 🙏 Please send my free Numerology PDF. Name: ' +
+        lastReport.name + ', DOB: ' + lastReport.dob) +
+      '" target="_blank" style="color:var(--gold)">Request on WhatsApp →</a>';
+  }
+  btn.disabled = false;
+  btn.textContent = '↓ Free PDF Report';
+}
+
+
+// ═══════════════════════════════════════════════════════════════
+// DATE PICKER — numerology.html (same design as main site)
+// ═══════════════════════════════════════════════════════════════
+const _NUM_MONTHS = ['Jan','Feb','Mar','Apr','May','Jun',
+                     'Jul','Aug','Sep','Oct','Nov','Dec'];
+let _numPt  = null;   // current picker type ('day'/'month'/'year')
+let _numHid = null;   // hidden input id
+let _numBtn = null;   // button id
+let _numLbl = null;   // label span id
+
+// Default IDs for the main form (no args = main form)
+function numOpenPicker(type,
+  hidId  = (type==='day'?'num-dob-day':type==='month'?'num-dob-month':'num-dob-year'),
+  btnId  = (type==='day'?'num-btn-day':type==='month'?'num-btn-month':'num-btn-year'),
+  lblId  = (type==='day'?'num-lbl-day':type==='month'?'num-lbl-month':'num-lbl-year')
+) {
+  _numPt  = type;
+  _numHid = hidId;
+  _numBtn = btnId;
+  _numLbl = lblId;
+
+  const ov    = document.getElementById('num-picker-overlay');
+  const grid  = document.getElementById('num-picker-items');
+  const title = document.getElementById('num-picker-title');
+  let items   = [];
+
+  if (type === 'day') {
+    title.textContent = 'Select Day';
+    grid.className = 'picker-items g4';
+    for (let d = 1; d <= 31; d++) {
+      const v = String(d).padStart(2,'0');
+      items.push({ v, l: v });
+    }
+  } else if (type === 'month') {
+    title.textContent = 'Select Month';
+    grid.className = 'picker-items g3';
+    _NUM_MONTHS.forEach((m, i) => {
+      items.push({ v: String(i+1).padStart(2,'0'), l: m });
+    });
+  } else if (type === 'year') {
+    title.textContent = 'Select Year';
+    grid.className = 'picker-items g4';
+    const thisYear = new Date().getFullYear();
+    for (let y = thisYear; y >= 1930; y--) {
+      items.push({ v: String(y), l: String(y) });
+    }
+  }
+
+  const curV = document.getElementById(hidId).value;
+  grid.innerHTML = items.map(it => {
+    const sel = (curV === it.v) ? ' sel' : '';
+    return '<div class="pi'+sel+'" onclick="numPickVal(this)" '+
+           'data-v="'+it.v+'" data-l="'+it.l+'">'+it.l+'</div>';
+  }).join('');
+
+  ov.classList.add('open');
+
+  // Scroll to selected item
+  setTimeout(() => {
+    const s = grid.querySelector('.sel');
+    if (s) s.scrollIntoView({ block: 'center', behavior: 'instant' });
+  }, 80);
+}
+
+function numPickVal(el) {
+  const v = el.dataset.v;
+  const l = el.dataset.l;
+  document.getElementById(_numHid).value = v;
+  // Update button label
+  const lbl = document.getElementById(_numLbl);
+  if (lbl) lbl.textContent = l;
+  const btn = document.getElementById(_numBtn);
+  if (btn) { btn.classList.remove('empty'); btn.classList.add('filled'); }
+  numClosePicker();
+}
+
+function numClosePicker() {
+  document.getElementById('num-picker-overlay').classList.remove('open');
+  _numPt = _numHid = _numBtn = _numLbl = null;
+}
+
+// Close on back navigation (mobile)
+window.addEventListener('popstate', numClosePicker);
+
+// ── Picker is now the DOB input — no native date input to configure ──
+window.addEventListener('load', () => {
+  // Nothing to init — picker is driven by numOpenPicker()
+});
+</script>
+
+</body>
+</html>

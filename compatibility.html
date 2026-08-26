@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kundli Matching — Vedic Compatibility Check | Jyogi</title>
+<meta name="description" content="Free Ashtakoot Kundli matching for marriage compatibility. All 8 Kutas scored, Moon sign, Nakshatra and Manglik analysis.">
+<link rel="canonical" href="https://jyogi.in/compatibility.html">
+<link rel="icon" href="/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="fonts/playfair-display-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/v25-fonts.css">
+<link rel="stylesheet" href="assets/shared.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VMKLQJ64RV"></script>
+<style>
+/* Compatibility-specific styles */
+body.light-theme .compat-score-ring{border-color:#8a5c00;background:rgba(138,92,0,0.06);}
+body.light-theme .compat-score-num{color:#8a5c00;}
+body.light-theme .compat-score-lbl{color:#7a5c30;}
+body.light-theme .compat-label{color:#7a5c30;}
+body.light-theme .compat-val{color:#1a0f00;}
+body.light-theme .compat-bar{background:rgba(0,0,0,0.08);}
+  .compat-label{width:80px;font-size:14px;}
+.compat-persons-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+  .compat-persons-grid{grid-template-columns:1fr;gap:20px;}
+.compat-score-ring{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  border:3px solid var(--gold);background:rgba(255,195,64,0.07);}
+.compat-score-num{font-family:'Cinzel',serif;font-size:38px;color:var(--gold);font-weight:700;line-height:1;}
+.compat-score-lbl{font-size:14px;letter-spacing:0.2em;color:var(--muted);margin-top:2px;}
+.compat-bar{height:8px;border-radius:4px;background:rgba(255,255,255,0.07);margin:6px 0;overflow:hidden;}
+.compat-bar-fill{height:100%;border-radius:4px;transition:width 1s ease;}
+.compat-row{display:flex;align-items:center;justify-content:space-between;margin:8px 0;}
+.compat-label{font-size:13px;color:var(--muted);width:100px;}
+.compat-val{font-size:14px;color:var(--text);font-weight:600;}
+  .compat-score-num{font-size:26px;}
+  .compat-score-num{font-size:30px;}
+@media(max-width:600px){
+  .compat-label{width:80px;font-size:14px;}
+}
+@media(max-width:600px){
+  /* Compatibility */
+/* Compatibility persons grid — 2 col desktop, 1 col mobile */
+.compat-persons-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+  .compat-persons-grid{grid-template-columns:1fr;gap:20px;}
+}
+@media(max-width:480px){
+  .compat-score-num{font-size:26px;}
+}
+@media(max-width:600px){
+  /* Compact compatibility */
+  .compat-score-num{font-size:30px;}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-chart" viewBox="0 0 24 24"><path d="M12 2 22 12 12 22 2 12Z"/><path d="M12 7 17 12 12 17 7 12Z"/></symbol>
+<symbol id="i-crystal" viewBox="0 0 24 24"><path d="M12 2 20 9l-8 13L4 9Z"/><path d="M4 9h16M12 2v20"/></symbol>
+<symbol id="i-report" viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6Z"/><path d="M15 2v5h5M9 12h7M9 16h7"/></symbol>
+<symbol id="i-talk" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.5 7.2L3 21l1.8-6.5A8 8 0 1 1 21 12Z"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+<symbol id="i-om" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18 4.5 4.5 0 0 1 0-9 4.5 4.5 0 0 0 0-9Z"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M5 5l1.8 1.8M17.2 17.2 19 19M19 5l-1.8 1.8M6.8 17.2 5 19"/></symbol>
+<symbol id="i-cards" viewBox="0 0 24 24"><rect x="3" y="5" width="11" height="15" rx="2"/><path d="M17 7l4 1.4-3.5 11"/></symbol>
+<symbol id="i-compat" viewBox="0 0 24 24"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></symbol>
+<symbol id="i-guide" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></symbol>
+<symbol id="i-num" viewBox="0 0 24 24"><path d="M9 4v16M15 4v16M4 9h16M4 15h16"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14A8.5 8.5 0 0 1 10 4a8.5 8.5 0 1 0 10 10Z"/></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><path d="M21 3 10.5 13.5M21 3l-6.8 18-3.7-7.5L3 10.1Z"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="2.5"/></symbol>
+<symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 13h18M12 9v12M12 9S9.5 4 7 6s5 3 5 3ZM12 9s2.5-5 5-3-5 3-5 3Z"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5 20 12 7 19.5Z"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></symbol>
+<symbol id="i-wa" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.84-.2-.49-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.22.25-.87.85-.87 2.07s.89 2.4 1.02 2.56c.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29Z"/></symbol>
+</defs></svg>
+<div class="mobile-backdrop" id="mob-backdrop" onclick="closeMobileNav()"></div>
+<nav class="mobile-drawer" id="mob-drawer" aria-label="Mobile navigation">
+  <div class="drawer-head"><span class="logo-text" style="font-size:.9375rem;color:var(--navy)">JYOGI</span>
+    <button class="drawer-close" onclick="closeMobileNav()" aria-label="Close menu">✕</button></div>
+  <div class="drawer-links">
+    <a href="/"><svg class="icon"><use href="#i-sun"/></svg>Home</a>
+    <a href="/tools.html#astrology"><svg class="icon"><use href="#i-chart"/></svg>Kundli</a>
+    <a href="/tools.html#tarot"><svg class="icon"><use href="#i-cards"/></svg>Tarot</a>
+    <a href="/tools.html#astrology"><svg class="icon"><use href="#i-report"/></svg>Reports</a>
+    <a href="/#consult" onclick="closeMobileNav()"><svg class="icon"><use href="#i-talk"/></svg>Consultations</a>
+    <a href="/crystals.html"><svg class="icon"><use href="#i-crystal"/></svg>Crystals</a>
+    <a href="/blog/index.html"><svg class="icon"><use href="#i-cards"/></svg>Blog</a>
+    <a href="/#about" onclick="closeMobileNav()"><svg class="icon"><use href="#i-om"/></svg>About</a>
+  </div>
+  <div class="drawer-settings">
+    <!-- V2.5: language selector intentionally hidden on this homepage —
+         the new copy has no Hindi/Odia translation yet, so offering the
+         switch here would be misleading. Full homepage i18n is the
+         immediate next task (see release notes). The underlying
+         setSiteLang() mechanism is untouched and unremoved, ready to
+         re-enable this control once translations are wired in. -->
+    <div class="drawer-settings-row">
+      <span class="drawer-settings-label">Appearance</span>
+      <button class="theme-btn" id="theme-btn-mob" onclick="cycleTheme()" aria-label="Change appearance">
+        <span id="theme-icon-mob">☀️</span> <span id="theme-label-mob">Light</span>
+      </button>
+    </div>
+  </div>
+  <div class="drawer-cta"><a href="https://wa.me/919437794561" rel="noopener" class="btn btn-wa"><svg class="icon wa-ico"><use href="#i-wa"/></svg>Talk to Jyogi</a></div>
+</nav>
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <svg class="logo-mark" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="19" cy="19" r="18" fill="#1A1B3A" stroke="#C4993D" stroke-width="1"/>
+        <path d="M19 5L33 19L19 33L5 19Z" stroke="url(#lg)" stroke-width="1.5" fill="none"/>
+        <path d="M19 10L28 19L19 28L10 19Z" stroke="url(#lg)" stroke-width="1" fill="none" opacity="0.5"/>
+        <text x="19" y="23" text-anchor="middle" font-family="'Playfair Display',serif" font-size="12" font-weight="600" fill="#C4993D">J</text>
+        <defs><linearGradient id="lg" x1="5" y1="5" x2="33" y2="33"><stop stop-color="#D4A94D"/><stop offset="1" stop-color="#A67C2E"/></linearGradient></defs>
+      </svg>
+      <span class="logo-text">JYOGI</span>
+    </a>
+    <nav class="nav-links">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/tools.html#astrology" class="nav-link">Kundli</a>
+      <a href="/tools.html#tarot" class="nav-link">Tarot</a>
+      <a href="/tools.html#astrology" class="nav-link">Reports</a>
+      <a href="/#consult" class="nav-link">Consultations</a>
+      <a href="/crystals.html" class="nav-link">Crystals</a>
+      <a href="/blog/index.html" class="nav-link">Blog</a>
+      <a href="/#about" class="nav-link">About</a>
+    </nav>
+    <div class="nav-right">
+      <!-- V2.5: language selector intentionally hidden on this homepage —
+           see matching comment in the mobile drawer above. -->
+      <button class="theme-btn" id="theme-btn" onclick="cycleTheme()" aria-label="Change appearance"><span id="theme-icon">☀️</span></button>
+      <a href="https://wa.me/919437794561" rel="noopener" class="btn btn-wa btn-sm nav-cta" aria-label="Talk to Jyogi on WhatsApp"><svg class="icon wa-ico"><use href="#i-wa"/></svg><span class="wa-label">Talk to Jyogi</span></a>
+    </div>
+    <button class="nav-toggle" onclick="openMobileNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<main style="padding-top:calc(62px + 20px)">
+<section id="compat">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-badge">✦ Vedic Compatibility ✦</div>
+      <h2 class="sec-title"><span data-i18n="auto.love_amp_relationship_match">Love &amp; Relationship Match</span></h2>
+      <p class="sec-desc" style="font-family:var(--font-body),'Inter',sans-serif;font-size:16px;font-style:normal;color:var(--soft-slate);line-height:1.7;"><span data-i18n="auto.enter_both_birth_dates_for_a">Enter both birth dates for a Vedic compatibility reading — Moon sign Kuta, Nakshatra match, and Dasha harmony.</span></p>
+    </div>
+    <div style="max-width:580px;margin:0 auto;width:100%;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px;">
+        <div class="compat-persons-grid">
+          <!-- ── Person 1 ── -->
+          <div>
+            <div class="form-label" style="margin-bottom:8px;">✦ Person 1</div>
+            <input class="form-input" id="c1-name" placeholder="Your name" style="margin-bottom:8px;">
+            <div class="picker-row hybrid-picker-row" style="margin-bottom:8px;">
+              <div class="hybrid-picker">
+                <input class="picker-btn hybrid-input empty" id="c1-day-input" type="text" inputmode="numeric" maxlength="2" placeholder="Day" aria-label="Day" oninput="syncCompInput('c1','day',this.value)" onblur="normalizeCompInput('c1','day')" onkeydown="compInputKey(event,'c1','month')">
+                <button type="button" class="picker-drop-btn" onclick="openCompPicker('c1-day','day')" aria-label="Scroll-select day">&#9660;</button>
+              </div>
+              <div class="hybrid-picker">
+                <input class="picker-btn hybrid-input empty" id="c1-month-input" type="text" inputmode="numeric" maxlength="2" placeholder="Month" aria-label="Month" oninput="syncCompInput('c1','month',this.value)" onblur="normalizeCompInput('c1','month')" onkeydown="compInputKey(event,'c1','year')">
+                <button type="button" class="picker-drop-btn" onclick="openCompPicker('c1-month','month')" aria-label="Scroll-select month">&#9660;</button>
+              </div>
+              <div class="hybrid-picker">
+                <input class="picker-btn hybrid-input empty" id="c1-year-input" type="text" inputmode="numeric" maxlength="4" placeholder="Year" aria-label="Year" oninput="syncCompInput('c1','year',this.value)" onblur="normalizeCompInput('c1','year')" onkeydown="compInputKey(event,'c1','done')">
+                <button type="button" class="picker-drop-btn" onclick="openCompPicker('c1-year','year')" aria-label="Scroll-select year">&#9660;</button>
+              </div>
+            </div>
+            <input type="hidden" id="c1-day" value=""><input type="hidden" id="c1-month" value=""><input type="hidden" id="c1-year" value="">
+            <!-- Optional fields -->
+            <button type="button" onclick="toggleCompatOpt('c1')" id="c1-opt-btn"
+              style="background:none;border:none;color:var(--muted);font-size:13px;font-family:'Cormorant SC',serif;letter-spacing:0.1em;cursor:pointer;padding:4px 0;display:flex;align-items:center;gap:5px;">
+              <span id="c1-opt-arrow">▸</span> Time &amp; Place (optional)
+            </button>
+            <div id="c1-opt-fields" style="display:none;margin-top:8px;gap:6px;flex-direction:column;">
+              <input class="form-input" id="c1-time" placeholder="Birth time (e.g. 10:30 AM)" style="font-size:14px;">
+              <input class="form-input" id="c1-city" placeholder="Birth city (e.g. Mumbai)" style="font-size:14px;">
+            </div>
+          </div>
+          <!-- ── Person 2 ── -->
+          <div>
+            <div class="form-label" style="margin-bottom:8px;">✦ Person 2</div>
+            <input class="form-input" id="c2-name" placeholder="Partner name" style="margin-bottom:8px;">
+            <div class="picker-row hybrid-picker-row" style="margin-bottom:8px;">
+              <div class="hybrid-picker">
+                <input class="picker-btn hybrid-input empty" id="c2-day-input" type="text" inputmode="numeric" maxlength="2" placeholder="Day" aria-label="Day" oninput="syncCompInput('c2','day',this.value)" onblur="normalizeCompInput('c2','day')" onkeydown="compInputKey(event,'c2','month')">
+                <button type="button" class="picker-drop-btn" onclick="openCompPicker('c2-day','day')" aria-label="Scroll-select day">&#9660;</button>
+              </div>
+              <div class="hybrid-picker">
+                <input class="picker-btn hybrid-input empty" id="c2-month-input" type="text" inputmode="numeric" maxlength="2" placeholder="Month" aria-label="Month" oninput="syncCompInput('c2','month',this.value)" onblur="normalizeCompInput('c2','month')" onkeydown="compInputKey(event,'c2','year')">
+                <button type="button" class="picker-drop-btn" onclick="openCompPicker('c2-month','month')" aria-label="Scroll-select month">&#9660;</button>
+              </div>
+              <div class="hybrid-picker">
+                <input class="picker-btn hybrid-input empty" id="c2-year-input" type="text" inputmode="numeric" maxlength="4" placeholder="Year" aria-label="Year" oninput="syncCompInput('c2','year',this.value)" onblur="normalizeCompInput('c2','year')" onkeydown="compInputKey(event,'c2','done')">
+                <button type="button" class="picker-drop-btn" onclick="openCompPicker('c2-year','year')" aria-label="Scroll-select year">&#9660;</button>
+              </div>
+            </div>
+            <input type="hidden" id="c2-day" value=""><input type="hidden" id="c2-month" value=""><input type="hidden" id="c2-year" value="">
+            <!-- Optional fields -->
+            <button type="button" onclick="toggleCompatOpt('c2')" id="c2-opt-btn"
+              style="background:none;border:none;color:var(--muted);font-size:13px;font-family:'Cormorant SC',serif;letter-spacing:0.1em;cursor:pointer;padding:4px 0;display:flex;align-items:center;gap:5px;">
+              <span id="c2-opt-arrow">▸</span> Time &amp; Place (optional)
+            </button>
+            <div id="c2-opt-fields" style="display:none;margin-top:8px;gap:6px;flex-direction:column;">
+              <input class="form-input" id="c2-time" placeholder="Birth time (e.g. 6:00 PM)" style="font-size:14px;">
+              <input class="form-input" id="c2-city" placeholder="Birth city (e.g. Delhi)" style="font-size:14px;">
+            </div>
+          </div>
+        </div>
+        <button class="submit-btn" onclick="calcCompatibility()">💑 Check Our Compatibility</button>
+        <div id="compat-result" style="margin-top:20px;"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DREAM JOURNAL SECTION ══ -->
+
+<div class="picker-overlay" id="picker-overlay">
+  <div class="picker-bg" onclick="closePicker()"></div>
+  <div class="picker-sheet">
+    <div class="picker-head">
+      <span class="picker-head-title" id="picker-title">Select</span>
+      <button class="picker-head-close" onclick="closePicker()">&#10005;</button>
+    </div>
+    <div class="picker-kbd-wrap">
+      <input type="text" inputmode="numeric" id="picker-kbd-input" class="picker-kbd-input"
+             placeholder="Type here…" autocomplete="off"
+             oninput="pickerKbdInput(this)" onkeydown="pickerKbdKey(event)">
+      <button type="button" class="picker-kbd-go" onclick="pickerKbdConfirm()">OK</button>
+    </div>
+    <div class="picker-kbd-hint" id="picker-kbd-hint">or pick from the list below</div>
+    <div class="picker-items g4" id="picker-items"></div>
+  </div>
+</div>
+</main>
+<footer class="footer"><div class="container">
+  <div class="footer-grid">
+    <div class="footer-brand"><span class="logo-text">JYOGI</span>
+      <p>Vedic astrology, personalised reports and traditional crystal remedies by a practitioner with 20+ years of experience.</p>
+      <div class="tagline">Ancient Wisdom. Intelligent Guidance.</div></div>
+    <div class="footer-col"><h4>Quick Links</h4><a href="/tools.html#astrology">Kundli</a><a href="/tools.html#astrology">Reports</a><a href="/#consult">Consultations</a><a href="/crystals.html">Crystals</a></div>
+    <div class="footer-col"><h4>Resources</h4><a href="/blog/index.html">Blog</a><a href="/tools.html">Free Tools</a><a href="/blog/sade-sati.html">Sade Sati Guide</a></div>
+    <div class="footer-col"><h4>Support</h4><a href="/privacy.html">Privacy Policy</a><a href="/refund-policy.html">Refund Policy</a></div>
+    <div class="footer-col"><h4>Connect</h4><a href="https://www.youtube.com/@jyogi1008" target="_blank" rel="noopener">YouTube @jyogi1008</a><a href="https://instagram.com/jyogi.tarot" target="_blank" rel="noopener">Instagram @jyogi.tarot</a><a href="https://wa.me/919437794561" target="_blank" rel="noopener">WhatsApp</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Jyogi.in — All rights reserved</span>
+    <span class="footer-pay"><svg class="icon"><use href="#i-lock"/></svg>Secure payments via Razorpay</span></div>
+</div></footer>
+<!-- Shared infrastructure -->
+<script src="assets/shared.js"></script>
+<!-- Ephemeris engine — Compat needs getMoonSignFromDOB -> calcMoon/toJD/toSid -->
+<script src="assets/ephemeris.js"></script>
+<script>
+// ── Compatibility-specific constants ──
+
+
+var KUTA_LORDS=['Ketu','Venus','Sun','Moon','Mars','Rahu','Jupiter','Saturn','Mercury'];
+
+
+var RASHI_LORD=['Mars','Venus','Mercury','Moon','Sun','Mercury','Venus','Mars','Jupiter','Saturn','Saturn','Jupiter'];
+
+
+var VARNA_KUTA=[2,1,0,3, 2,1,0,3, 2,1,0,3];
+
+
+var VASHYA_TABLE=[
+  [2,0,0,0,1,0,0,0,0,0,0,0], // Aries
+  [0,2,0,1,0,0,0,0,0,0,0,0], // Taurus
+  [0,0,2,0,0,1,0,0,0,0,0,0], // Gemini
+  [0,0,0,2,0,0,1,1,0,0,0,0], // Cancer
+  [0,0,0,0,2,0,0,0,1,0,0,0], // Leo
+  [0,0,1,0,0,2,0,0,0,1,0,0], // Virgo
+  [0,0,0,1,0,0,2,0,0,0,0,0], // Libra
+  [0,0,0,1,0,0,0,2,0,0,0,1], // Scorpio
+  [0,1,0,0,0,0,0,0,2,0,0,0], // Sagittarius
+  [1,0,0,0,0,0,0,0,0,2,0,0], // Capricorn
+  [1,0,0,0,0,0,0,0,0,0,2,0], // Aquarius
+  [0,0,0,1,0,0,0,1,0,0,0,2], // Pisces
+];
+
+
+var TARA_SCORES=[3,2,1,3,1,2,3,1,0];
+
+
+var YONI_NK=[7,0,4,8,8,6,6,2,2,0,0,2,3,7,7,5,5,1,1,9,9,3,3,10,4,10,6];
+
+
+var YONI_ENEMY={0:1,1:0,2:3,3:2,4:5,5:4,6:7,7:6,8:9,9:8};
+
+
+var PL_FRIENDS={
+  Mars:['Sun','Moon','Jupiter'],
+  Venus:['Mercury','Saturn'],
+  Mercury:['Sun','Venus'],
+  Moon:['Sun','Mercury'],
+  Sun:['Moon','Mars','Jupiter'],
+  Jupiter:['Sun','Moon','Mars'],
+  Saturn:['Mercury','Venus'],
+  Rahu:['Venus','Saturn','Mercury'],
+  Ketu:['Mars','Venus','Saturn']
+};
+
+
+var PL_NEUTRAL={
+  Sun:['Mercury'],
+  Moon:['Mars','Jupiter','Venus','Saturn'],
+  Mars:['Venus','Saturn'],
+  Mercury:['Moon','Mars','Jupiter','Saturn'],
+  Jupiter:['Saturn','Venus'],
+  Venus:['Moon','Mars','Jupiter'],
+  Saturn:['Moon','Mars','Jupiter']
+};
+
+
+var GANA_NK=[
+  0, // 0  Ashwini       Deva
+  1, // 1  Bharani        Manushya
+  2, // 2  Krittika       Rakshasa
+  0, // 3  Rohini         Deva
+  0, // 4  Mrigashira     Deva
+  2, // 5  Ardra          Manushya (some say Rakshasa; Parashara = Manushya — using 2 per most sources)
+  0, // 6  Punarvasu      Deva
+  0, // 7  Pushya         Deva
+  2, // 8  Ashlesha       Rakshasa
+  2, // 9  Magha          Rakshasa
+  1, // 10 Purva Phalguni Manushya
+  0, // 11 Uttara Phalguni Deva
+  0, // 12 Hasta          Deva
+  2, // 13 Chitra         Rakshasa
+  0, // 14 Swati          Deva
+  2, // 15 Vishakha       Rakshasa
+  0, // 16 Anuradha       Deva
+  2, // 17 Jyeshtha       Rakshasa
+  2, // 18 Mula           Rakshasa
+  1, // 19 Purva Ashadha  Manushya
+  1, // 20 Uttara Ashadha Manushya  ← key: was wrong in old engine
+  0, // 21 Shravana       Deva
+  2, // 22 Dhanishtha     Rakshasa
+  0, // 23 Shatabhisha    Deva
+  0, // 24 Purva Bhadrapada Deva
+  0, // 25 Uttara Bhadrapada Deva
+  0, // 26 Revati         Deva
+];
+
+
+var GANA_MATRIX=[[6,5,0],[5,6,0],[0,0,6]]; // D-D=6,D-M=5,D-R=0,M-M=6,M-R=0,R-R=6 // D-D=6, D-M=5, D-R=1, M-M=6, M-R=0, R-R=6
+
+
+var NADI_NK=[0,1,2,0,1,2,0,1,2, 2,1,0,2,1,0,2,1,0, 0,1,2,0,1,2,0,1,2];
+
+
+var _compPickerTarget=null;
+
+
+
+// ── Compatibility-specific functions ──
+
+
+function calcCompatibility(){
+  var c1d=document.getElementById('c1-day').value;
+  var c1m=document.getElementById('c1-month').value;
+  var c1y=document.getElementById('c1-year').value;
+  var c2d=document.getElementById('c2-day').value;
+  var c2m=document.getElementById('c2-month').value;
+  var c2y=document.getElementById('c2-year').value;
+  var c1n=document.getElementById('c1-name').value||'Person 1';
+  var c2n=document.getElementById('c2-name').value||'Person 2';
+  var c1t=(document.getElementById('c1-time')||{}).value||'';
+  var c1city=(document.getElementById('c1-city')||{}).value||'';
+  var c2t=(document.getElementById('c2-time')||{}).value||'';
+  var c2city=(document.getElementById('c2-city')||{}).value||'';
+
+  if(!c1d||!c1m||!c1y||!c2d||!c2m||!c2y){
+    document.getElementById('compat-result').innerHTML='<p style="color:var(--err);text-align:center;padding:12px;">Please select birth dates for both persons.</p>';
+    return;
+  }
+
+  var ms1=getMoonSignFromDOB(+c1d,+c1m,+c1y,c1t,c1city);
+  var ms2=getMoonSignFromDOB(+c2d,+c2m,+c2y,c2t,c2city);
+  var nk1=getMoonNakshatra(c1d,c1m,c1y,c1t);
+  var nk2=getMoonNakshatra(c2d,c2m,c2y,c2t);
+  var scores={};
+
+  // 1. VARNA (1 pt): boy's varna >= girl's varna
+  // Without knowing gender, check if either direction works
+  var v1=VARNA_KUTA[ms1], v2=VARNA_KUTA[ms2];
+  scores.varna=(v1>=v2||v2>=v1)?1:0; // simplified: give 1 if compatible either way
+  scores.varna=1; // Varna is rarely 0 in practice — give full point
+
+  // 2. VASHYA (2 pts): proper table lookup
+  scores.vashya=VASHYA_TABLE[ms1][ms2];
+
+  // 3. TARA (3 pts): average from both directions
+  var td1=mod(nk2-nk1,27), td2=mod(nk1-nk2,27);
+  var t1=TARA_SCORES[td1%9], t2=TARA_SCORES[td2%9];
+  scores.tara=Math.round((t1+t2)/2);
+
+  // 4. YONI (4 pts): by nakshatra animal
+  var y1=YONI_NK[nk1], y2=YONI_NK[nk2];
+  if(y1===y2) scores.yoni=4;
+  else if(YONI_ENEMY[y1]===y2||YONI_ENEMY[y2]===y1) scores.yoni=0;
+  else scores.yoni=2;
+
+  // 5. GRAHA MAITRI (5 pts): rashi lord friendship
+  var l1=RASHI_LORD[ms1], l2=RASHI_LORD[ms2];
+  var r12=plRelation(l1,l2), r21=plRelation(l2,l1);
+  if(r12==='same') scores.maitri=5;
+  else if(r12==='friend'&&r21==='friend') scores.maitri=5;
+  else if(r12==='friend'||r21==='friend') scores.maitri=4;
+  else if(r12==='neutral'&&r21==='neutral') scores.maitri=3;
+  else if(r12==='enemy'&&r21==='enemy') scores.maitri=0;
+  else scores.maitri=1;
+
+  // 6. GANA (6 pts): by nakshatra gana
+  var g1=GANA_NK[nk1], g2=GANA_NK[nk2];
+  scores.gana=GANA_MATRIX[g1][g2];
+
+  // 7. BHAKOOT / RASHI (7 pts): Parashara inauspicious pairs only
+  var d1=mod(ms2-ms1,12)+1, d2=mod(ms1-ms2,12)+1;
+  var pair=[Math.min(d1,d2),Math.max(d1,d2)].join('/');
+  var badPairs=['2/12','5/9','6/8'];
+  scores.rashi=badPairs.indexOf(pair)>=0?0:7;
+
+  // 8. NADI (8 pts): different nadi = 8, same = 0
+  var n1=NADI_NK[nk1], n2=NADI_NK[nk2];
+  var nadiDosha=(n1===n2);
+  scores.nadi=nadiDosha?0:8;
+
+  // Nadi Dosha Parihara (cancellation)
+  var nadiParihara=false;
+  var nadiPariharaReason='';
+  if(nadiDosha){
+    if(ms1===ms2){nadiParihara=true;nadiPariharaReason='Same Moon sign cancels Nadi Dosha';}
+    else if(nk1===nk2){nadiParihara=true;nadiPariharaReason='Same Nakshatra cancels Nadi Dosha';}
+    else{
+      var rl=plRelation(RASHI_LORD[ms1],RASHI_LORD[ms2]);
+      if(rl==='friend'||rl==='same'){nadiParihara=true;nadiPariharaReason='Friendly Rashi lords cancel Nadi Dosha';}
+    }
+    if(mod(ms2-ms1,12)===6||mod(ms1-ms2,12)===6){nadiParihara=true;nadiPariharaReason='1/7 Moon signs cancel Nadi Dosha';}
+    if(nadiParihara) scores.nadi=8; // dosha cancelled — full points
+  }
+
+  var total=0;
+  var keys=['varna','vashya','tara','yoni','maitri','gana','rashi','nadi'];
+  keys.forEach(function(k){total+=scores[k];});
+  var pct=Math.round((total/36)*100);
+  var verdict=pct>=75?'Highly Compatible':pct>=60?'Good Match':pct>=45?'Average — Needs Awareness':'Challenging — Remedies Advised';
+  var verdictColor=pct>=75?'#86efac':pct>=60?'#fbbf24':pct>=45?'#fb923c':'#f87171';
+
+  var GANA_NAME=['Deva','Manushya','Rakshasa'];
+  var NADI_NAME=['Adya (Vata)','Madhya (Pitta)','Antya (Kapha)'];
+  var nak1Name=NAKSH[nk1]||'', nak2Name=NAKSH[nk2]||'';
+
+  var detailRows=[
+    {k:'varna', label:'Varna', max:1},
+    {k:'vashya', label:'Vashya', max:2},
+    {k:'tara', label:'Tara', max:3},
+    {k:'yoni', label:'Yoni', max:4},
+    {k:'maitri', label:'Graha Maitri', max:5},
+    {k:'gana', label:'Gana', max:6},
+    {k:'rashi', label:'Bhakoot', max:7},
+    {k:'nadi', label:'Nadi', max:8},
+  ];
+
+  var rowsHtml=detailRows.map(function(row){
+    var v=scores[row.k], mx=row.max;
+    var pf=Math.round((v/mx)*100);
+    var fc=pf>=80?'#86efac':pf>=50?'#fbbf24':'#f87171';
+    return '<div class="compat-row">'+
+      '<span class="compat-label">'+row.label+'</span>'+
+      '<div style="flex:1;margin:0 10px;"><div class="compat-bar"><div class="compat-bar-fill" style="width:'+pf+'%;background:'+fc+';"></div></div></div>'+
+      '<span class="compat-val" style="color:'+fc+';">'+v+'/'+mx+'</span>'+
+      '</div>';
+  }).join('');
+
+  var doshaHtml='';
+  if(nadiDosha&&!nadiParihara){
+    doshaHtml='<div style="margin-top:12px;padding:10px 14px;background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.25);border-radius:8px;font-size:13px;color:var(--err);">⚠ Nadi Dosha present — consult an astrologer for remedies</div>';
+  } else if(nadiDosha&&nadiParihara){
+    doshaHtml='<div style="margin-top:12px;padding:10px 14px;background:rgba(134,239,172,0.08);border:1px solid rgba(134,239,172,0.2);border-radius:8px;font-size:13px;color:#86efac;">✓ '+nadiPariharaReason+'</div>';
+  }
+
+  var resultHTML=
+    '<div style="text-align:center;margin-bottom:20px;">'+
+      '<div class="compat-score-ring" style="border-color:'+verdictColor+';background:rgba(255,255,255,0.03);">'+
+        '<div class="compat-score-num" style="color:'+verdictColor+';">'+pct+'%</div>'+
+        '<div class="compat-score-lbl">MATCH</div>'+
+      '</div>'+
+      '<div style="font-family:Cinzel,serif;font-size:15px;color:'+verdictColor+';margin-bottom:4px;">'+verdict+'</div>'+
+      '<div style="font-size:14px;color:var(--muted);">'+RASHIS[ms1]+' Moon × '+RASHIS[ms2]+' Moon</div>'+
+      '<div style="font-size:13px;color:var(--dim);">'+nak1Name+' ('+GANA_NAME[g1]+' / '+NADI_NAME[n1]+') × '+nak2Name+' ('+GANA_NAME[g2]+' / '+NADI_NAME[n2]+')</div>'+
+    '</div>'+
+    '<div style="margin-bottom:16px;">'+
+      rowsHtml+
+      '<div style="font-weight:bold;display:flex;justify-content:space-between;padding:10px 0;border-top:1px solid rgba(255,195,64,0.15);margin-top:4px;">'+
+        '<span style="font-family:Cinzel,serif;font-size:14px;color:var(--gold);">TOTAL KUTA SCORE</span>'+
+        '<span style="font-family:Cinzel,serif;color:'+verdictColor+';">'+total+' / 36</span>'+
+      '</div>'+
+    '</div>'+
+    doshaHtml+
+    '<div style="padding:14px;background:rgba(255,195,64,0.05);border:1px solid rgba(255,195,64,0.15);border-radius:10px;text-align:center;margin-top:12px;">'+
+      '<div style="font-size:14px;color:var(--muted);margin-bottom:8px;">Full match includes Manglik analysis, Dasha harmony, and personalised remedies.</div>'+
+      '<button onclick="openWhatsApp(&apos;Hi Jyogi, Kundali match for '+c1n+' & '+c2n+', score '+total+'/36&apos;, &apos;Kundali compatibility match enquiry (score '+total+'/36)&apos;)" style="padding:10px 20px;background:linear-gradient(135deg,#e11d48,#9f1239);color:#fff;border:none;border-radius:20px;font-family:inherit;font-size:14px;cursor:pointer;">💑 Enquire on WhatsApp →</button>'+
+    '</div>';
+
+  document.getElementById('compat-result').innerHTML=resultHTML;
+  /* V2.5 privacy fix: names and city dropped from this log entirely —
+   * they were being written unconditionally the moment a match is
+   * calculated, before WhatsApp is even involved. Moon signs and score
+   * carry the useful usage-pattern signal without identifying anyone. */
+  saveLog({type:'compatibility',ms1:RASHIS[ms1],ms2:RASHIS[ms2],score:total,pct:pct});
+}
+
+
+function toggleCompatOpt(person){
+  var fields=document.getElementById(person+'-opt-fields');
+  var arrow=document.getElementById(person+'-opt-arrow');
+  if(!fields) return;
+  if(fields.style.display==='none'){
+    fields.style.display='flex';
+    if(arrow) arrow.textContent='▾';
+  } else {
+    fields.style.display='none';
+    if(arrow) arrow.textContent='▸';
+  }
+}
+
+
+function openCompPicker(hidId, type){
+  _compPickerTarget={hidId, type};
+  _pt=null; // disable normal picker
+  _pickerKbdCtx={type:type, kind:'comp', hidId:hidId};
+  _resetPickerKbd();
+  const ov=document.getElementById('picker-overlay');
+  const grid=document.getElementById('picker-items');
+  const title=document.getElementById('picker-title');
+  const items=[];
+  if(type==='day'){title.textContent='Select Day';grid.className='picker-items g4';for(let d=1;d<=31;d++)items.push({v:String(d).padStart(2,'0'),l:String(d).padStart(2,'0')});}
+  else if(type==='month'){title.textContent='Select Month';grid.className='picker-items g3';_MONTHS.forEach((m,i)=>items.push({v:String(i+1).padStart(2,'0'),l:m}));}
+  else{title.textContent='Select Year';grid.className='picker-items g4';for(let y=new Date().getFullYear();y>=1930;y--)items.push({v:String(y),l:String(y)});}
+  const cur=document.getElementById(hidId).value;
+  grid.innerHTML=items.map(it=>'<div class="pi'+(cur===it.v?' sel':'')+'" onclick="pickCompVal(\''+it.v+'\',\''+it.l+'\')" >'+it.l+'</div>').join('');
+  ov.classList.add('open');
+}
+
+
+function pickCompVal(v,l){
+  if(!_compPickerTarget){ closePicker(); return; }
+  const t=_compPickerTarget;
+  // Write to hidden field
+  var h=document.getElementById(t.hidId); if(h) h.value=v;
+  // Write to the visible hybrid input (e.g. c1-day-input)
+  var inp=document.getElementById(t.hidId+'-input');
+  if(inp){ inp.value=v; inp.classList.remove('empty'); inp.classList.add('filled'); }
+  _compPickerTarget=null;
+  closePicker();
+}
+
+
+function syncCompInput(person, part, raw){
+  var clean=String(raw).replace(/[^0-9]/g,'');
+  var inp=document.getElementById(person+'-'+part+'-input');
+  var hid=document.getElementById(person+'-'+part);
+  if(inp) inp.value=clean;
+  if(hid) hid.value=clean;
+  if(inp){ inp.classList.toggle('empty',clean===''); inp.classList.toggle('filled',clean!==''); }
+}
+
+
+function normalizeCompInput(person, part){
+  var inp=document.getElementById(person+'-'+part+'-input');
+  var hid=document.getElementById(person+'-'+part);
+  if(!inp) return;
+  var raw=inp.value;
+  if(raw===''){ if(hid) hid.value=''; inp.classList.add('empty'); inp.classList.remove('filled'); return; }
+  var v;
+  if(part==='day') v=_clampInt(raw,1,31);
+  else if(part==='month') v=_clampInt(raw,1,12);
+  else v=_clampInt(raw,1900,new Date().getFullYear());
+  if(v===null){ inp.value=''; if(hid) hid.value=''; inp.classList.add('empty'); return; }
+  var disp=(part==='year')?String(v):String(v).padStart(2,'0');
+  inp.value=disp; if(hid) hid.value=disp;
+  inp.classList.remove('empty'); inp.classList.add('filled');
+}
+
+
+function compInputKey(ev, person, next){
+  if(ev.key==='Enter'){
+    ev.preventDefault();
+    var part=ev.target.id.replace(person+'-','').replace('-input','');
+    normalizeCompInput(person, part);
+    if(next==='month'){ var e=document.getElementById(person+'-month-input'); if(e) e.focus(); }
+    else if(next==='year'){ var e=document.getElementById(person+'-year-input'); if(e) e.focus(); }
+    else if(next==='done'){ ev.target.blur(); }
+  }
+}
+
+
+function plRelation(a,b){
+  if(a===b) return 'same';
+  var f=PL_FRIENDS[a]||[];
+  var n=PL_NEUTRAL[a]||[];
+  if(f.indexOf(b)>=0) return 'friend';
+  if(n.indexOf(b)>=0) return 'neutral';
+  return 'enemy';
+}
+
+
+function parseTimeToUT(timeStr){
+  // Parse "10:30 AM" or "22:15" → UT float (subtracts IST 5.5h)
+  if(!timeStr||!timeStr.trim()) return 6; // default 11:30 IST
+  var tp=timeStr.trim().toUpperCase();
+  var pm=tp.indexOf('PM')>=0;
+  var am=tp.indexOf('AM')>=0;
+  var nums=tp.replace(/[^0-9:]/g,'').split(':');
+  var h=parseInt(nums[0])||0;
+  var m=nums.length>1?(parseInt(nums[1])||0):0;
+  if(pm&&h!==12) h+=12;
+  if(am&&h===12) h=0;
+  return h+m/60-5.5; // IST → UT
+}
+
+
+function getMoonSignFromDOB(day,month,year,timeStr){
+  var utH=parseTimeToUT(timeStr);
+  var jd=toJD(year,month,day,utH);
+  var moonLon=calcMoon(jd); // calcMoon already returns sidereal via toSid()
+  return Math.floor(mod(moonLon,360)/30);
+}
+
+
+
+// Init
+(function(){
+  try{
+    var saved = localStorage.getItem('jyogi_theme');
+    if(saved) setTheme(saved);
+  }catch(e){}
+})();
+</script>
+</body>
+</html>

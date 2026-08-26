@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Tarot Reading Online — Draw Your Cards | Jyogi</title>
+<meta name="description" content="Free online Tarot reading. Single card, Past-Present-Future, Celtic Cross, Love and Career spreads with intuitive guidance from Jyogi's deck.">
+<link rel="canonical" href="https://jyogi.in/tarot.html">
+<link rel="icon" href="/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="fonts/playfair-display-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/v25-fonts.css">
+<link rel="stylesheet" href="assets/shared.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VMKLQJ64RV"></script>
+<style>
+/* Tarot-specific styles */
+body.light-theme .tarot-question{background:#fff;color:#1a0f00;border-color:rgba(100,65,0,0.25);}
+body.light-theme .tarot-question::placeholder{color:#9a7a50;}
+body.light-theme .spread-tab{border-color:rgba(100,65,0,0.2);color:#4a3010;}
+body.light-theme .spread-tab:hover{border-color:rgba(100,65,0,0.4);color:#1a0f00;}
+body.light-theme .spread-tab.active{background:linear-gradient(135deg,#8a5c00,#6b4700);color:#fff;}
+body.light-theme .tarot-question{background:#fff;color:#1a0f00;border-color:rgba(100,65,0,0.25);}
+body.warm-theme .card-meaning-panel,body.warm-theme .yoga-brief,
+body.warm-theme.high-visibility .card-meaning-panel,
+.container-md{max-width:1040px;margin:0 auto;width:100%;}
+/* ── TAROT READER ── */
+#tarot{background:linear-gradient(180deg,var(--bg3) 0%,var(--bg) 100%);}
+.tarot-inner{position:relative;}
+.spread-tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:32px;}
+.spread-tab{padding:9px 20px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'Cormorant SC',serif;font-size:14px;letter-spacing:0.25em;cursor:pointer;transition:all 0.25s;}
+.spread-tab:hover{border-color:var(--bhi);color:var(--text);}
+.spread-tab.active{background:linear-gradient(135deg,var(--gold),var(--gold2));border-color:transparent;color:#0a0220;font-weight:600;}
+.tarot-question{width:100%;background:rgba(0,0,0,0.35);border:1px solid var(--border);border-radius:12px;padding:16px 20px;color:var(--text);font-size:16px;font-family:'Cormorant Garamond',serif;font-style:italic;resize:none;outline:none;transition:border-color 0.25s;margin-bottom:18px;}
+.tarot-question:focus{border-color:rgba(255,195,64,0.4);}
+.tarot-question::placeholder{color:var(--dim);}
+.draw-btn{width:100%;padding:16px;border-radius:12px;border:none;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#0a0220;font-family:'Cinzel',serif;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.3s;letter-spacing:0.08em;}
+.draw-btn:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(255,195,64,0.35);}
+.draw-btn:disabled{opacity:0.4;cursor:not-allowed;transform:none;}
+.cards-display{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:36px;}
+.card-img-wrap{aspect-ratio:2/3;display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(160deg,var(--panel),var(--card));}
+.card-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform 0.3s;}
+.card-img-wrap img.reversed{transform:rotate(180deg);}
+.card-img-placeholder{font-size:48px;opacity:0.3;}
+.card-back-design{width:100%;height:100%;background:radial-gradient(circle at 50% 50%, rgba(255,195,64,0.08) 0%, transparent 70%);display:flex;align-items:center;justify-content:center;font-size:48px;opacity:0.5;}
+.card-meaning-panel{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;margin-top:24px;display:none;font-size:calc(1em*var(--body-font-scale));}
+.card-meaning-panel p,.card-meaning-panel li{font-size:calc(15px*var(--body-font-scale));line-height:1.7;}
+.card-meaning-panel.visible{display:block;animation:fadeUp 0.4s ease;}
+  .spread-tabs{gap:5px;}
+  .spread-tab{padding:7px 12px;font-size:14px;}
+  .container,.container-sm,.container-md{padding:0;}
+/* Tarot button — vibrant purple, pulsing glow */
+.hero-free-tarot{
+  background:linear-gradient(145deg,rgba(139,92,246,0.35),rgba(109,40,217,0.22));
+  border-color:rgba(167,139,250,0.7);
+  box-shadow:0 0 0 0 rgba(139,92,246,0.4),0 6px 24px rgba(139,92,246,0.25);
+  animation:tarot-pulse 3s ease-in-out infinite;
+}
+@keyframes tarot-pulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(139,92,246,0.4),0 6px 24px rgba(139,92,246,0.25);}
+  50%{box-shadow:0 0 0 8px rgba(139,92,246,0),0 6px 32px rgba(139,92,246,0.5);}
+}
+.hero-free-tarot:active{
+  transform:scale(0.97);
+  border-color:rgba(167,139,250,1);
+  box-shadow:0 4px 24px rgba(139,92,246,0.6);
+}
+body.light-theme .hero-free-tarot{
+  background:linear-gradient(145deg,rgba(109,40,217,0.1),rgba(139,92,246,0.06));
+  border-color:rgba(109,40,217,0.35);
+}
+body.warm-theme .hero-free-tarot{
+  background:linear-gradient(145deg,rgba(74,47,128,0.1),rgba(74,47,128,0.06));
+  border-color:rgba(74,47,128,0.35);
+}
+.spread-tabs > *+* { margin-right: 0; }
+  .hero-free-tarot:hover{
+    transform:translateY(-2px);
+    border-color:rgba(167,139,250,0.95);
+    box-shadow:0 0 24px rgba(139,92,246,0.3);
+  }
+@media(max-width:768px){
+  /* ── TAROT READER ── */
+#tarot{background:linear-gradient(180deg,var(--bg3) 0%,var(--bg) 100%);}
+  .tarot-inner{position:relative;}
+  .spread-tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:32px;}
+  .spread-tab{padding:9px 20px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'Cormorant SC',serif;font-size:14px;letter-spacing:0.25em;cursor:pointer;transition:all 0.25s;}
+  .spread-tab:hover{border-color:var(--bhi);color:var(--text);}
+  .spread-tab.active{background:linear-gradient(135deg,var(--gold),var(--gold2));border-color:transparent;color:#0a0220;font-weight:600;}
+  .tarot-question{width:100%;background:rgba(0,0,0,0.35);border:1px solid var(--border);border-radius:12px;padding:16px 20px;color:var(--text);font-size:16px;font-family:'Cormorant Garamond',serif;font-style:italic;resize:none;outline:none;transition:border-color 0.25s;margin-bottom:18px;}
+  .tarot-question:focus{border-color:rgba(255,195,64,0.4);}
+  .tarot-question::placeholder{color:var(--dim);}
+  .draw-btn{width:100%;padding:16px;border-radius:12px;border:none;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#0a0220;font-family:'Cinzel',serif;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.3s;letter-spacing:0.08em;}
+  .draw-btn:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(255,195,64,0.35);}
+  .draw-btn:disabled{opacity:0.4;cursor:not-allowed;transform:none;}
+  .cards-display{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:36px;}
+  .card-img-wrap{aspect-ratio:2/3;display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(160deg,var(--panel),var(--card));}
+  .card-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform 0.3s;}
+  .card-img-wrap img.reversed{transform:rotate(180deg);}
+  .card-img-placeholder{font-size:48px;opacity:0.3;}
+  .card-back-design{width:100%;height:100%;background:radial-gradient(circle at 50% 50%, rgba(255,195,64,0.08) 0%, transparent 70%);display:flex;align-items:center;justify-content:center;font-size:48px;opacity:0.5;}
+  .card-meaning-panel{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;margin-top:24px;display:none;font-size:calc(1em*var(--body-font-scale));}
+  .card-meaning-panel p,.card-meaning-panel li{font-size:calc(15px*var(--body-font-scale));line-height:1.7;}
+  .card-meaning-panel.visible{display:block;animation:fadeUp 0.4s ease;}
+}
+@media(max-width:600px){
+  .spread-tabs{gap:5px;}
+  .spread-tab{padding:7px 12px;font-size:14px;}
+  .container,.container-sm,.container-md{padding:0;}
+}
+@media (hover:hover) and (pointer:fine){
+  .hero-free-tarot:hover{
+    transform:translateY(-2px);
+    border-color:rgba(167,139,250,0.95);
+    box-shadow:0 0 24px rgba(139,92,246,0.3);
+  }
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-chart" viewBox="0 0 24 24"><path d="M12 2 22 12 12 22 2 12Z"/><path d="M12 7 17 12 12 17 7 12Z"/></symbol>
+<symbol id="i-crystal" viewBox="0 0 24 24"><path d="M12 2 20 9l-8 13L4 9Z"/><path d="M4 9h16M12 2v20"/></symbol>
+<symbol id="i-report" viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6Z"/><path d="M15 2v5h5M9 12h7M9 16h7"/></symbol>
+<symbol id="i-talk" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.5 7.2L3 21l1.8-6.5A8 8 0 1 1 21 12Z"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+<symbol id="i-om" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18 4.5 4.5 0 0 1 0-9 4.5 4.5 0 0 0 0-9Z"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M5 5l1.8 1.8M17.2 17.2 19 19M19 5l-1.8 1.8M6.8 17.2 5 19"/></symbol>
+<symbol id="i-cards" viewBox="0 0 24 24"><rect x="3" y="5" width="11" height="15" rx="2"/><path d="M17 7l4 1.4-3.5 11"/></symbol>
+<symbol id="i-compat" viewBox="0 0 24 24"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></symbol>
+<symbol id="i-guide" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></symbol>
+<symbol id="i-num" viewBox="0 0 24 24"><path d="M9 4v16M15 4v16M4 9h16M4 15h16"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14A8.5 8.5 0 0 1 10 4a8.5 8.5 0 1 0 10 10Z"/></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><path d="M21 3 10.5 13.5M21 3l-6.8 18-3.7-7.5L3 10.1Z"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="2.5"/></symbol>
+<symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 13h18M12 9v12M12 9S9.5 4 7 6s5 3 5 3ZM12 9s2.5-5 5-3-5 3-5 3Z"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5 20 12 7 19.5Z"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></symbol>
+<symbol id="i-wa" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.84-.2-.49-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.22.25-.87.85-.87 2.07s.89 2.4 1.02 2.56c.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29Z"/></symbol>
+</defs></svg>
+<div class="mobile-backdrop" id="mob-backdrop" onclick="closeMobileNav()"></div>
+<nav class="mobile-drawer" id="mob-drawer" aria-label="Mobile navigation">
+  <div class="drawer-head"><span class="logo-text" style="font-size:.9375rem;color:var(--navy)">JYOGI</span>
+    <button class="drawer-close" onclick="closeMobileNav()" aria-label="Close menu">✕</button></div>
+  <div class="drawer-links">
+    <a href="/"><svg class="icon"><use href="#i-sun"/></svg>Home</a>
+    <a href="/tools.html#astrology"><svg class="icon"><use href="#i-chart"/></svg>Kundli</a>
+    <a href="/tools.html#tarot"><svg class="icon"><use href="#i-cards"/></svg>Tarot</a>
+    <a href="/tools.html#astrology"><svg class="icon"><use href="#i-report"/></svg>Reports</a>
+    <a href="/#consult" onclick="closeMobileNav()"><svg class="icon"><use href="#i-talk"/></svg>Consultations</a>
+    <a href="/crystals.html"><svg class="icon"><use href="#i-crystal"/></svg>Crystals</a>
+    <a href="/blog/index.html"><svg class="icon"><use href="#i-cards"/></svg>Blog</a>
+    <a href="/#about" onclick="closeMobileNav()"><svg class="icon"><use href="#i-om"/></svg>About</a>
+  </div>
+  <div class="drawer-settings">
+    <!-- V2.5: language selector intentionally hidden on this homepage —
+         the new copy has no Hindi/Odia translation yet, so offering the
+         switch here would be misleading. Full homepage i18n is the
+         immediate next task (see release notes). The underlying
+         setSiteLang() mechanism is untouched and unremoved, ready to
+         re-enable this control once translations are wired in. -->
+    <div class="drawer-settings-row">
+      <span class="drawer-settings-label">Appearance</span>
+      <button class="theme-btn" id="theme-btn-mob" onclick="cycleTheme()" aria-label="Change appearance">
+        <span id="theme-icon-mob">☀️</span> <span id="theme-label-mob">Light</span>
+      </button>
+    </div>
+  </div>
+  <div class="drawer-cta"><a href="https://wa.me/919437794561" rel="noopener" class="btn btn-wa"><svg class="icon wa-ico"><use href="#i-wa"/></svg>Talk to Jyogi</a></div>
+</nav>
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <svg class="logo-mark" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="19" cy="19" r="18" fill="#1A1B3A" stroke="#C4993D" stroke-width="1"/>
+        <path d="M19 5L33 19L19 33L5 19Z" stroke="url(#lg)" stroke-width="1.5" fill="none"/>
+        <path d="M19 10L28 19L19 28L10 19Z" stroke="url(#lg)" stroke-width="1" fill="none" opacity="0.5"/>
+        <text x="19" y="23" text-anchor="middle" font-family="'Playfair Display',serif" font-size="12" font-weight="600" fill="#C4993D">J</text>
+        <defs><linearGradient id="lg" x1="5" y1="5" x2="33" y2="33"><stop stop-color="#D4A94D"/><stop offset="1" stop-color="#A67C2E"/></linearGradient></defs>
+      </svg>
+      <span class="logo-text">JYOGI</span>
+    </a>
+    <nav class="nav-links">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/tools.html#astrology" class="nav-link">Kundli</a>
+      <a href="/tarot.html" class="nav-link active">Tarot</a>
+      <a href="/tools.html#astrology" class="nav-link">Reports</a>
+      <a href="/#consult" class="nav-link">Consultations</a>
+      <a href="/crystals.html" class="nav-link">Crystals</a>
+      <a href="/blog/index.html" class="nav-link">Blog</a>
+      <a href="/#about" class="nav-link">About</a>
+    </nav>
+    <div class="nav-right">
+      <!-- V2.5: language selector intentionally hidden on this homepage —
+           see matching comment in the mobile drawer above. -->
+      <button class="theme-btn" id="theme-btn" onclick="cycleTheme()" aria-label="Change appearance"><span id="theme-icon">☀️</span></button>
+      <a href="https://wa.me/919437794561" rel="noopener" class="btn btn-wa btn-sm nav-cta" aria-label="Talk to Jyogi on WhatsApp"><svg class="icon wa-ico"><use href="#i-wa"/></svg><span class="wa-label">Talk to Jyogi</span></a>
+    </div>
+    <button class="nav-toggle" onclick="openMobileNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<main style="padding-top:calc(62px + 20px)">
+<section id="tarot">
+  <div class="container-md">
+    <div class="sec-header">
+      <div class="sec-badge">✦ LIGHT SEER'S TAROT ✦</div>
+      <h2 class="sec-title">
+        <span data-i18n="section.tarot_title">Draw Your Cards</span>
+      </p>
+    </div>
+    <div class="divider" style="margin-bottom:48px;"></div>
+    <div class="tarot-inner">
+      <div class="spread-tabs" id="spread-tabs">
+        <button class="spread-tab active" data-spread="single" onclick="selectSpread('single')">Single Card</button>
+        <button class="spread-tab" data-spread="three" onclick="selectSpread('three')">Past · Present · Future</button>
+        <button class="spread-tab" data-spread="celtic" onclick="selectSpread('celtic')">Celtic Cross</button>
+        <button class="spread-tab" data-spread="love" onclick="selectSpread('love')">Love & Relationship</button>
+        <button class="spread-tab" data-spread="career" onclick="selectSpread('career')">Career & Money</button>
+      </div>
+      <textarea class="tarot-question" id="tarot-question" rows="3" id="tarot-question" placeholder="Focus your mind and type your question... or leave empty for a general reading."></textarea>
+      <button class="draw-btn" id="draw-btn" onclick="drawCards()">✨ Draw Your Cards</button>
+      <div class="cards-display" id="cards-display"></div>
+      <div class="card-meaning-panel" id="card-meaning-panel"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ASTROLOGY ── -->
+
+</main>
+<footer class="footer"><div class="container">
+  <div class="footer-grid">
+    <div class="footer-brand"><span class="logo-text">JYOGI</span>
+      <p>Vedic astrology, personalised reports and traditional crystal remedies by a practitioner with 20+ years of experience.</p>
+      <div class="tagline">Ancient Wisdom. Intelligent Guidance.</div></div>
+    <div class="footer-col"><h4>Quick Links</h4><a href="/tools.html#astrology">Kundli</a><a href="/tools.html#astrology">Reports</a><a href="/#consult">Consultations</a><a href="/crystals.html">Crystals</a></div>
+    <div class="footer-col"><h4>Resources</h4><a href="/blog/index.html">Blog</a><a href="/tools.html">Free Tools</a><a href="/blog/sade-sati.html">Sade Sati Guide</a></div>
+    <div class="footer-col"><h4>Support</h4><a href="/privacy.html">Privacy Policy</a><a href="/refund-policy.html">Refund Policy</a></div>
+    <div class="footer-col"><h4>Connect</h4><a href="https://www.youtube.com/@jyogi1008" target="_blank" rel="noopener">YouTube @jyogi1008</a><a href="https://instagram.com/jyogi.tarot" target="_blank" rel="noopener">Instagram @jyogi.tarot</a><a href="https://wa.me/919437794561" target="_blank" rel="noopener">WhatsApp</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Jyogi.in — All rights reserved</span>
+    <span class="footer-pay"><svg class="icon"><use href="#i-lock"/></svg>Secure payments via Razorpay</span></div>
+</div></footer>
+<!-- Shared infrastructure -->
+<script src="assets/shared.js"></script>
+<!-- Tarot card dataset (78 cards, loaded only here) -->
+<script src="assets/tarot-data.js"></script>
+<script>
+/* Tarot-specific: admin state (needed by unlockFullReading/buildFullReadingHTML) */
+var _adminUnlocked=false,_API_RPT=(window.SITE_CONFIG&&SITE_CONFIG.apiBase)||'https://jyogi-api.onrender.com';
+
+// ── Tarot-specific constants ──
+
+
+var SPREAD_TYPES = {
+  single: {name:'Single Card',positions:['Your Message'],cards:1},
+  three: {name:'Past · Present · Future',positions:['Past','Present','Future'],cards:3},
+  celtic: {name:'Celtic Cross',positions:['Present','Challenge','Past','Future','Above','Below','Advice','External','Hopes','Outcome'],cards:6},
+  love: {name:'Love & Relationship',positions:['You','Your Partner','Connection','Challenge','Outcome'],cards:5},
+  career: {name:'Career & Money',positions:['Current Path','Obstacle','Hidden Strength','Action','Outcome'],cards:5},
+};
+
+
+var currentSpread='single';
+
+
+
+// ── Tarot-specific functions ──
+
+
+function selectSpread(s){
+  currentSpread=s;
+  document.querySelectorAll('.spread-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelector(`[data-spread="${s}"]`).classList.add('active');
+  document.getElementById('cards-display').innerHTML='';
+  document.getElementById('card-meaning-panel').className='card-meaning-panel';
+}
+
+
+function drawCards(){
+  if(typeof gtag==='function'){ gtag('event','tarot_draw',{ spread: currentSpread }); }
+  const spread=SPREAD_TYPES[currentSpread];
+  const btn=document.getElementById('draw-btn');
+  const display=document.getElementById('cards-display');
+  const panel=document.getElementById('card-meaning-panel');
+  
+  btn.disabled=true;
+  display.innerHTML='<div class="loading-ring"></div>';
+  panel.className='card-meaning-panel';
+  
+  // Draw cards immediately
+  const shuffled=[...TAROT_CARDS].sort(()=>Math.random()-0.5);
+  const drawn=shuffled.slice(0,spread.cards).map((card,i)=>{
+    const isReversed=Math.random()<0.35;
+    return {...card,reversed:isReversed,position:spread.positions[i]};
+  });
+    
+    // Show cards with shimmer placeholder immediately, load images in background
+    display.innerHTML=drawn.map((card,i)=>`
+      <div class="card-slot" onclick="showCardMeaning(${i})">
+        <div class="card-slot-label">${card.position}</div>
+        <div class="card-frame">
+          <div class="card-img-wrap" id="cw-${i}" style="position:relative;">
+            <div class="card-shimmer" id="shimmer-${i}"></div>
+            <img 
+              src=""
+              data-src="cards/${card.name}.jpg"
+              class="${card.reversed?'reversed':''}"
+              alt="${getCardName(card.name)}"
+              width="160" height="280"
+              style="opacity:0;transition:opacity 0.35s;position:relative;z-index:1;"
+              onload="this.style.opacity='1';const sh=document.getElementById('shimmer-'+${i});if(sh)sh.remove();"
+              onerror="cardImgFail(this);const sh=document.getElementById('shimmer-'+${i});if(sh)sh.remove();"
+            >
+          </div>
+          <div class="card-name-bar">
+            <span class="card-name">${getCardName(card.name)}</span>
+            <span class="card-orient ${card.reversed?'reversed':'upright'}">${card.reversed?'🔄 Reversed':'↑ Upright'}</span>
+          </div>
+        </div>
+      </div>
+    `).join('');
+    
+    window._drawnCards=drawn;
+
+    // Load ALL card images in parallel immediately (HTTP/2 handles concurrency)
+    // Staggering was actually SLOWER — it serialized parallel loads
+    drawn.forEach((card,i)=>{
+      const wrap=document.getElementById('cw-'+i);
+      if(!wrap) return;
+      const img=wrap.querySelector('img[data-src]');
+      if(img){
+        img.decoding='async';
+        img.src=img.dataset.src;
+        img.removeAttribute('data-src');
+      }
+    });
+
+    const question=(document.getElementById('tarot-question')?document.getElementById('tarot-question').value.trim():'');
+    
+    // ── For multi-card spreads: show overview, not first card detail ──
+    if(drawn.length===1){
+      showCardMeaning(0);
+    } else {
+      showSpreadOverview(drawn, question);
+    }
+    
+    // ── Get AI interpretation of the question + cards ──
+    if(question){
+      getAITarotInsight(drawn, question, currentSpread);
+    }
+    
+    // ── Log every tarot reading ──
+    saveLog({
+      type:'tarot',
+      spread:(SPREAD_TYPES[currentSpread]?SPREAD_TYPES[currentSpread].name:currentSpread)||currentSpread,
+      cards:drawn.map(c=>c.name+(c.reversed?' (Rev)':'')).join(' | '),
+      question:question||'—'
+    });
+    
+  btn.disabled=false;
+  btn.textContent='✨ Draw Again';
+}
+
+
+function showSpreadOverview(cards, question){
+  const panel=document.getElementById('card-meaning-panel');
+  // Reset all card highlights
+  document.querySelectorAll('.card-slot').forEach(el=>{
+    el.style.opacity='1';el.style.transform='scale(1)';
+  });
+  
+  let html='';
+  // Question display
+  if(question){
+    html+=`<div style="background:rgba(255,195,64,0.06);border:1px solid rgba(255,195,64,0.15);border-radius:10px;padding:12px 16px;margin-bottom:16px;">
+      <div style="font-size:13px;letter-spacing:0.12em;color:var(--muted);margin-bottom:4px;">YOUR QUESTION</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--text);font-style:italic;">"${question}"</div>
+      <div id="ai-tarot-insight"><span class="jyogi-loading">✦ Jyogi is reading your cards…</span></div>
+    </div>`;
+  }
+  
+  // All cards summary — tap any to expand
+  html+=`<div style="font-size:13px;letter-spacing:0.15em;color:var(--muted);margin-bottom:12px;">✦ TAP ANY CARD TO SEE ITS MEANING</div>`;
+  cards.forEach((c,i)=>{
+    html+=`<div onclick="showCardMeaning(${i})" style="cursor:pointer;padding:14px 16px;border-radius:12px;margin-bottom:8px;
+      background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);
+      display:flex;align-items:center;gap:14px;transition:all 0.2s;"
+      onmouseover="this.style.background='rgba(255,195,64,0.07)';this.style.borderColor='rgba(255,195,64,0.3)'"
+      onmouseout="this.style.background='rgba(255,255,255,0.03)';this.style.borderColor='rgba(255,255,255,0.08)'">
+      <div style="flex-shrink:0;text-align:center;min-width:60px;">
+        <div style="font-size:12px;letter-spacing:0.12em;color:var(--muted);margin-bottom:4px;">${c.position.toUpperCase()}</div>
+        <div style="font-size:13px;color:${c.reversed?'#f87171':'var(--green-lt)'};">${c.reversed?'🔄 Rev':'↑ Up'}</div>
+      </div>
+      <div style="flex:1;min-width:0;">
+        <div style="font-family:'Cinzel',serif;color:var(--gold);font-size:13px;margin-bottom:4px;">${getCardName(c.name)}</div>
+        <div style="font-size:14px;color:var(--muted);line-height:1.5;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">${c.reversed?c.shadow:c.meaning}</div>
+      </div>
+      <div style="color:var(--dim);font-size:18px;flex-shrink:0;">›</div>
+    </div>`;
+  });
+  
+  panel.innerHTML=html;
+  panel.className='card-meaning-panel visible';
+  panel.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+
+function showCardMeaning(idx){
+  const cards=window._drawnCards;
+  if(!cards||!cards[idx]) return;
+  const panel=document.getElementById('card-meaning-panel');
+
+  // Build interpretation for all cards if multi-spread
+  const isSingle=cards.length===1;
+
+  // Single selected card detail
+  const card=cards[idx];
+  // Highlight active card
+  document.querySelectorAll('.card-slot').forEach((el,i)=>{
+    el.style.opacity=(i===idx)?'1':'0.6';
+    el.style.transform=(i===idx)?'scale(1.03)':'scale(1)';
+  });
+  const question=(document.getElementById('tarot-question')?document.getElementById('tarot-question').value.trim():'');
+  let html=`
+    ${!isSingle?`<button onclick="showSpreadOverview(window._drawnCards,'${question.replace(/'/,"\'")}')" style="margin-bottom:16px;background:transparent;border:1px solid rgba(255,195,64,0.2);color:var(--muted);border-radius:20px;padding:7px 16px;font-family:inherit;font-size:13px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;">‹ All Cards</button>`:''}
+    <div class="cmp-card-name">${getCardName(card.name)}</div>
+    <div style="margin-bottom:10px;">
+      <span class="cmp-orient-badge ${card.reversed?'reversed':'upright'}">${card.reversed?'🔄 Reversed — Shadow Energy':'✦ Upright — Radiant Energy'}</span>
+      ${card.position && !isSingle ? `<span style="font-size:13px;letter-spacing:0.12em;color:var(--muted);margin-left:10px;">POSITION: ${card.position.toUpperCase()}</span>` : ''}
+    </div>
+    <p class="cmp-meaning">${card.reversed?card.shadow:card.meaning}</p>
+    <div class="cmp-affirmation">"${card.affirmation}"</div>
+  `;
+  // Add AI insight div for single card with question
+  if(isSingle && question){
+    html += '<div id="ai-tarot-insight" style="margin-top:16px;padding:14px;background:rgba(255,195,64,0.05);border:1px solid rgba(255,195,64,0.12);border-radius:10px;"><span class=\"jyogi-loading\">✦ Jyogi is reading your cards…</span></div>';
+    setTimeout(()=>getAITarotInsight(cards, question, currentSpread), 50);
+  }
+
+  // If multi-card spread: show all cards summary below
+  if(!isSingle){
+    html+=`<div style="border-top:1px solid rgba(255,195,64,0.15);margin-top:20px;padding-top:16px;">
+      <div style="font-size:14px;letter-spacing:0.18em;color:var(--muted);margin-bottom:14px;">✦ ALL CARDS IN YOUR SPREAD ✦</div>`;
+    cards.forEach((c,i)=>{
+      const isActive=i===idx;
+      html+=`
+        <div onclick="showCardMeaning(${i})" style="cursor:pointer;padding:12px 14px;border-radius:10px;margin-bottom:8px;
+          background:${isActive?'rgba(255,195,64,0.1)':'rgba(255,255,255,0.03)'};
+          border:1px solid ${isActive?'rgba(255,195,64,0.4)':'rgba(255,255,255,0.07)'};
+          transition:all 0.2s;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+            <span style="font-size:14px;letter-spacing:0.14em;color:var(--muted);">${c.position.toUpperCase()}</span>
+            <span style="font-size:14px;color:${c.reversed?'#f87171':'var(--green-lt)'};">${c.reversed?'🔄 Reversed':'↑ Upright'}</span>
+          </div>
+          <div style="font-family:'Cinzel',serif;color:${isActive?'var(--gold)':'var(--text)'};font-size:13px;margin-bottom:5px;">${getCardName(c.name)}</div>
+          <p style="font-size:14px;color:var(--muted);line-height:1.6;margin:0;">
+            ${(c.reversed?c.shadow:c.meaning).substring(0,100)}…
+          </p>
+        </div>`;
+    });
+    html+=`</div>`;
+  }
+
+  panel.innerHTML=html;
+  panel.className='card-meaning-panel visible';
+  panel.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+
+function getCardName(raw){
+  return raw.replace(/_/g,' ').replace(/^\d+ /,'');
+}
+
+
+function cardImgFail(img){
+  var wrap=img.closest('.card-img-wrap');
+  var name=img.alt||'';
+  if(wrap){wrap.innerHTML='<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:10px;padding:12px;text-align:center;"><div style="font-size:44px;opacity:0.4;">🔮</div><div style="font-family:Cinzel,serif;font-size:13px;letter-spacing:0.1em;color:var(--muted);opacity:0.7;">'+name+'</div><div style="font-size:14px;color:var(--dim);opacity:0.6;">Add cards/ folder<br>to repo</div></div>';}
+}
+
+
+async function getAITarotInsight(cards, question, spreadType){
+  const insightEl=document.getElementById('ai-tarot-insight');
+  if(!insightEl) return;
+  
+  const spreadName=(SPREAD_TYPES[spreadType]?SPREAD_TYPES[spreadType].name:spreadType)||spreadType;
+  const cardList=cards.map(c=>`${c.position}: ${getCardName(c.name)} (${c.reversed?'Reversed':'Upright'}) — ${(c.reversed?c.shadow:c.meaning).substring(0,80)}`).join('; ');
+  
+  // Send card names only (not full meanings) — prevents AI repeating what's already shown
+  const cardNames=cards.map(c=>`${c.position}: ${getCardName(c.name)} (${c.reversed?'Reversed':'Upright'})`).join(', ');
+  // Structured payload — prompt instruction built server-side (IP protected)
+  const insightPayload = question
+    ? { kind:'tarot_question', question:question, cards:cardNames, spread:spreadName, lang:currentLang }
+    : { kind:'tarot_spread', cards:cardNames, spread:spreadName, lang:currentLang };
+
+  try{
+    const controller=new AbortController();
+    const timeout=setTimeout(()=>controller.abort(),35000);
+    const resp=await fetch('https://jyogi-api.onrender.com/api/insight',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(insightPayload),
+      signal:controller.signal
+    });
+    clearTimeout(timeout);
+    if(resp.ok){
+      const data=await resp.json();
+      const text=data.insight||data.text||data.message||'';
+      if(text&&insightEl){
+        insightEl.innerHTML='<span style="color:var(--gold);font-size:13px;letter-spacing:0.1em;">✦ JYOGI READS YOUR CARDS</span><br><br>'
+          +'<span style="font-size:17px;line-height:1.8;font-style:italic;">'+sanitizeHTML(text)+'</span>';
+        insightEl.style.color='var(--text)';
+        insightEl.classList.remove('jyogi-loading');
+      }
+    } else {
+      const errData=await resp.json().catch(()=>({}));
+      // FastAPI returns {detail:"..."}, OpenAI errors return {error:{message:"..."}}
+      const errMsg = (errData&&errData.detail)||(errData&&errData.error&&errData.error.message) || ('Server error '+resp.status);
+      if(insightEl){
+        if(resp.status===401){
+          insightEl.innerHTML='<span style="color:var(--err);">🔑 OpenAI key invalid — update OPENAI_API_KEY in Render dashboard.</span>';
+        } else if(resp.status===500){
+          // Server has old code — show local card meaning as fallback
+          const localFallback=cards.map(c=>(c.reversed?c.shadow:c.meaning)).join(' • ');
+          insightEl.innerHTML='<span style="color:var(--warn);font-size:13px;">⚠️ Interpretation server needs update — showing card meanings:</span><br><br>'
+            +'<span style="font-style:italic;color:var(--muted);">'+localFallback.substring(0,300)+'</span>';
+        } else {
+          insightEl.innerHTML='<span style="color:var(--err);">⚠️ '+sanitizeHTML(errMsg)+'</span>';
+        }
+        insightEl.classList.remove('jyogi-loading');
+      }
+    }
+  }catch(e){
+    if(insightEl){
+      const msg=e.name==='AbortError'
+        ? '⏱️ Jyogi is waking up — try drawing again in 30 seconds'
+        : '✦ '+cards.map(c=>c.reversed?c.shadow:c.meaning).slice(0,2).join(' · ');
+      insightEl.innerHTML=msg;
+      insightEl.style.fontStyle='italic';
+      insightEl.classList.remove('jyogi-loading');
+    }
+  }
+}
+
+
+function waBookingLink(name,dob,city,question){
+  const msg=`Hi Jyogi! I would like a full Vedic chart reading.\nName: ${name}\nDOB: ${dob}\nCity: ${city}${question?'\nQuestion: '+question:''}`;
+  return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+}
+
+
+function validateCode(code) {
+  const trimmed = (code||'').trim().toUpperCase();
+  // Admin password always works
+  if (trimmed === ADMIN_PASS.toUpperCase()) return { valid: true, isAdmin: true };
+  // Check registered codes
+  const entry = ACCESS_CONFIG.codes[trimmed] || ACCESS_CONFIG.codes[code.trim()];
+  if (!entry) return { valid: false };
+  // Future: check expiry, one-time use etc.
+  // if (entry.expires && new Date() > new Date(entry.expires)) return { valid: false, reason: 'expired' };
+  return { valid: true, isAdmin: false, label: entry.label };
+}
+
+
+function buildFullReadingHTML(name, chart) {
+  const cfg = ACCESS_CONFIG.fullReading;
+  const c = chart;
+
+  function getPlanetaryPositions() {
+    const P = c.planets;
+    const R = c.retrograde || {};
+    const rows = [
+      ['☉ Sun','Sun',P.Sun],['☽ Moon','Moon',P.Moon],['♂ Mars','Mars',P.Mars],
+      ['☿ Mercury','Mercury',P.Mercury],['♃ Jupiter','Jupiter',P.Jupiter],['♀ Venus','Venus',P.Venus],
+      ['♄ Saturn','Saturn',P.Saturn],['☊ Rahu','Rahu',P.Rahu],['☋ Ketu','Ketu',P.Ketu],
+    ];
+    return rows.map(function(row){
+      var n=row[0], pname=row[1], lon=row[2];
+      var isRetro = R[pname] === true;
+      var retroBadge = isRetro
+        ? ' <span style="color:var(--accent2);font-size:11px;font-weight:600;letter-spacing:0.05em;">℞ RETRO</span>'
+        : '';
+      return '<tr><td style="padding:6px 10px;color:var(--gold);">'+n+retroBadge+'</td>'
+        +'<td style="padding:6px 10px;">'+RASHIS[Math.floor(lon/30)]+'</td>'
+        +'<td style="padding:6px 10px;color:var(--muted);font-size:13px;">'+(lon%30).toFixed(1)+'°</td></tr>';
+    }).join('');
+  }
+
+  function getAntardashaTable() {
+    const idx = c.dasha.lordIdx;
+    const total = DASHA_YRS[idx];
+    return DASHA_SEQ.map((sub,i)=>{
+      const ai=mod(idx+i,9);
+      const yrs=(total*DASHA_YRS[ai]/120).toFixed(2);
+      const cur=DASHA_SEQ[ai]===c.dasha.antardasha;
+      return `<tr style="${cur?'background:rgba(255,195,64,0.08);':''}">
+        <td style="padding:6px 10px;color:var(--gold);">${c.dasha.current}</td>
+        <td style="padding:6px 10px;${cur?'color:var(--gold-lt);font-weight:bold;':''}">${DASHA_SEQ[ai]}${cur?' ◀':''}</td>
+        <td style="padding:6px 10px;color:var(--muted);font-size:13px;">${yrs} yrs</td></tr>`;
+    }).join('');
+  }
+
+  function getSaturnTransits() {
+    const moonIdx = RASHIS.indexOf(c.moon);
+    const satIdx  = RASHIS.indexOf(SATURN_NOW);
+    const diff    = mod(satIdx-moonIdx,12);
+    const isSS    = diff===11||diff===0||diff===1;
+    const isDh4   = diff===3;
+    const isDh8   = diff===7;
+    const isKant  = diff===3||diff===6||diff===7||diff===9;
+    let html=`<div style="font-size:13px;color:var(--muted);margin-bottom:10px;">
+      Saturn in <strong style="color:var(--gold)">${SATURN_NOW}</strong> ·
+      Your Moon in <strong style="color:var(--gold)">${c.moon}</strong> ·
+      ${diff+1}th position from Moon</div>`;
+    if(isSS){
+      const phase=diff===11?'Rising Phase (12th from Moon)':diff===0?'Peak Phase (1st from Moon)':'Setting Phase (2nd from Moon)';
+      html+=`<div style="background:rgba(248,113,113,0.1);border:1px solid rgba(248,113,113,0.35);border-radius:10px;padding:14px;margin-bottom:8px;">
+        <div style="color:var(--err);font-weight:bold;margin-bottom:6px;">⚠ SADHE SATI ACTIVE — ${phase}</div>
+        <p style="font-size:13px;line-height:1.7;">This 7.5-year Saturn cycle demands patience and inner work. Avoid major new ventures. Focus on spiritual practice.
+        Recite <em>Om Sham Shanicharaya Namah</em> 108x every Saturday. Donate sesame and oil on Saturdays.</p></div>`;
+    } else {
+      html+=`<div style="background:rgba(134,239,172,0.07);border:1px solid rgba(134,239,172,0.2);border-radius:10px;padding:10px;margin-bottom:8px;">
+        <div style="color:var(--green-lt);">✓ Sadhe Sati — Not Active</div></div>`;
+    }
+    if(isDh4||isDh8){
+      html+=`<div style="background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.25);border-radius:10px;padding:14px;margin-bottom:8px;">
+        <div style="color:var(--warn);font-weight:bold;margin-bottom:6px;">⚡ SHANI DHAIYA — ${isDh4?'4th':'8th'} from Moon</div>
+        <p style="font-size:13px;line-height:1.7;">A 2.5-year period of Saturn pressure. Health and relationships need extra care.
+        Offer blue flowers to Shani Dev on Saturdays.</p></div>`;
+    }
+    if(isKant&&!isSS){
+      const pos=diff===3?'4th':diff===6?'7th':diff===7?'8th':'10th';
+      html+=`<div style="background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.2);border-radius:10px;padding:14px;margin-bottom:8px;">
+        <div style="color:var(--violet);font-weight:bold;margin-bottom:6px;">🔱 KANTAKA SHANI — ${pos} from Moon</div>
+        <p style="font-size:13px;line-height:1.7;">Kantaka Shani brings obstacles in areas of the ${pos} house. Stay grounded.
+        Recite Hanuman Chalisa on Saturdays.</p></div>`;
+    }
+    if(!isSS&&!isDh4&&!isDh8&&!isKant){
+      html+=`<div style="background:rgba(134,239,172,0.07);border:1px solid rgba(134,239,172,0.2);border-radius:10px;padding:10px;">
+        <div style="color:var(--green-lt);">✓ No major Saturn affliction active currently.</div></div>`;
+    }
+    return html;
+  }
+
+  const NAKSH_TRAITS = {
+    'Ashwini':{q:'Healing and Swift Action',d:'Freedom and independence',s:'Quick decisions, natural healer, pioneering spirit',w:'Impatience, difficulty completing things'},
+    'Bharani':{q:'Transformation and Intensity',d:'Deep creative expression',s:'Determined, creative, powerful will',w:'Possessiveness, extreme tendencies'},
+    'Krittika':{q:'Purification and Sharpness',d:'Honour and recognition',s:'Courageous, disciplined, sharp intellect',w:'Sharp tongue, overly critical'},
+    'Rohini':{q:'Abundance and Beauty',d:'Beauty, love and material comfort',s:'Artistic, magnetic, excellent communicator',w:'Stubbornness, possessiveness'},
+    'Mrigashira':{q:'Searching and Curiosity',d:'Knowledge and new experiences',s:'Gentle, curious, excellent researcher',w:'Restlessness, indecisiveness'},
+    'Ardra':{q:'Storms and Transformation',d:'Deep understanding and truth',s:'Penetrating mind, transformative power',w:'Destructive impulses, emotional storms'},
+    'Punarvasu':{q:'Return and Renewal',d:'Security, comfort and home',s:'Resilient, optimistic, philosophical',w:'Complacency, repeating mistakes'},
+    'Pushya':{q:'Nourishment and Protection',d:'To nurture and be nurtured',s:'Caring, responsible, spiritual strength',w:'Over-protective, overly conservative'},
+    'Ashlesha':{q:'Serpent Wisdom and Mysticism',d:'Hidden knowledge and power',s:'Psychic ability, strategic mind, healing',w:'Manipulative tendencies, secrecy'},
+    'Magha':{q:'Royal Authority and Ancestors',d:'Power, respect and legacy',s:'Leadership, pride, strong ancestral connection',w:'Arrogance, living in the past'},
+    'Purva Phalguni':{q:'Pleasure and Creativity',d:'Love, beauty and pleasure',s:'Creative, charming, artistic talent',w:'Laziness, self-indulgence'},
+    'Uttara Phalguni':{q:'Patronage and Service',d:'Partnership and social contribution',s:'Generous, reliable, social leadership',w:'Dependent on others approval'},
+    'Hasta':{q:'Skill and Craftsmanship',d:'Mastery and practical achievement',s:'Dexterous, witty, excellent at crafts',w:'Nervous energy, overcritical'},
+    'Chitra':{q:'Brilliance and Artistry',d:'Beauty, perfection and admiration',s:'Visually gifted, stylish, magnetic',w:'Vanity, need for constant attention'},
+    'Swati':{q:'Independence and Flexibility',d:'Freedom and self-determination',s:'Diplomatic, adaptable, business-minded',w:'Indecision, scattered energy'},
+    'Vishakha':{q:'Purpose and Achievement',d:'Achievement of goals',s:'Goal-oriented, persuasive, purposeful',w:'Jealousy, fanaticism'},
+    'Anuradha':{q:'Devotion and Friendship',d:'Deep friendship and spiritual connection',s:'Loyal, spiritual, excellent organiser',w:'Suppressed feelings, intensity'},
+    'Jyeshtha':{q:'Seniority and Protection',d:'Power, recognition and respect',s:'Protective, courageous, intelligent leader',w:'Domineering, jealousy'},
+    'Mula':{q:'Root and Dissolution',d:'Truth and the roots of existence',s:'Philosophical, powerful research mind',w:'Destructive tendencies, restlessness'},
+    'Purva Ashadha':{q:'Invincibility and Purification',d:'Victory and vindication',s:'Proud, strong convictions, enduring',w:'Stubborn, pride before fall'},
+    'Uttara Ashadha':{q:'Universal Victory',d:'Lasting achievement and virtue',s:'Righteous, ambitious, determined',w:'Inflexible, workaholic'},
+    'Shravana':{q:'Listening and Learning',d:'Knowledge and tradition',s:'Wise, learned, excellent listener',w:'Gossip, oversensitive to criticism'},
+    'Dhanishtha':{q:'Wealth and Rhythm',d:'Wealth, music and fame',s:'Musical talent, generous, ambitious',w:'Marital friction, overconfidence'},
+    'Shatabhisha':{q:'Healing and Mystery',d:'Hidden knowledge and healing',s:'Original thinker, healer, independent',w:'Reclusive, secretive, harsh'},
+    'Purva Bhadrapada':{q:'Fiery Transformation',d:'Spiritual liberation',s:'Passionate, visionary, intense focus',w:'Anxiety, extremism'},
+    'Uttara Bhadrapada':{q:'Depth and Wisdom',d:'Spiritual depth and moksha',s:'Wise, compassionate, excellent teacher',w:'Lazy, procrastination'},
+    'Revati':{q:'Journey and Completion',d:'Love, spiritual journey and guidance',s:'Nurturing, spiritual, excellent guide',w:'Over-sensitive, unworldly'},
+  };
+  const MOON_HIDDEN = {
+    'Aries'     :{inner:'Secret desire to lead and be first. Hides vulnerability behind boldness.',hidden:'Craves admiration but fears being seen as weak.'},
+    'Taurus'    :{inner:'Deep need for security and sensory beauty. Hides stubbornness behind calm.',hidden:'Secret desire for luxury and permanence.'},
+    'Gemini'    :{inner:'Constant internal dialogue. Hides restlessness behind cheerfulness.',hidden:'Fears being truly known — reveals different faces to different people.'},
+    'Cancer'    :{inner:'Deeply emotional interior life. Hides sensitivity behind caring for others.',hidden:'Secret desire to be completely protected and cherished.'},
+    'Leo'       :{inner:'Burning need for recognition. Hides insecurity behind grand gestures.',hidden:'Fears being ordinary more than anything else.'},
+    'Virgo'     :{inner:'Analytical mind that never stops. Hides anxiety behind helpfulness.',hidden:'Secret perfectionist who fears failure deeply.'},
+    'Libra'     :{inner:'Constant weighing of every option. Hides indecision behind grace.',hidden:'Deeply craves harmonious relationship but fears dependency.'},
+    'Scorpio'   :{inner:'Volcanic emotional depth. Hides intensity behind a calm surface.',hidden:'Desires total merger with another and fears betrayal above all.'},
+    'Sagittarius':{inner:'Restless philosophical mind. Hides fear of commitment behind optimism.',hidden:'Secretly fears being trapped or becoming ordinary.'},
+    'Capricorn' :{inner:'Driven by ambition and responsibility. Hides emotional need behind stoicism.',hidden:'Deeply desires love but rarely asks for it.'},
+    'Aquarius'  :{inner:'Revolutionary thinker. Hides emotional detachment behind idealism.',hidden:'Craves belonging while fearing loss of individuality.'},
+    'Pisces'    :{inner:'Boundless compassion and imagination. Hides confusion behind kindness.',hidden:'Absorbs others emotions — seeks spiritual escape from the world.'},
+  };
+
+  function getPersonalityAnalysis() {
+    const t = NAKSH_TRAITS[c.nakshatra]||{q:'Wisdom',d:'Growth',s:'Inner strength',w:'Finding balance'};
+    const mt = MOON_HIDDEN[c.moon]||{inner:'Complex inner world.',hidden:'Deep hidden desires.'};
+    return `
+      <div style="margin-bottom:14px;">
+        <div style="font-size:13px;letter-spacing:0.12em;color:var(--muted);margin-bottom:8px;">NAKSHATRA QUALITIES — ${c.nakshatra.toUpperCase()}</div>
+        <div style="background:rgba(255,195,64,0.05);border:1px solid rgba(255,195,64,0.15);border-radius:10px;padding:14px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:13px;line-height:1.7;">
+            <div><span style="color:var(--muted);">Core Quality</span><br>${t.q}</div>
+            <div><span style="color:var(--muted);">Soul Desire</span><br>${t.d}</div>
+            <div><span style="color:var(--green-lt);">✦ Strengths</span><br>${t.s}</div>
+            <div><span style="color:var(--err);">✦ Challenges</span><br>${t.w}</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:13px;letter-spacing:0.12em;color:var(--violet);margin-bottom:8px;">🔮 INNER WORLD — ${c.moon.toUpperCase()} MOON</div>
+        <div style="background:rgba(167,139,250,0.07);border:1px solid rgba(167,139,250,0.2);border-radius:10px;padding:14px;font-size:13px;line-height:1.8;">
+          <p style="margin-bottom:8px;"><strong style="color:var(--text);">Inner World:</strong> ${mt.inner}</p>
+          <p><strong style="color:var(--violet);">Hidden Desire:</strong> ${mt.hidden}</p>
+        </div>
+      </div>`;
+  }
+
+  const REMEDIES={
+    'Ketu'   :"Worship Lord Ganesha. Donate blankets on Tuesdays. Wear cat's eye (lehsunia). Chant Om Ketave Namah.",
+    'Venus'  :'Worship Goddess Lakshmi on Fridays. Wear diamond or white sapphire. Chant Om Shukraya Namah 108x.',
+    'Sun'    :'Offer water to the rising Sun daily. Wear ruby on right ring finger. Recite Aditya Hridayam on Sundays.',
+    'Moon'   :'Wear natural pearl. Fast on Mondays. Recite Om Chandraya Namah 108 times. Eat white foods.',
+    'Mars'   :'Donate red lentils on Tuesdays. Wear red coral. Recite Om Mangalaya Namah. Visit Hanuman temple.',
+    'Rahu'   :'Worship Durga Mata. Donate black sesame on Saturdays. Wear hessonite (gomed). Avoid non-veg on Saturdays.',
+    'Jupiter':'Wear yellow sapphire on right index finger on Thursday morning. Donate turmeric and yellow items on Thursdays.',
+    'Saturn' :'Recite Shani Chalisa every Saturday. Wear blue sapphire (with expert advice). Donate black sesame and mustard oil.',
+    'Mercury':'Wear emerald on right little finger on Wednesday. Donate green vegetables. Recite Om Budhaya Namah.',
+  };
+
+  return `
+    <div style="border-top:1px solid rgba(255,195,64,0.2);margin:24px 0;padding-top:24px;">
+      <div style="font-size:13px;letter-spacing:0.2em;color:var(--gold);margin-bottom:20px;text-align:center;">✦ FULL VEDIC READING ✦</div>
+
+      ${cfg.planetaryPositions?`
+      <div style="margin-bottom:20px;">
+        <div style="font-size:13px;letter-spacing:0.15em;color:var(--muted);margin-bottom:10px;">GRAHA POSITIONS (SIDEREAL LAHIRI)</div>
+        <table style="width:100%;border-collapse:collapse;font-size:14px;">
+          <tr style="border-bottom:1px solid rgba(255,195,64,0.1);">
+            <th style="padding:6px 10px;text-align:left;color:var(--muted);font-weight:normal;font-size:13px;">GRAHA</th>
+            <th style="padding:6px 10px;text-align:left;color:var(--muted);font-weight:normal;font-size:13px;">RASHI</th>
+            <th style="padding:6px 10px;text-align:left;color:var(--muted);font-weight:normal;font-size:13px;">DEGREE</th>
+          </tr>${getPlanetaryPositions()}
+        </table>
+      </div>`:''}
+
+      ${cfg.antardasha?`
+      <div style="margin-bottom:20px;">
+        <div style="font-size:13px;letter-spacing:0.15em;color:var(--muted);margin-bottom:10px;">
+          VIMSHOTTARI DASHA — ${c.dasha.current.toUpperCase()} (${c.dasha.yrsLeft} yrs left) · ANTARDASHA: ${c.dasha.antardasha.toUpperCase()} (${c.dasha.antYrsLeft} yrs left)
+        </div>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <tr style="border-bottom:1px solid rgba(255,195,64,0.1);">
+            <th style="padding:6px 10px;text-align:left;color:var(--muted);font-weight:normal;font-size:13px;">MAHADASHA</th>
+            <th style="padding:6px 10px;text-align:left;color:var(--muted);font-weight:normal;font-size:13px;">ANTARDASHA</th>
+            <th style="padding:6px 10px;text-align:left;color:var(--muted);font-weight:normal;font-size:13px;">DURATION</th>
+          </tr>${getAntardashaTable()}
+        </table>
+      </div>`:''}
+
+      ${cfg.sadheSati?`
+      <div style="margin-bottom:20px;">
+        <div style="font-size:13px;letter-spacing:0.15em;color:var(--muted);margin-bottom:10px;">SATURN TRANSIT — SADHE SATI · DHAIYA · KANTAKA</div>
+        ${getSaturnTransits()}
+      </div>`:''}
+
+      ${cfg.planetaryPositions?`
+      <div style="margin-bottom:20px;">
+        <div style="font-size:13px;letter-spacing:0.15em;color:var(--muted);margin-bottom:10px;">PERSONALITY · INNER DESIRES · STRENGTHS · CHALLENGES</div>
+        ${getPersonalityAnalysis()}
+      </div>`:''}
+
+      ${cfg.remedies?`
+      <div style="background:rgba(255,195,64,0.05);border:1px solid rgba(255,195,64,0.15);border-radius:10px;padding:16px;margin-bottom:20px;">
+        <div style="font-size:13px;letter-spacing:0.15em;color:var(--muted);margin-bottom:8px;">REMEDIES FOR ${c.dasha.current.toUpperCase()} MAHADASHA</div>
+        <p style="font-size:13px;color:var(--text);line-height:1.8;">${REMEDIES[c.dasha.current]||'Consult Jyogi for personalised remedies.'}</p>
+      </div>`:''}
+    </div>`;
+}
+
+
+function unlockFullReading(name, chartStripped) {
+  // Recompute chart HTML fields that were stripped for serialization
+  const chart = chartStripped;
+  const dob2 = document.getElementById('dob-year').value+'-'+document.getElementById('dob-month').value+'-'+document.getElementById('dob-day').value;
+  const name2 = name;
+  if(!chart.html) {
+    // Rebuild the chart object from existing planets/lagna data
+    const rebuilt = buildFallbackChart(
+      name2, dob2,
+      document.getElementById('time-hour').value+':'+document.getElementById('time-min').value,
+      null, null
+    );
+    Object.assign(chart, rebuilt);
+  }
+  if(!chart._yogaHtml) {
+    const numData2 = calcNumerology(dob2, name2);
+    chart._numHtml = renderNumerologySection(numData2, dob2, name2);
+    const niSvg2 = renderNorthIndianChart(chart.lagnaIdx||0, chart.planets||{}, chart.retrograde||{});
+    chart._niHtml = `<div class="ni-chart-wrap"><div class="ni-chart-title">✦ NORTH INDIAN KUNDALI ✦</div>${niSvg2}<p class="ni-chart-caption">Whole Sign · Sidereal Lahiri</p></div>`;
+    chart._yogaHtml = renderYogasHTML(detectYogas(chart));
+    chart._navHtml = renderNavamshaHTML(chart);
+    chart._remHtml = renderRemediesHTML(chart);
+  }
+  const input = document.getElementById('access-code-input');
+  const errEl = document.getElementById('code-error');
+  const code = (input ? input.value : '').trim();
+
+  const result = validateCode(code);
+
+  if (!result.valid) {
+    if (errEl) { errEl.style.display = 'block'; }
+    if (input) { input.style.borderColor = 'rgba(248,113,113,0.6)'; }
+    // Log failed attempt
+    saveLog({ type: 'CODE_FAIL', code, name, ts: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }) });
+    return;
+  }
+
+  // Valid — hide gate, show full reading
+  const gate = document.getElementById('full-reading-gate');
+  const content = document.getElementById('full-reading-content');
+  if (gate) gate.style.display = 'none';
+  if (content) {
+    content.style.display = 'block';
+    content.innerHTML = `
+      <div style="background:rgba(134,239,172,0.08);border:1px solid rgba(134,239,172,0.2);border-radius:10px;padding:10px 16px;margin-bottom:4px;text-align:center;font-size:13px;color:var(--green-lt);">
+        ${ACCESS_CONFIG.ui.successMsg}${result.label ? ' — ' + result.label : ''}
+      </div>
+      ${chart._niHtml||''}
+      ${buildFullReadingHTML(name, chart)}
+    `;
+  }
+  // Log successful unlock
+  saveLog({ type: 'UNLOCKED', code, name, ts: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }) });
+}
+
+
+
+// Init
+(function(){
+  try{
+    var saved = localStorage.getItem('jyogi_theme');
+    if(saved) setTheme(saved);
+  }catch(e){}
+})();
+</script>
+</body>
+</html>

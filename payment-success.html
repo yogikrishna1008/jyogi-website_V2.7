@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VMKLQJ64RV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VMKLQJ64RV', { anonymize_ip: true, client_storage: 'none' });
+</script>
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Payment Submitted — Jyogi</title>
+  <meta name="robots" content="noindex,follow">
+  <style>
+    :root{--bg:#0A1428;--card:#0f1e38;--text:#E8E8E8;--muted:#A0A0A0;--gold:#D4AF37;--wa:#25D366;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;
+         font-size:16px;line-height:1.75;padding:0;}
+    .container{max-width:640px;margin:0 auto;padding:48px 24px 80px;}
+    .badge{display:inline-block;font-size:13px;letter-spacing:0.12em;text-transform:uppercase;
+           color:var(--gold);border:1px solid rgba(212,175,55,0.35);border-radius:20px;
+           padding:5px 14px;margin-bottom:20px;}
+    h1{font-family:Georgia,serif;font-size:28px;color:var(--gold);margin-bottom:12px;line-height:1.25;}
+    h2{font-size:17px;font-weight:700;color:var(--text);margin:30px 0 10px;}
+    p{color:var(--muted);margin-bottom:14px;}
+    .card{background:var(--card);border:1px solid rgba(212,175,55,0.15);border-radius:14px;
+          padding:22px 22px 8px;margin:22px 0;}
+    ul{color:var(--muted);margin:0 0 14px 20px;}
+    li{margin-bottom:8px;}
+    strong{color:var(--text);}
+    a{color:var(--gold);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+    .wa-btn{display:inline-flex;align-items:center;gap:10px;background:var(--wa);color:#04250f;
+            font-weight:700;font-size:16px;padding:14px 26px;border-radius:12px;margin:8px 0 4px;
+            text-decoration:none;}
+    .wa-btn:hover{filter:brightness(1.05);text-decoration:none;}
+    .wa-btn:focus-visible{outline:3px solid var(--gold);outline-offset:3px;}
+    .note{font-size:13px;color:var(--muted);border-top:1px solid rgba(212,175,55,0.12);
+          margin-top:36px;padding-top:20px;}
+    .links a{margin-right:16px;}
+    .back{display:inline-flex;gap:8px;color:var(--muted);font-size:14px;margin-bottom:28px;}
+  </style>
+</head>
+<body>
+  <main class="container">
+    <a href="/" class="back">← Back to Jyogi</a>
+
+    <span class="badge">Payment Submitted</span>
+    <h1>Thank you — your payment has been submitted</h1>
+    <p>Your booking is <strong>pending manual verification</strong>. It is not yet confirmed.
+    Jyogi will verify your payment in the Razorpay Dashboard and then confirm your session
+    or report personally.</p>
+
+    <div class="card">
+      <h2 style="margin-top:6px;">Next step — message Jyogi on WhatsApp</h2>
+      <p>Please save your <strong>Razorpay payment reference</strong> and send it to Jyogi
+      with the details below so your booking can be verified and confirmed.</p>
+      <a class="wa-btn" id="wa-cta"
+         href="https://wa.me/919437794561?text=Namaste%20Jyogi%2C%20I%20have%20submitted%20a%20payment%20through%20Razorpay.%20I%20would%20like%20to%20confirm%20my%20booking."
+         rel="noopener"
+         onclick="if(typeof gtag==='function'){gtag('event','whatsapp_after_payment_clicked');}">
+        <span aria-hidden="true">💬</span> Message Jyogi on WhatsApp
+      </a>
+    </div>
+
+    <h2>Please include</h2>
+    <ul>
+      <li>Your name</li>
+      <li>The service you selected</li>
+      <li>Your Razorpay payment reference</li>
+      <li>The details needed for that reading (Jyogi will ask for exact birth date, time and place separately — please don't share sensitive details until asked)</li>
+    </ul>
+
+    <h2>What happens next</h2>
+    <p>Once your payment is verified, Jyogi will confirm your booking and arrange your
+    session or prepare your report. Reports and PDFs are delivered <strong>manually after
+    verification</strong> — there is nothing to download from this page. Jyogi
+    <strong>aims to respond within 24 hours</strong>.</p>
+
+    <p class="note links">
+      <a href="/refund-policy.html">Refund &amp; Cancellation Policy</a>
+      <a href="/privacy.html">Privacy Policy</a>
+    </p>
+    <p class="note" style="border:0;padding-top:8px;margin-top:0;">
+      This page confirms only that a payment was <em>submitted</em>. It is not proof that
+      payment succeeded or that your booking is confirmed.
+    </p>
+  </main>
+
+  <script>
+    // Allowed analytics: page view only. No PII, no amount, no payment/transaction IDs.
+    if(typeof gtag==='function'){ gtag('event','payment_success_page_viewed'); }
+  </script>
+</body>
+</html>

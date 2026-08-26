@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Jyogi Admin · Paste &amp; Read</title>
+<style>
+  :root{
+    --bg:#03010a; --bg2:#0a0220; --gold:#d4af37; --gold-soft:#e8c977;
+    --ink:#f5efe0; --muted:#c4a97a; --dim:rgba(245,239,224,0.4);
+    --border:rgba(212,175,55,0.18); --panel:#120a26;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;line-height:1.6;min-height:100vh;}
+  body{
+    background-image:radial-gradient(ellipse at top, rgba(91,72,168,0.15) 0%, transparent 60%),
+                     radial-gradient(ellipse at bottom, rgba(212,175,55,0.04) 0%, transparent 50%);
+    background-attachment:fixed;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:32px 20px 80px}
+  .hdr{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+  .hdr-logo{font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;
+    color:var(--gold);letter-spacing:0.04em}
+  .hdr-badge{background:rgba(212,175,55,0.1);border:1px solid var(--border);
+    color:var(--gold);font-size:10px;padding:4px 10px;border-radius:10px;
+    letter-spacing:0.2em;text-transform:uppercase}
+  h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;
+    font-size:30px;margin:14px 0 6px;letter-spacing:-0.01em}
+  .sub{color:var(--muted);font-size:14px;margin-bottom:28px}
+
+  .card{background:linear-gradient(135deg,rgba(212,175,55,0.04),rgba(155,89,182,0.03));
+    border:1px solid var(--border);border-radius:14px;padding:22px 22px 16px;
+    margin-bottom:18px}
+  .card h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:18px;
+    color:var(--gold);margin:0 0 12px;letter-spacing:0.02em}
+  textarea{width:100%;background:rgba(10,5,30,0.7);border:1px solid var(--border);
+    border-radius:10px;padding:14px;color:var(--ink);font-size:14px;
+    font-family:'Inter',system-ui,sans-serif;line-height:1.6;outline:none;
+    resize:vertical;min-height:140px}
+  textarea:focus{border-color:rgba(212,175,55,0.5)}
+  textarea::placeholder{color:rgba(245,239,224,0.3);white-space:pre}
+
+  .actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+  .btn{padding:10px 18px;border-radius:10px;border:none;font-size:14px;
+    font-weight:600;cursor:pointer;font-family:inherit;letter-spacing:0.03em;
+    -webkit-tap-highlight-color:transparent}
+  .btn-pri{background:linear-gradient(135deg,var(--gold),var(--gold-soft));color:#03010a}
+  .btn-pri:active{transform:scale(0.97)}
+  .btn-gh{background:transparent;color:var(--gold);border:1px solid rgba(212,175,55,0.3)}
+  .btn-gh:hover{background:rgba(212,175,55,0.06)}
+  .btn[disabled]{opacity:0.5;cursor:wait}
+
+  .status{margin-top:14px;padding:10px 14px;border-radius:8px;font-size:13px;display:none}
+  .status.ok{background:rgba(43,122,11,0.12);color:#86efac;border:1px solid rgba(43,122,11,0.3)}
+  .status.warn{background:rgba(212,175,55,0.08);color:#d4af37;border:1px solid rgba(212,175,55,0.25)}
+  .status.err{background:rgba(248,113,113,0.08);color:#f87171;border:1px solid rgba(248,113,113,0.25)}
+
+  .result{display:none}
+  .result.show{display:block}
+  .meta-row{display:grid;grid-template-columns:160px 1fr;gap:6px 16px;
+    font-size:14px;padding:6px 0;border-bottom:1px dashed rgba(212,175,55,0.08)}
+  .meta-row:last-child{border-bottom:none}
+  .meta-key{color:var(--muted);font-family:'Cormorant SC',serif;letter-spacing:0.1em;font-size:11px;text-transform:uppercase;align-self:center}
+  .meta-val{color:var(--ink)}
+  .meta-val.gold{color:var(--gold);font-weight:600}
+
+  .planets-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:8px;margin-top:10px}
+  .planet{background:rgba(255,255,255,0.03);border:1px solid rgba(212,175,55,0.1);
+    border-radius:8px;padding:10px 12px;display:flex;align-items:center;
+    justify-content:space-between;font-size:13px}
+  .planet .nm{color:var(--muted);font-family:'Cormorant SC',serif;font-size:11px;
+    letter-spacing:0.15em;text-transform:uppercase}
+  .planet .pos{color:var(--ink);font-family:'Cormorant Garamond',serif;font-size:15px}
+  .planet .retro{color:#f87171;font-weight:700;margin-left:6px}
+
+  .foot{margin-top:30px;text-align:center;color:var(--dim);font-size:12px}
+  .foot code{background:rgba(255,255,255,0.05);padding:2px 6px;border-radius:4px;
+    color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:11px}
+
+  @media(max-width:540px){
+    .meta-row{grid-template-columns:120px 1fr;font-size:13px}
+    h1{font-size:24px}
+    .card{padding:18px 16px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hdr">
+    <span class="hdr-logo">✦ Jyogi</span>
+    <span class="hdr-badge">Admin · Restricted</span>
+  </div>
+  <h1>Paste &amp; Read</h1>
+  <p class="sub">Paste birth details from anywhere (AstroTalk, Nebula, WhatsApp, email).
+    Any format. We'll detect, parse, and compute the chart server-side.</p>
+
+  <div class="card">
+    <h2>1. Paste Birth Details</h2>
+    <textarea id="qp-input" placeholder="Date of birth: 02.01.1983 (43y)
+Time of birth: 12:00:00
+Place of birth: Greenwich, Greater London, United Kingdom"></textarea>
+    <div class="actions">
+      <button class="btn btn-pri" id="btn-read" onclick="readChart()">
+        ✨ Read Chart Now
+      </button>
+      <button class="btn btn-gh" onclick="clearAll()">Clear</button>
+    </div>
+    <div class="status" id="status"></div>
+  </div>
+
+  <div class="card result" id="result">
+    <h2>2. Vedic Chart</h2>
+    <div id="result-body"></div>
+  </div>
+
+  <p class="foot">
+    Powered by Swiss Ephemeris &middot; Lahiri ayanamsa &middot;
+    <code>jyogi-api.onrender.com/p/y4k7</code>
+  </p>
+</div>
+
+<script>
+// ── Parser (same robust logic as the CLI) ─────────────────────
+var MONTHS = {
+  january:1,february:2,march:3,april:4,may:5,june:6,
+  july:7,august:8,september:9,october:10,november:11,december:12,
+  jan:1,feb:2,mar:3,apr:4,jun:6,jul:7,aug:8,sep:9,sept:9,oct:10,nov:11,dec:12
+};
+
+function parseDate(s){
+  if(!s) return null;
+  s = String(s).replace(/\(.*?\)/g,'').trim();
+  var m;
+  if((m = s.match(/^(\d{1,2})[.\-\/](\d{1,2})[.\-\/](\d{4})$/)))
+    return {y:+m[3], m:+m[2], d:+m[1]};
+  if((m = s.match(/^(\d{4})[.\-\/](\d{1,2})[.\-\/](\d{1,2})$/)))
+    return {y:+m[1], m:+m[2], d:+m[3]};
+  if((m = s.match(/^(\d{1,2})\s+([A-Za-z]+)\.?\s+(\d{4})$/)) && MONTHS[m[2].toLowerCase()])
+    return {y:+m[3], m:MONTHS[m[2].toLowerCase()], d:+m[1]};
+  if((m = s.match(/^([A-Za-z]+)\.?\s+(\d{1,2}),?\s+(\d{4})$/)) && MONTHS[m[1].toLowerCase()])
+    return {y:+m[3], m:MONTHS[m[1].toLowerCase()], d:+m[2]};
+  if((m = s.match(/^(\d{1,2})[-\s]([A-Za-z]{3,})[-\s](\d{4})$/)) && MONTHS[m[2].toLowerCase()])
+    return {y:+m[3], m:MONTHS[m[2].toLowerCase()], d:+m[1]};
+  return null;
+}
+
+function parseTime(s){
+  if(!s) return {known:false, h:12, mi:0};
+  if(/no\s*data|unknown|n\/?a|none|^\s*-\s*$/i.test(s)) return {known:false, h:12, mi:0};
+  s = String(s).toLowerCase();
+  var ampm = /\bam\b/.test(s) ? 'AM' : (/\bpm\b/.test(s) ? 'PM' : null);
+  var m = s.match(/(\d{1,2}):(\d{2})(?::\d{2})?/);
+  if(!m){
+    var m2 = s.match(/^(\d{1,2})\s*(am|pm)?\s*$/);
+    if(m2){
+      var h2 = +m2[1];
+      var ap2 = m2[2] ? m2[2].toUpperCase() : (h2 < 12 ? 'AM' : 'PM');
+      return {known:true, h:h2, mi:0, ampm:ap2, hour24:_h24(h2, ap2)};
+    }
+    return {known:false, h:12, mi:0};
+  }
+  var h = +m[1], mi = +m[2];
+  var hour24 = h;
+  if(ampm === null){
+    if(h === 0){ ampm='AM'; }
+    else if(h < 12){ ampm='AM'; }
+    else if(h === 12){ ampm='PM'; }
+    else { ampm='PM'; }
+  } else {
+    hour24 = _h24(h, ampm);
+  }
+  return {known:true, h:h, mi:mi, ampm:ampm, hour24:hour24};
+}
+
+function _h24(h, ampm){
+  if(ampm==='AM') return h===12 ? 0 : h;
+  if(ampm==='PM') return h===12 ? 12 : h+12;
+  return h;
+}
+
+function parseBlock(text){
+  var lines = text.split(/\r?\n/).map(function(l){return l.trim();}).filter(Boolean);
+  var out = {date:null, time:null, place:null};
+  var labels = [
+    [/date\s*of\s*birth|^dob\b|^born|birth\s*date/i, 'date'],
+    [/time\s*of\s*birth|^tob\b|birth\s*time/i, 'time'],
+    [/place\s*of\s*birth|^pob\b|birthplace|^location|^city/i, 'place']
+  ];
+  for(var i=0; i<lines.length; i++){
+    var line = lines[i];
+    for(var j=0; j<labels.length; j++){
+      if(labels[j][0].test(line)){
+        var key = labels[j][1];
+        var after = '';
+        var ci = line.indexOf(':');
+        if(ci >= 0){ after = line.substring(ci+1).trim(); }
+        if(after) out[key] = after;
+        else if(i+1 < lines.length){ out[key] = lines[i+1]; i++; }
+        break;
+      }
+    }
+  }
+  if(!out.date && !out.time && !out.place && lines.length >= 1){
+    if(lines.length>=1) out.date = lines[0];
+    if(lines.length>=2) out.time = lines[1];
+    if(lines.length>=3) out.place = lines[2];
+  }
+  return out;
+}
+
+// ── UI helpers ────────────────────────────────────────────────
+function showStatus(kind, msg){
+  var el = document.getElementById('status');
+  el.className = 'status ' + kind;
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+function clearAll(){
+  document.getElementById('qp-input').value = '';
+  document.getElementById('status').style.display = 'none';
+  document.getElementById('result').classList.remove('show');
+}
+
+function sanitize(s){
+  var d = document.createElement('div');
+  d.textContent = String(s == null ? '' : s);
+  return d.innerHTML;
+}
+
+// ── Main flow ─────────────────────────────────────────────────
+async function readChart(){
+  var txt = document.getElementById('qp-input').value;
+  if(!txt.trim()){ showStatus('warn', 'Please paste some birth details first.'); return; }
+
+  var parsed = parseBlock(txt);
+  var d = parseDate(parsed.date);
+  if(!d){
+    showStatus('err', "Couldn't find a recognizable date. Try DD.MM.YYYY, YYYY-MM-DD, or '2 January 1983'.");
+    return;
+  }
+  var t = parseTime(parsed.time);
+
+  // Status summary
+  var summary = '✓ Parsed: ' + String(d.d).padStart(2,'0') + '.' + String(d.m).padStart(2,'0') + '.' + d.y;
+  if(t.known) summary += '  ·  ' + String(t.h).padStart(2,'0') + ':' + String(t.mi).padStart(2,'0') + ' ' + t.ampm;
+  else        summary += '  ·  time UNKNOWN → noon assumed';
+  if(parsed.place) summary += '  ·  ' + parsed.place;
+  showStatus(t.known ? 'ok' : 'warn', summary);
+
+  // Compute chart via server
+  var btn = document.getElementById('btn-read');
+  btn.disabled = true;
+  btn.textContent = '⏳ Computing…';
+  try {
+    // Server takes 24-hour `hour` field. IST/local-time handling: the planets endpoint
+    // converts the given hour as IST → UT. For non-IST places, this approximation is
+    // fine for sidereal positions which are nearly time-zone-agnostic.
+    var payload = {
+      year:  d.y,
+      month: d.m,
+      day:   d.d,
+      hour:  (t.hour24 != null ? t.hour24 : 12) + (t.mi||0)/60,
+      city:  parsed.place || ''
+    };
+    var resp = await fetch('/api/planets', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(payload)
+    });
+    if(!resp.ok){
+      var errTxt = await resp.text();
+      showStatus('err', 'Server error ' + resp.status + ': ' + errTxt.slice(0, 200));
+      return;
+    }
+    var data = await resp.json();
+    renderResult(data, d, t, parsed.place);
+  } catch(e){
+    showStatus('err', 'Network error: ' + e.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '✨ Read Chart Now';
+  }
+}
+
+function renderResult(data, d, t, place){
+  var SIGNS = ['Aries','Taurus','Gemini','Cancer','Leo','Virgo',
+               'Libra','Scorpio','Sagittarius','Capricorn','Aquarius','Pisces'];
+  var NAKSH = ['Ashwini','Bharani','Krittika','Rohini','Mrigashira','Ardra','Punarvasu',
+               'Pushya','Ashlesha','Magha','Purva Phalguni','Uttara Phalguni','Hasta',
+               'Chitra','Swati','Vishakha','Anuradha','Jyeshtha','Mula','Purva Ashadha',
+               'Uttara Ashadha','Shravana','Dhanishta','Shatabhisha','Purva Bhadrapada',
+               'Uttara Bhadrapada','Revati'];
+  function toSign(lon){
+    var s = SIGNS[Math.floor(((lon % 360) + 360) % 360 / 30) % 12];
+    var deg = ((lon % 30) + 30) % 30;
+    return s + '  ' + deg.toFixed(2) + '°';
+  }
+  var planets = data.planets || {};
+  var lagnaLon = data.lagna != null ? data.lagna : null;
+  var moonLon  = planets.Moon;
+  var nkIdx = moonLon != null ? Math.floor(((moonLon % 360) + 360) % 360 / (360/27)) : -1;
+  var pada  = moonLon != null ? Math.floor((moonLon % (360/27)) / ((360/27)/4)) + 1 : 0;
+
+  var dateStr = String(d.d).padStart(2,'0') + ' ' +
+                ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.m-1] +
+                ' ' + d.y;
+  var timeStr = t.known ? (String(t.h).padStart(2,'0')+':'+String(t.mi).padStart(2,'0')+' '+t.ampm)
+                        : '⚠ UNKNOWN (noon assumed — Lagna approximate)';
+  var dashaCur = data.dasha && data.dasha.current_lord ? data.dasha.current_lord : '—';
+
+  var html = '';
+  html += '<div class="meta-row"><div class="meta-key">Date</div><div class="meta-val">' + sanitize(dateStr) + '</div></div>';
+  html += '<div class="meta-row"><div class="meta-key">Time</div><div class="meta-val">' + sanitize(timeStr) + '</div></div>';
+  html += '<div class="meta-row"><div class="meta-key">Place</div><div class="meta-val">' + sanitize(place || '—') + '</div></div>';
+  if(lagnaLon != null)
+    html += '<div class="meta-row"><div class="meta-key">Lagna</div><div class="meta-val gold">' + sanitize(toSign(lagnaLon)) + (t.known?'':'  (approx)') + '</div></div>';
+  if(moonLon != null)
+    html += '<div class="meta-row"><div class="meta-key">Moon</div><div class="meta-val gold">' + sanitize(toSign(moonLon)) + '</div></div>';
+  if(nkIdx >= 0)
+    html += '<div class="meta-row"><div class="meta-key">Nakshatra</div><div class="meta-val">' + sanitize(NAKSH[nkIdx]) + ' · Pada ' + pada + '</div></div>';
+  if(dashaCur)
+    html += '<div class="meta-row"><div class="meta-key">Mahadasha</div><div class="meta-val">' + sanitize(dashaCur) + '</div></div>';
+
+  html += '<h2 style="margin-top:22px;margin-bottom:8px;">Planetary Positions</h2>';
+  html += '<div class="planets-grid">';
+  var order = ['Sun','Moon','Mars','Mercury','Jupiter','Venus','Saturn','Rahu','Ketu'];
+  var retros = data.retrograde || {};
+  order.forEach(function(p){
+    if(planets[p] != null){
+      html += '<div class="planet"><span class="nm">' + p + '</span>' +
+              '<span class="pos">' + sanitize(toSign(planets[p])) +
+              (retros[p] ? '<span class="retro" title="Retrograde">℞</span>' : '') +
+              '</span></div>';
+    }
+  });
+  html += '</div>';
+
+  document.getElementById('result-body').innerHTML = html;
+  document.getElementById('result').classList.add('show');
+  // Smooth scroll to result
+  setTimeout(function(){
+    document.getElementById('result').scrollIntoView({behavior:'smooth', block:'start'});
+  }, 100);
+}
+
+// Cmd/Ctrl+Enter shortcut to run
+document.addEventListener('keydown', function(e){
+  if((e.metaKey || e.ctrlKey) && e.key === 'Enter'){
+    e.preventDefault();
+    readChart();
+  }
+});
+</script>
+</body>
+</html>
