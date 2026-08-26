@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- bhupura -->
+  <rect x="18" y="18" width="164" height="164" stroke="#D4AF37" stroke-width="1.4"/>
+  <rect x="26" y="26" width="148" height="148" stroke="#D4AF37" stroke-width="0.8"/>
+  <path d="M86 18 L86 6 L114 6 L114 18" fill="none" stroke="#D4AF37" stroke-width="1.2" transform="rotate(0 100 100)"/><path d="M86 18 L86 6 L114 6 L114 18" fill="none" stroke="#D4AF37" stroke-width="1.2" transform="rotate(90 100 100)"/><path d="M86 18 L86 6 L114 6 L114 18" fill="none" stroke="#D4AF37" stroke-width="1.2" transform="rotate(180 100 100)"/><path d="M86 18 L86 6 L114 6 L114 18" fill="none" stroke="#D4AF37" stroke-width="1.2" transform="rotate(270 100 100)"/>
+  <!-- circles -->
+  <circle cx="100" cy="100" r="72" stroke="#D4AF37" stroke-width="1.2"/>
+  <circle cx="100" cy="100" r="66" stroke="#D4AF37" stroke-width="0.7"/>
+  <!-- 8-petal lotus -->
+  <path d="M 100 54 Q 87 44.5 100 35 Q 113 44.5 100 54 Z" transform="rotate(0.0 100 100)" fill="none" stroke="#D4AF37" stroke-width="1.2"/>
+  <path d="M 100 54 Q 87 44.5 100 35 Q 113 44.5 100 54 Z" transform="rotate(45.0 100 100)" fill="none" stroke="#D4AF37" stroke-width="1.2"/>
+  <path d="M 100 54 Q 87 44.5 100 35 Q 113 44.5 100 54 Z" transform="rotate(90.0 100 100)" fill="none" stroke="#D4AF37" stroke-width="1.2"/>
+  <path d="M 100 54 Q 87 44.5 100 35 Q 113 44.5 100 54 Z" transform="rotate(135.0 100 100)" fill="none" stroke="#D4AF37" stroke-width="1.2"/>
+  <path d="M 100 54 Q 87 44.5 100 35 Q 113 44.5 100 54 Z" transform="rotate(180.0 100 100)" fill="none" stroke="#D4AF37" stroke-width="1.2"/>
+  <path d="M 100 54 Q 87 44.5 100 35 Q 113 44.5 100 54 Z" transform="rotate(225.0 100 100)" fill="none" stroke="#D4AF37" stroke-width="1.2"/>
+  <path d="M 100 54 Q 87 44.5 100 35 Q 113 44.5 100 54 Z" transform="rotate(270.0 100 100)" fill="none" stroke="#D4AF37" stroke-width="1.2"/>
+  <path d="M 100 54 Q 87 44.5 100 35 Q 113 44.5 100 54 Z" transform="rotate(315.0 100 100)" fill="none" stroke="#D4AF37" stroke-width="1.2"/>
+  <circle cx="100" cy="100" r="46" stroke="#D4AF37" stroke-width="1"/>
+  <!-- shatkona -->
+  <polygon points="100.0,62.0 132.9,119.0 67.1,119.0" stroke="#D4AF37" stroke-width="1.3"/>
+  <polygon points="100.0,138.0 67.1,81.0 132.9,81.0" stroke="#D4AF37" stroke-width="1.3"/>
+  <circle cx="100" cy="100" r="10" stroke="#D4AF37" stroke-width="0.9"/>
+  <circle cx="100" cy="100" r="2.6" fill="#D4AF37"/>
+</svg>

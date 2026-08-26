@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <circle cx="100" cy="100" r="88" stroke="#D4AF37" stroke-width="1.1"/>
+  <path d="M 100 38 Q 85 26.0 100 14 Q 115 26.0 100 38 Z" transform="rotate(0.0 100 100)" fill="none" stroke="#D4AF37" stroke-width="1"/>
+  <path d="M 100 38 Q 85 26.0 100 14 Q 115 26.0 100 38 Z" transform="rotate(60.0 100 100)" fill="none" stroke="#D4AF37" stroke-width="1"/>
+  <path d="M 100 38 Q 85 26.0 100 14 Q 115 26.0 100 38 Z" transform="rotate(120.0 100 100)" fill="none" stroke="#D4AF37" stroke-width="1"/>
+  <path d="M 100 38 Q 85 26.0 100 14 Q 115 26.0 100 38 Z" transform="rotate(180.0 100 100)" fill="none" stroke="#D4AF37" stroke-width="1"/>
+  <path d="M 100 38 Q 85 26.0 100 14 Q 115 26.0 100 38 Z" transform="rotate(240.0 100 100)" fill="none" stroke="#D4AF37" stroke-width="1"/>
+  <path d="M 100 38 Q 85 26.0 100 14 Q 115 26.0 100 38 Z" transform="rotate(300.0 100 100)" fill="none" stroke="#D4AF37" stroke-width="1"/>
+  <circle cx="100" cy="100" r="62" stroke="#D4AF37" stroke-width="0.8"/>
+  <polygon points="100.0,50.0 143.3,125.0 56.7,125.0" stroke="#D4AF37" stroke-width="1.3"/>
+  <polygon points="100.0,150.0 56.7,75.0 143.3,75.0" stroke="#D4AF37" stroke-width="1.3"/>
+  <circle cx="100" cy="100" r="16" stroke="#D4AF37" stroke-width="0.8"/>
+  <circle cx="100" cy="100" r="3" fill="#D4AF37"/>
+</svg>
