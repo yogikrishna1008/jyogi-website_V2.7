@@ -195,6 +195,7 @@ if not REPORT_TOKEN_SECRET:
 
 SHEETS_WEBHOOK = os.getenv("SHEETS_WEBHOOK_URL", "")
 IST            = timedelta(hours=5, minutes=30)
+IST_TZ         = timezone(IST)   # tzinfo form of IST, for sortable ISO timestamps (+05:30)
 
 _MEM_LOG: list[dict] = []
 _MAX_MEM = 2000
@@ -299,6 +300,14 @@ async def lifespan(app: FastAPI):
     log.info("🪐 Jyogi API v3 starting — %d log entries loaded", len(_MEM_LOG))
     init_applications_db()
     init_analytics_db()
+    for _name, _path in (("APPLICATIONS_DB_PATH", APPLICATIONS_DB_PATH),
+                         ("ANALYTICS_DB_PATH", ANALYTICS_DB_PATH)):
+        if _path.startswith("/tmp"):
+            log.warning(
+                "⚠️  %s=%s is on the container's EPHEMERAL filesystem — this data "
+                "is WIPED on every Render redeploy/restart. Attach a Render "
+                "Persistent Disk and set %s to a path on it (e.g. /var/data/...) "
+                "to keep this data.", _name, _path, _name)
     yield
     for path in pdf_store.values():
         try: Path(path).unlink(missing_ok=True)
@@ -690,8 +699,9 @@ def _analytics_rate_ok(ip: str) -> bool:
 # it wants into the analytics DB.
 ALLOWED_EVENTS = {
     "page_view", "whatsapp_click", "consultation_click", "apply_click",
-    "book_now_click", "buy_click", "crystal_view", "kundli_generate",
-    "report_generate", "share_click", "language_change", "search",
+    "book_now_click", "buy_click", "buy_now_click", "crystal_view",
+    "kundli_generate", "report_generate", "share_click", "language_change",
+    "search",
 }
 
 # Server-side bot filter — a beacon fired by a crawler or uptime monitor that
@@ -733,7 +743,7 @@ def api_analytics_event(body: AnalyticsEventReq, request: Request):
             "INSERT INTO events (id, ts, ts_iso, event, path, title, referrer, utm_source, "
             "utm_medium, utm_campaign, visitor_hash, session_id, country, device_type, "
             "browser, os, screen_w, lang) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-            (str(uuid.uuid4()), now_ist(), datetime.now(timezone.utc).isoformat(),
+            (str(uuid.uuid4()), now_ist(), datetime.now(IST_TZ).isoformat(),
              event_name, body.path.strip(),
              body.title.strip(), body.referrer.strip()[:500], body.utm_source.strip(),
              body.utm_medium.strip(), body.utm_campaign.strip(), vhash,
@@ -749,76 +759,100 @@ def api_analytics_count():
     Deliberately minimal: no page-level, device, or source breakdown here —
     that detail stays behind /api/admin/analytics/summary."""
     from fastapi.responses import JSONResponse
-    now = datetime.now(timezone.utc) + IST
-    today_str = now.strftime("%d %b %Y")
-    month_str = now.strftime("%b %Y")   # matches now_ist() format: "28 Aug 2026 ..."
+    today_start_iso, _ = _range_bounds_iso("today")
+    month_start_iso, _ = _range_bounds_iso("month")
     with _analytics_db() as conn:
         today_n = conn.execute(
             "SELECT COUNT(DISTINCT visitor_hash) AS n FROM events "
-            "WHERE event='page_view' AND ts LIKE ?", (f"{today_str}%",)
+            "WHERE event='page_view' AND ts_iso >= ?", (today_start_iso,)
         ).fetchone()["n"]
         month_n = conn.execute(
             "SELECT COUNT(DISTINCT visitor_hash) AS n FROM events "
-            "WHERE event='page_view' AND ts LIKE ?", (f"__ {month_str}%",)
+            "WHERE event='page_view' AND ts_iso >= ?", (month_start_iso,)
         ).fetchone()["n"]
     return JSONResponse({"today": today_n, "month": month_n},
                         headers={"Cache-Control": "public, max-age=300"})
 
+def _range_bounds_iso(range_key: str):
+    """Return (start_iso, end_iso) in IST-offset ISO8601 for a named range.
+    All bounds are computed from IST_TZ so they compare correctly against the
+    ts_iso column, which is always written with the same +05:30 offset."""
+    now = datetime.now(IST_TZ)
+    today_start = now.replace(hour=0, minute=0, second=0, microsecond=0)
+    if range_key == "yesterday":
+        start = today_start - timedelta(days=1)
+        end = today_start
+    elif range_key == "7d":
+        start, end = now - timedelta(days=7), now
+    elif range_key == "30d":
+        start, end = now - timedelta(days=30), now
+    elif range_key == "month":
+        start, end = today_start.replace(day=1), now
+    else:  # "today" and any unrecognised value fall back to today
+        start, end = today_start, now
+    return start.isoformat(), end.isoformat()
+
+_VALID_RANGES = {"today", "yesterday", "7d", "30d", "month"}
+
 @app.get("/api/admin/analytics/summary")
 def admin_analytics_summary(range: str = "today", _admin: str = Depends(verify_admin_session)):
-    """range: today | 7d | 30d | month"""
     from fastapi.responses import JSONResponse
-    now = datetime.now(timezone.utc) + IST
-    today_str = now.strftime("%d %b %Y")
-    month_str = now.strftime("%b %Y")
-    five_min_ago_iso = (datetime.now(timezone.utc) - timedelta(minutes=5)).isoformat()
+    range_key = range if range in _VALID_RANGES else "today"
+
+    now = datetime.now(IST_TZ)
+    today_start_iso, _now_iso = _range_bounds_iso("today")
+    month_start_iso, _ = _range_bounds_iso("month")
+    range_start_iso, range_end_iso = _range_bounds_iso(range_key)
+    five_min_ago_iso = (now - timedelta(minutes=5)).isoformat()
 
     with _analytics_db() as conn:
         today_visitors = conn.execute(
             "SELECT COUNT(DISTINCT visitor_hash) AS n FROM events "
-            "WHERE event='page_view' AND ts LIKE ?", (f"{today_str}%",)).fetchone()["n"]
+            "WHERE event='page_view' AND ts_iso >= ?", (today_start_iso,)).fetchone()["n"]
         today_views = conn.execute(
             "SELECT COUNT(*) AS n FROM events "
-            "WHERE event='page_view' AND ts LIKE ?", (f"{today_str}%",)).fetchone()["n"]
+            "WHERE event='page_view' AND ts_iso >= ?", (today_start_iso,)).fetchone()["n"]
         online_now = conn.execute(
             "SELECT COUNT(DISTINCT visitor_hash) AS n FROM events WHERE ts_iso >= ?",
             (five_min_ago_iso,)).fetchone()["n"]
         month_visitors = conn.execute(
             "SELECT COUNT(DISTINCT visitor_hash) AS n FROM events "
-            "WHERE event='page_view' AND ts LIKE ?", (f"__ {month_str}%",)).fetchone()["n"]
+            "WHERE event='page_view' AND ts_iso >= ?", (month_start_iso,)).fetchone()["n"]
         month_views = conn.execute(
             "SELECT COUNT(*) AS n FROM events "
-            "WHERE event='page_view' AND ts LIKE ?", (f"__ {month_str}%",)).fetchone()["n"]
+            "WHERE event='page_view' AND ts_iso >= ?", (month_start_iso,)).fetchone()["n"]
+
+        # Everything below respects the requested range (today / yesterday / 7d / 30d / month).
+        range_filter = "ts_iso >= ? AND ts_iso < ?"
+        range_args = (range_start_iso, range_end_iso)
 
         top_pages = conn.execute(
-            "SELECT path, COUNT(*) AS n FROM events WHERE event='page_view' "
-            "AND ts LIKE ? GROUP BY path ORDER BY n DESC LIMIT 10",
-            (f"__ {month_str}%",)).fetchall()
+            f"SELECT path, COUNT(*) AS n FROM events WHERE event='page_view' AND {range_filter} "
+            "GROUP BY path ORDER BY n DESC LIMIT 10", range_args).fetchall()
 
         # Traffic source bucketing: utm_source wins, else referrer domain, else Direct.
         source_rows = conn.execute(
-            "SELECT utm_source, referrer FROM events WHERE event='page_view' AND ts LIKE ?",
-            (f"__ {month_str}%",)).fetchall()
+            f"SELECT utm_source, referrer FROM events WHERE event='page_view' AND {range_filter}",
+            range_args).fetchall()
 
         devices = conn.execute(
-            "SELECT device_type, COUNT(DISTINCT visitor_hash) AS n FROM events "
-            "WHERE event='page_view' AND ts LIKE ? AND device_type != '' "
-            "GROUP BY device_type ORDER BY n DESC", (f"__ {month_str}%",)).fetchall()
+            f"SELECT device_type, COUNT(DISTINCT visitor_hash) AS n FROM events "
+            f"WHERE event='page_view' AND device_type != '' AND {range_filter} "
+            "GROUP BY device_type ORDER BY n DESC", range_args).fetchall()
 
         countries = conn.execute(
-            "SELECT country, COUNT(DISTINCT visitor_hash) AS n FROM events "
-            "WHERE event='page_view' AND ts LIKE ? AND country != '' "
-            "GROUP BY country ORDER BY n DESC LIMIT 10", (f"__ {month_str}%",)).fetchall()
+            f"SELECT country, COUNT(DISTINCT visitor_hash) AS n FROM events "
+            f"WHERE event='page_view' AND country != '' AND {range_filter} "
+            "GROUP BY country ORDER BY n DESC LIMIT 10", range_args).fetchall()
 
         campaigns = conn.execute(
-            "SELECT utm_campaign, utm_source, COUNT(DISTINCT visitor_hash) AS n FROM events "
-            "WHERE event='page_view' AND utm_campaign != '' AND ts LIKE ? "
-            "GROUP BY utm_campaign, utm_source ORDER BY n DESC LIMIT 10",
-            (f"__ {month_str}%",)).fetchall()
+            f"SELECT utm_campaign, utm_source, COUNT(DISTINCT visitor_hash) AS n FROM events "
+            f"WHERE event='page_view' AND utm_campaign != '' AND {range_filter} "
+            "GROUP BY utm_campaign, utm_source ORDER BY n DESC LIMIT 10", range_args).fetchall()
 
         event_totals = conn.execute(
-            "SELECT event, COUNT(*) AS n FROM events WHERE ts LIKE ? "
-            "GROUP BY event ORDER BY n DESC", (f"__ {month_str}%",)).fetchall()
+            f"SELECT event, COUNT(*) AS n FROM events WHERE {range_filter} "
+            "GROUP BY event ORDER BY n DESC", range_args).fetchall()
 
     import urllib.parse as _up
     source_counts: dict[str, int] = defaultdict(int)
@@ -835,6 +869,7 @@ def admin_analytics_summary(range: str = "today", _admin: str = Depends(verify_a
             source_counts["Direct"] += 1
 
     return JSONResponse({
+        "range": range_key,
         "today": {"visitors": today_visitors, "page_views": today_views, "online_now": online_now},
         "month": {"visitors": month_visitors, "page_views": month_views},
         "top_pages": [{"path": r["path"], "views": r["n"]} for r in top_pages],
@@ -846,6 +881,27 @@ def admin_analytics_summary(range: str = "today", _admin: str = Depends(verify_a
                       for r in campaigns],
         "events": [{"event": r["event"], "count": r["n"]} for r in event_totals],
     }, headers={"X-Robots-Tag": "noindex, nofollow"})
+
+@app.get("/api/admin/analytics/events")
+def admin_analytics_events(limit: int = 50, event: str = "",
+                           _admin: str = Depends(verify_admin_session)):
+    """Raw recent event log — admin only. Capped and simple by design: this is
+    a debugging/inspection view, not a full export tool."""
+    from fastapi.responses import JSONResponse
+    limit = max(1, min(limit, 200))
+    with _analytics_db() as conn:
+        if event and event in ALLOWED_EVENTS:
+            rows = conn.execute(
+                "SELECT ts, event, path, title, referrer, utm_source, utm_medium, utm_campaign, "
+                "visitor_hash, country, device_type, browser, os FROM events "
+                "WHERE event=? ORDER BY ts_iso DESC LIMIT ?", (event, limit)).fetchall()
+        else:
+            rows = conn.execute(
+                "SELECT ts, event, path, title, referrer, utm_source, utm_medium, utm_campaign, "
+                "visitor_hash, country, device_type, browser, os FROM events "
+                "ORDER BY ts_iso DESC LIMIT ?", (limit,)).fetchall()
+    return JSONResponse({"events": [dict(r) for r in rows]},
+                        headers={"X-Robots-Tag": "noindex, nofollow"})
 
 @app.get("/admin/analytics", response_class=HTMLResponse, include_in_schema=False)
 def admin_analytics_page():

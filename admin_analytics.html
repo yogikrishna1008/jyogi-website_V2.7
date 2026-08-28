@@ -107,6 +107,14 @@
       <div class="hstat"><b id="statMonthViews">–</b><span>Page Views This Month</span></div>
     </div>
 
+    <div class="tabs" id="rangeTabs">
+      <button class="tab active" data-range="today">Today</button>
+      <button class="tab" data-range="yesterday">Yesterday</button>
+      <button class="tab" data-range="7d">Last 7 Days</button>
+      <button class="tab" data-range="30d">Last 30 Days</button>
+      <button class="tab" data-range="month">This Month</button>
+    </div>
+
     <div class="panels">
       <div class="panel">
         <h3>Top Pages</h3>
@@ -207,9 +215,20 @@ function renderRows(containerId, items, labelKey, valueKey, opts){
   }).join('');
 }
 
+var currentRange = 'today';
+
+document.getElementById('rangeTabs').addEventListener('click', function(e){
+  var btn = e.target.closest('.tab');
+  if(!btn) return;
+  currentRange = btn.dataset.range;
+  document.querySelectorAll('#rangeTabs .tab').forEach(function(t){ t.classList.toggle('active', t===btn); });
+  loadSummary();
+});
+
 async function loadSummary(){
   try{
-    var r = await fetch(API_BASE+'/api/admin/analytics/summary', {credentials:'include'});
+    var r = await fetch(API_BASE+'/api/admin/analytics/summary?range='+encodeURIComponent(currentRange),
+                        {credentials:'include'});
     if(r.status === 401){ showLogin(); return; }
     var d = await r.json();
 
