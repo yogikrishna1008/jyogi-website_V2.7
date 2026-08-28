@@ -1165,8 +1165,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; line-height
   var API_BASE=(window.SITE_CONFIG&&window.SITE_CONFIG.apiBase)||'https://jyogi-api.onrender.com';
   fetch(API_BASE+'/api/analytics/count').then(function(r){return r.json();}).then(function(d){
     var el=document.getElementById('visitor-count');
-    if(el && d && typeof d.visitors_this_month==='number' && d.visitors_this_month>0){
-      el.textContent=d.visitors_this_month.toLocaleString()+' seekers visited this month';
+    if(el && d && typeof d.month==='number' && d.month>0){
+      el.textContent=d.month.toLocaleString()+' seekers visited this month';
       el.style.display='inline';
     }
   }).catch(function(){});

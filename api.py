@@ -685,6 +685,31 @@ def _analytics_rate_ok(ip: str) -> bool:
     if count >= ANALYTICS_MAX_PER_MIN: return False
     _analytics_rate_state[ip] = (count + 1, start); return True
 
+# Closed event vocabulary — anything else is silently dropped. Keeps the table
+# queryable (no free-text event soup) and stops a client from writing whatever
+# it wants into the analytics DB.
+ALLOWED_EVENTS = {
+    "page_view", "whatsapp_click", "consultation_click", "apply_click",
+    "book_now_click", "buy_click", "crystal_view", "kundli_generate",
+    "report_generate", "share_click", "language_change", "search",
+}
+
+# Server-side bot filter — a beacon fired by a crawler or uptime monitor that
+# happens to run JS (or hits the endpoint directly) should never inflate the
+# counter. Client-side JS already keeps most non-browser bots out (they don't
+# execute the tracker), this is the backstop for the ones that do.
+_BOT_UA_MARKERS = (
+    "bot", "spider", "crawl", "slurp", "bingpreview", "facebookexternalhit",
+    "pingdom", "uptimerobot", "statuscake", "monitor", "headlesschrome",
+    "phantomjs", "curl/", "wget/", "python-requests", "go-http-client",
+)
+
+def _looks_like_bot(ua: str) -> bool:
+    u = (ua or "").lower()
+    if not u:
+        return True   # no UA at all — not a real browser visit
+    return any(marker in u for marker in _BOT_UA_MARKERS)
+
 @app.post("/api/analytics/event")
 def api_analytics_event(body: AnalyticsEventReq, request: Request):
     ip = client_ip(request)
@@ -692,9 +717,16 @@ def api_analytics_event(body: AnalyticsEventReq, request: Request):
         # Silent no-op — a tracking beacon should never surface an error to the visitor.
         return {"ok": True}
 
+    event_name = body.event.strip()
+    if event_name not in ALLOWED_EVENTS:
+        return {"ok": True}   # silently dropped — not a recognised event
+
     ua = request.headers.get("User-Agent", "")[:300]
+    if _looks_like_bot(ua):
+        return {"ok": True}   # silently dropped — bot/crawler/monitor traffic
+
     country = request.headers.get("CF-IPCountry", "") or ""
-    vhash = _visitor_hash(ip, ua)
+    vhash = _visitor_hash(ip, ua)   # ip used transiently for the hash, never stored
 
     with _analytics_db() as conn:
         conn.execute(
@@ -702,7 +734,7 @@ def api_analytics_event(body: AnalyticsEventReq, request: Request):
             "utm_medium, utm_campaign, visitor_hash, session_id, country, device_type, "
             "browser, os, screen_w, lang) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
             (str(uuid.uuid4()), now_ist(), datetime.now(timezone.utc).isoformat(),
-             body.event.strip(), body.path.strip(),
+             event_name, body.path.strip(),
              body.title.strip(), body.referrer.strip()[:500], body.utm_source.strip(),
              body.utm_medium.strip(), body.utm_campaign.strip(), vhash,
              body.session_id.strip(), country, body.device_type.strip(),
@@ -711,24 +743,25 @@ def api_analytics_event(body: AnalyticsEventReq, request: Request):
         conn.commit()
     return {"ok": True}
 
-def _ist_today_bounds():
-    now = datetime.now(timezone.utc) + IST
-    start = now.replace(hour=0, minute=0, second=0, microsecond=0)
-    return start.strftime("%d %b %Y"), now
-
 @app.get("/api/analytics/count")
 def api_analytics_count():
-    """Public, lightweight — powers the subtle footer counter."""
+    """Public, lightweight — powers the subtle footer counter only.
+    Deliberately minimal: no page-level, device, or source breakdown here —
+    that detail stays behind /api/admin/analytics/summary."""
     from fastapi.responses import JSONResponse
     now = datetime.now(timezone.utc) + IST
-    month_prefix = now.strftime("%b %Y")   # matches now_ist() format: "28 Aug 2026 ..."
+    today_str = now.strftime("%d %b %Y")
+    month_str = now.strftime("%b %Y")   # matches now_ist() format: "28 Aug 2026 ..."
     with _analytics_db() as conn:
-        row = conn.execute(
+        today_n = conn.execute(
             "SELECT COUNT(DISTINCT visitor_hash) AS n FROM events "
-            "WHERE event='page_view' AND ts LIKE ?",
-            (f"__ {month_prefix}%",)
-        ).fetchone()
-    return JSONResponse({"visitors_this_month": row["n"] if row else 0},
+            "WHERE event='page_view' AND ts LIKE ?", (f"{today_str}%",)
+        ).fetchone()["n"]
+        month_n = conn.execute(
+            "SELECT COUNT(DISTINCT visitor_hash) AS n FROM events "
+            "WHERE event='page_view' AND ts LIKE ?", (f"__ {month_str}%",)
+        ).fetchone()["n"]
+    return JSONResponse({"today": today_n, "month": month_n},
                         headers={"Cache-Control": "public, max-age=300"})
 
 @app.get("/api/admin/analytics/summary")
