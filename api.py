@@ -100,6 +100,67 @@ def init_applications_db():
         """)
         conn.commit()
 
+# ══════════════════════════════════════════════════════════════
+# ANALYTICS DB — visitor/page-view/event tracking for jyogi.in.
+#
+# Privacy: we never store a raw IP. Each visit gets a one-way
+# visitor_hash = SHA256(ip + user_agent + VISITOR_SALT)[:16], which lets us
+# estimate unique visitors without keeping anything that identifies a person.
+# Country comes from Cloudflare's CF-IPCountry header (no geo lookup, no IP
+# ever touches disk). Same ephemeral-storage caveat as APPLICATIONS_DB_PATH
+# applies here — see note above. Move both to a persistent disk / Postgres
+# together when that upgrade happens.
+# ══════════════════════════════════════════════════════════════
+ANALYTICS_DB_PATH = os.getenv("ANALYTICS_DB_PATH", "/tmp/jyogi_analytics.db")
+
+VISITOR_SALT = os.getenv("VISITOR_SALT", "").strip()
+if not VISITOR_SALT:
+    import secrets as _sec3
+    VISITOR_SALT = _sec3.token_hex(16)
+    logging.getLogger("jyogi_api").warning(
+        "⚠ VISITOR_SALT not set in env — using a random per-process value. "
+        "Unique-visitor counts will reset across restarts until VISITOR_SALT "
+        "is set in Render env vars.")
+
+def _analytics_db():
+    conn = sqlite3.connect(ANALYTICS_DB_PATH)
+    conn.row_factory = sqlite3.Row
+    return conn
+
+def init_analytics_db():
+    with _analytics_db() as conn:
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS events (
+                id            TEXT PRIMARY KEY,
+                ts            TEXT NOT NULL,
+                ts_iso        TEXT NOT NULL,
+                event         TEXT NOT NULL,
+                path          TEXT,
+                title         TEXT,
+                referrer      TEXT,
+                utm_source    TEXT,
+                utm_medium    TEXT,
+                utm_campaign  TEXT,
+                visitor_hash  TEXT NOT NULL,
+                session_id    TEXT,
+                country       TEXT,
+                device_type   TEXT,
+                browser       TEXT,
+                os            TEXT,
+                screen_w      INTEGER,
+                lang          TEXT
+            )
+        """)
+        conn.execute("CREATE INDEX IF NOT EXISTS idx_events_ts ON events(ts)")
+        conn.execute("CREATE INDEX IF NOT EXISTS idx_events_ts_iso ON events(ts_iso)")
+        conn.execute("CREATE INDEX IF NOT EXISTS idx_events_visitor ON events(visitor_hash)")
+        conn.execute("CREATE INDEX IF NOT EXISTS idx_events_event ON events(event)")
+        conn.commit()
+
+def _visitor_hash(ip: str, ua: str) -> str:
+    import hashlib
+    return hashlib.sha256(f"{ip}|{ua}|{VISITOR_SALT}".encode()).hexdigest()[:16]
+
 # ── Logging ───────────────────────────────────────────────────
 logging.basicConfig(level=logging.INFO,
                     format="%(asctime)s  %(levelname)s  %(message)s")
@@ -237,6 +298,7 @@ async def lifespan(app: FastAPI):
     _MEM_LOG = read_log()[:_MAX_MEM]
     log.info("🪐 Jyogi API v3 starting — %d log entries loaded", len(_MEM_LOG))
     init_applications_db()
+    init_analytics_db()
     yield
     for path in pdf_store.values():
         try: Path(path).unlink(missing_ok=True)
@@ -252,6 +314,7 @@ app = FastAPI(
 _ALLOWED_ORIGINS = [
     "https://jyogi.in",
     "https://www.jyogi.in",
+    "https://v2.jyogi.in",                # Cloudflare Pages staging subdomain
     "https://yogikrishna1008.github.io",  # Cloudflare preview / GitHub Pages
 ]
 # Allow localhost in development
@@ -318,6 +381,21 @@ class ApplyReq(BaseModel):
 
 class ApplyStatusReq(BaseModel):
     status: str = Field(..., pattern="^(new|contacted|confirmed|completed|declined)$")
+
+class AnalyticsEventReq(BaseModel):
+    event:        str = Field(..., min_length=1, max_length=40)   # page_view, whatsapp_click, ...
+    path:         str = Field("", max_length=300)
+    title:        str = Field("", max_length=200)
+    referrer:     str = Field("", max_length=500)
+    utm_source:   str = Field("", max_length=100)
+    utm_medium:   str = Field("", max_length=100)
+    utm_campaign: str = Field("", max_length=100)
+    session_id:   str = Field("", max_length=64)
+    device_type:  str = Field("", max_length=20)   # mobile | desktop | tablet
+    browser:      str = Field("", max_length=40)
+    os:           str = Field("", max_length=40)
+    screen_w:     int = 0
+    lang:         str = Field("", max_length=10)
 
 class InsightReq(BaseModel):
     # Legacy field — still accepted for backward compatibility during deploy
@@ -585,6 +663,164 @@ def admin_applications_page():
                     encoding="utf-8").read()
     except FileNotFoundError:
         raise HTTPException(500, "Admin applications page file missing on server")
+
+
+# ══════════════════════════════════════════════════════════════
+# VISITOR ANALYTICS
+#
+#   POST /api/analytics/event            — public, rate-limited beacon
+#   GET  /api/analytics/count            — public, footer counter (this month)
+#   GET  /api/admin/analytics/summary    — admin dashboard data
+#   GET  /admin/analytics                — admin dashboard page
+# ══════════════════════════════════════════════════════════════
+
+_analytics_rate_state: dict[str, tuple[int, float]] = defaultdict(lambda: (0, time.time()))
+ANALYTICS_MAX_PER_MIN = 60   # generous — one page can fire several events (view + clicks)
+
+def _analytics_rate_ok(ip: str) -> bool:
+    count, start = _analytics_rate_state[ip]
+    now = time.time()
+    if now - start > 60:
+        _analytics_rate_state[ip] = (1, now); return True
+    if count >= ANALYTICS_MAX_PER_MIN: return False
+    _analytics_rate_state[ip] = (count + 1, start); return True
+
+@app.post("/api/analytics/event")
+def api_analytics_event(body: AnalyticsEventReq, request: Request):
+    ip = client_ip(request)
+    if not _analytics_rate_ok(ip):
+        # Silent no-op — a tracking beacon should never surface an error to the visitor.
+        return {"ok": True}
+
+    ua = request.headers.get("User-Agent", "")[:300]
+    country = request.headers.get("CF-IPCountry", "") or ""
+    vhash = _visitor_hash(ip, ua)
+
+    with _analytics_db() as conn:
+        conn.execute(
+            "INSERT INTO events (id, ts, ts_iso, event, path, title, referrer, utm_source, "
+            "utm_medium, utm_campaign, visitor_hash, session_id, country, device_type, "
+            "browser, os, screen_w, lang) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            (str(uuid.uuid4()), now_ist(), datetime.now(timezone.utc).isoformat(),
+             body.event.strip(), body.path.strip(),
+             body.title.strip(), body.referrer.strip()[:500], body.utm_source.strip(),
+             body.utm_medium.strip(), body.utm_campaign.strip(), vhash,
+             body.session_id.strip(), country, body.device_type.strip(),
+             body.browser.strip(), body.os.strip(), body.screen_w, body.lang.strip()),
+        )
+        conn.commit()
+    return {"ok": True}
+
+def _ist_today_bounds():
+    now = datetime.now(timezone.utc) + IST
+    start = now.replace(hour=0, minute=0, second=0, microsecond=0)
+    return start.strftime("%d %b %Y"), now
+
+@app.get("/api/analytics/count")
+def api_analytics_count():
+    """Public, lightweight — powers the subtle footer counter."""
+    from fastapi.responses import JSONResponse
+    now = datetime.now(timezone.utc) + IST
+    month_prefix = now.strftime("%b %Y")   # matches now_ist() format: "28 Aug 2026 ..."
+    with _analytics_db() as conn:
+        row = conn.execute(
+            "SELECT COUNT(DISTINCT visitor_hash) AS n FROM events "
+            "WHERE event='page_view' AND ts LIKE ?",
+            (f"__ {month_prefix}%",)
+        ).fetchone()
+    return JSONResponse({"visitors_this_month": row["n"] if row else 0},
+                        headers={"Cache-Control": "public, max-age=300"})
+
+@app.get("/api/admin/analytics/summary")
+def admin_analytics_summary(range: str = "today", _admin: str = Depends(verify_admin_session)):
+    """range: today | 7d | 30d | month"""
+    from fastapi.responses import JSONResponse
+    now = datetime.now(timezone.utc) + IST
+    today_str = now.strftime("%d %b %Y")
+    month_str = now.strftime("%b %Y")
+    five_min_ago_iso = (datetime.now(timezone.utc) - timedelta(minutes=5)).isoformat()
+
+    with _analytics_db() as conn:
+        today_visitors = conn.execute(
+            "SELECT COUNT(DISTINCT visitor_hash) AS n FROM events "
+            "WHERE event='page_view' AND ts LIKE ?", (f"{today_str}%",)).fetchone()["n"]
+        today_views = conn.execute(
+            "SELECT COUNT(*) AS n FROM events "
+            "WHERE event='page_view' AND ts LIKE ?", (f"{today_str}%",)).fetchone()["n"]
+        online_now = conn.execute(
+            "SELECT COUNT(DISTINCT visitor_hash) AS n FROM events WHERE ts_iso >= ?",
+            (five_min_ago_iso,)).fetchone()["n"]
+        month_visitors = conn.execute(
+            "SELECT COUNT(DISTINCT visitor_hash) AS n FROM events "
+            "WHERE event='page_view' AND ts LIKE ?", (f"__ {month_str}%",)).fetchone()["n"]
+        month_views = conn.execute(
+            "SELECT COUNT(*) AS n FROM events "
+            "WHERE event='page_view' AND ts LIKE ?", (f"__ {month_str}%",)).fetchone()["n"]
+
+        top_pages = conn.execute(
+            "SELECT path, COUNT(*) AS n FROM events WHERE event='page_view' "
+            "AND ts LIKE ? GROUP BY path ORDER BY n DESC LIMIT 10",
+            (f"__ {month_str}%",)).fetchall()
+
+        # Traffic source bucketing: utm_source wins, else referrer domain, else Direct.
+        source_rows = conn.execute(
+            "SELECT utm_source, referrer FROM events WHERE event='page_view' AND ts LIKE ?",
+            (f"__ {month_str}%",)).fetchall()
+
+        devices = conn.execute(
+            "SELECT device_type, COUNT(DISTINCT visitor_hash) AS n FROM events "
+            "WHERE event='page_view' AND ts LIKE ? AND device_type != '' "
+            "GROUP BY device_type ORDER BY n DESC", (f"__ {month_str}%",)).fetchall()
+
+        countries = conn.execute(
+            "SELECT country, COUNT(DISTINCT visitor_hash) AS n FROM events "
+            "WHERE event='page_view' AND ts LIKE ? AND country != '' "
+            "GROUP BY country ORDER BY n DESC LIMIT 10", (f"__ {month_str}%",)).fetchall()
+
+        campaigns = conn.execute(
+            "SELECT utm_campaign, utm_source, COUNT(DISTINCT visitor_hash) AS n FROM events "
+            "WHERE event='page_view' AND utm_campaign != '' AND ts LIKE ? "
+            "GROUP BY utm_campaign, utm_source ORDER BY n DESC LIMIT 10",
+            (f"__ {month_str}%",)).fetchall()
+
+        event_totals = conn.execute(
+            "SELECT event, COUNT(*) AS n FROM events WHERE ts LIKE ? "
+            "GROUP BY event ORDER BY n DESC", (f"__ {month_str}%",)).fetchall()
+
+    import urllib.parse as _up
+    source_counts: dict[str, int] = defaultdict(int)
+    for r in source_rows:
+        if r["utm_source"]:
+            source_counts[r["utm_source"]] += 1
+        elif r["referrer"]:
+            try:
+                domain = _up.urlparse(r["referrer"]).netloc.replace("www.", "") or "Direct"
+            except Exception:
+                domain = "Direct"
+            source_counts[domain] += 1
+        else:
+            source_counts["Direct"] += 1
+
+    return JSONResponse({
+        "today": {"visitors": today_visitors, "page_views": today_views, "online_now": online_now},
+        "month": {"visitors": month_visitors, "page_views": month_views},
+        "top_pages": [{"path": r["path"], "views": r["n"]} for r in top_pages],
+        "sources": sorted([{"source": k, "visits": v} for k, v in source_counts.items()],
+                          key=lambda x: -x["visits"])[:10],
+        "devices": [{"device": r["device_type"], "visitors": r["n"]} for r in devices],
+        "countries": [{"country": r["country"], "visitors": r["n"]} for r in countries],
+        "campaigns": [{"campaign": r["utm_campaign"], "source": r["utm_source"], "visitors": r["n"]}
+                      for r in campaigns],
+        "events": [{"event": r["event"], "count": r["n"]} for r in event_totals],
+    }, headers={"X-Robots-Tag": "noindex, nofollow"})
+
+@app.get("/admin/analytics", response_class=HTMLResponse, include_in_schema=False)
+def admin_analytics_page():
+    try:
+        return open(os.path.join(os.path.dirname(__file__), "admin_analytics.html"),
+                    encoding="utf-8").read()
+    except FileNotFoundError:
+        raise HTTPException(500, "Admin analytics page file missing on server")
 
 
 @app.get("/health")

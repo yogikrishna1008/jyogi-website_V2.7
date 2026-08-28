@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Analytics — Jyogi Admin</title>
+<style>
+  :root{
+    --bg:#03010a; --bg2:#0a0220; --gold:#d4af37; --gold-soft:#e8c977;
+    --ink:#f5efe0; --muted:#c4a97a; --dim:rgba(245,239,224,0.4);
+    --border:rgba(212,175,55,0.18); --panel:#120a26;
+    --ok:#7fbf8f; --warn:#e0977f; --teal:#3dbfb0;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;line-height:1.6;min-height:100vh}
+  body{background-image:radial-gradient(ellipse at top, rgba(91,72,168,0.15) 0%, transparent 60%),
+                        radial-gradient(ellipse at bottom, rgba(212,175,55,0.04) 0%, transparent 50%);
+       background-attachment:fixed}
+  .wrap{max-width:1080px;margin:0 auto;padding:32px 20px 80px}
+  .hdr{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:28px;flex-wrap:wrap}
+  .hdr-l{display:flex;align-items:center;gap:12px}
+  .hdr-logo{font-family:Georgia,serif;font-size:22px;color:var(--gold);letter-spacing:.04em}
+  .hdr-badge{background:rgba(212,175,55,.1);border:1px solid var(--border);color:var(--gold);
+    font-size:10px;padding:4px 10px;border-radius:10px;letter-spacing:.15em;text-transform:uppercase}
+  .btn{font-family:inherit;font-size:13px;font-weight:600;color:var(--ink);background:var(--panel);
+    border:1px solid var(--border);border-radius:8px;padding:8px 16px;cursor:pointer}
+  .btn:hover{border-color:var(--gold)}
+
+  /* ── login (identical pattern to admin_applications.html) ── */
+  .login-box{max-width:340px;margin:80px auto;background:var(--panel);border:1px solid var(--border);
+    border-radius:14px;padding:32px}
+  .login-box h1{font-size:18px;margin:0 0 4px;color:var(--gold-soft)}
+  .login-box p{font-size:13px;color:var(--dim);margin:0 0 20px}
+  .login-box label{display:block;font-size:12px;color:var(--muted);margin:14px 0 6px}
+  .login-box input{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:8px;
+    color:var(--ink);padding:10px 12px;font-size:14px;font-family:inherit}
+  .login-box input:focus{outline:none;border-color:var(--gold)}
+  .login-box button{width:100%;margin-top:20px;background:linear-gradient(135deg,var(--gold),#a67c2e);
+    color:#1a1206;border:none;border-radius:8px;padding:11px;font-weight:700;font-size:14px;cursor:pointer}
+  .login-err{font-size:12px;color:var(--warn);margin-top:10px;display:none}
+
+  /* ── range tabs ── */
+  .tabs{display:flex;gap:6px;margin-bottom:22px;flex-wrap:wrap}
+  .tab{font-size:12px;font-weight:600;color:var(--muted);background:transparent;border:1px solid var(--border);
+    border-radius:100px;padding:6px 14px;cursor:pointer}
+  .tab.active{color:#1a1206;background:var(--gold);border-color:var(--gold)}
+
+  /* ── hero stat row ── */
+  .hero-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:14px}
+  .hstat{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:18px 20px}
+  .hstat b{display:block;font-size:28px;color:var(--gold-soft);font-family:Georgia,serif;font-variant-numeric:tabular-nums}
+  .hstat span{font-size:11px;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}
+  .hstat.online b{color:var(--teal)}
+  .hstat.online .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--teal);
+    margin-right:6px;animation:pulse 1.8s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+
+  .month-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:28px}
+
+  /* ── panels ── */
+  .panels{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+  .panel{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:20px 22px}
+  .panel h3{margin:0 0 14px;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+  .row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;
+    border-bottom:1px solid rgba(255,255,255,.04);font-size:13px}
+  .row:last-child{border:none}
+  .row-label{color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:70%}
+  .row-value{color:var(--gold-soft);font-weight:600;font-variant-numeric:tabular-nums;flex-shrink:0}
+  .bar-bg{flex:1;height:5px;background:rgba(255,255,255,.06);border-radius:4px;margin:0 10px;overflow:hidden}
+  .bar-fill{height:100%;background:var(--gold);border-radius:4px}
+  .empty-row{color:var(--dim);font-size:12.5px;padding:8px 0;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hdr">
+    <div class="hdr-l">
+      <span class="hdr-logo">Jyogi</span>
+      <span class="hdr-badge">Analytics</span>
+    </div>
+    <button class="btn" id="logoutBtn" style="display:none">Log out</button>
+  </div>
+
+  <div id="loginScreen" class="login-box">
+    <h1>Admin sign-in</h1>
+    <p>Sign in to view visitor analytics.</p>
+    <label for="u">Username</label>
+    <input type="text" id="u" autocomplete="username">
+    <label for="p">Password</label>
+    <input type="password" id="p" autocomplete="current-password">
+    <button id="loginBtn">Sign in</button>
+    <div class="login-err" id="loginErr"></div>
+  </div>
+
+  <div id="appScreen" style="display:none">
+
+    <div class="hero-stats">
+      <div class="hstat"><b id="statTodayVisitors">–</b><span>Visitors Today</span></div>
+      <div class="hstat"><b id="statTodayViews">–</b><span>Page Views Today</span></div>
+      <div class="hstat online"><b><span class="dot"></span><span id="statOnline">–</span></b><span>Online Now</span></div>
+    </div>
+    <div class="month-stats">
+      <div class="hstat"><b id="statMonthVisitors">–</b><span>Visitors This Month</span></div>
+      <div class="hstat"><b id="statMonthViews">–</b><span>Page Views This Month</span></div>
+    </div>
+
+    <div class="panels">
+      <div class="panel">
+        <h3>Top Pages</h3>
+        <div id="panelPages"></div>
+      </div>
+      <div class="panel">
+        <h3>Traffic Sources</h3>
+        <div id="panelSources"></div>
+      </div>
+      <div class="panel">
+        <h3>Devices</h3>
+        <div id="panelDevices"></div>
+      </div>
+      <div class="panel">
+        <h3>Locations</h3>
+        <div id="panelCountries"></div>
+      </div>
+      <div class="panel">
+        <h3>Campaigns (UTM)</h3>
+        <div id="panelCampaigns"></div>
+      </div>
+      <div class="panel">
+        <h3>Events</h3>
+        <div id="panelEvents"></div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+// Served BY the API itself (see /admin/analytics in api.py) — same-origin, no CORS.
+var API_BASE = '';
+
+async function checkSession(){
+  try{
+    var r = await fetch(API_BASE+'/api/admin/session', {credentials:'include'});
+    var d = await r.json();
+    if(d && d.authenticated){ showApp(); return; }
+  }catch(e){}
+  showLogin();
+}
+
+function showLogin(){
+  document.getElementById('loginScreen').style.display = '';
+  document.getElementById('appScreen').style.display = 'none';
+  document.getElementById('logoutBtn').style.display = 'none';
+}
+
+function showApp(){
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('appScreen').style.display = '';
+  document.getElementById('logoutBtn').style.display = '';
+  loadSummary();
+}
+
+document.getElementById('loginBtn').addEventListener('click', async function(){
+  var u = document.getElementById('u').value.trim();
+  var p = document.getElementById('p').value;
+  var err = document.getElementById('loginErr');
+  err.style.display = 'none';
+  try{
+    var r = await fetch(API_BASE+'/api/admin/login', {
+      method:'POST', credentials:'include',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({user:u, password:p})
+    });
+    if(!r.ok){ throw new Error((await r.json()).detail || 'Login failed'); }
+    showApp();
+  }catch(e){
+    err.textContent = e.message || 'Login failed';
+    err.style.display = '';
+  }
+});
+
+document.getElementById('logoutBtn').addEventListener('click', async function(){
+  try{ await fetch(API_BASE+'/api/admin/logout', {method:'POST', credentials:'include'}); }catch(e){}
+  showLogin();
+});
+
+function esc(s){ return (s==null?'':String(s)).replace(/[&<>"]/g, function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+
+function renderRows(containerId, items, labelKey, valueKey, opts){
+  opts = opts || {};
+  var el = document.getElementById(containerId);
+  if(!items || !items.length){ el.innerHTML = '<div class="empty-row">No data yet</div>'; return; }
+  var max = Math.max.apply(null, items.map(function(i){ return i[valueKey] || 0; }));
+  el.innerHTML = items.map(function(i){
+    var label = opts.labelFmt ? opts.labelFmt(i) : (i[labelKey] || 'Unknown');
+    var val = i[valueKey] || 0;
+    var pct = max > 0 ? Math.round((val/max)*100) : 0;
+    return '<div class="row">'
+      + '<span class="row-label">'+esc(label)+'</span>'
+      + '<div class="bar-bg"><div class="bar-fill" style="width:'+pct+'%"></div></div>'
+      + '<span class="row-value">'+val.toLocaleString()+'</span>'
+      + '</div>';
+  }).join('');
+}
+
+async function loadSummary(){
+  try{
+    var r = await fetch(API_BASE+'/api/admin/analytics/summary', {credentials:'include'});
+    if(r.status === 401){ showLogin(); return; }
+    var d = await r.json();
+
+    document.getElementById('statTodayVisitors').textContent = (d.today.visitors||0).toLocaleString();
+    document.getElementById('statTodayViews').textContent = (d.today.page_views||0).toLocaleString();
+    document.getElementById('statOnline').textContent = (d.today.online_now||0).toLocaleString();
+    document.getElementById('statMonthVisitors').textContent = (d.month.visitors||0).toLocaleString();
+    document.getElementById('statMonthViews').textContent = (d.month.page_views||0).toLocaleString();
+
+    renderRows('panelPages', d.top_pages, 'path', 'views');
+    renderRows('panelSources', d.sources, 'source', 'visits');
+    renderRows('panelDevices', d.devices, 'device', 'visitors', {labelFmt:function(i){return i.device || 'Unknown';}});
+    renderRows('panelCountries', d.countries, 'country', 'visitors');
+    renderRows('panelCampaigns', d.campaigns, 'campaign', 'visitors', {
+      labelFmt:function(i){ return i.campaign + (i.source ? ' · '+i.source : ''); }
+    });
+    renderRows('panelEvents', d.events, 'event', 'count');
+  }catch(e){
+    console.error('Analytics load failed', e);
+  }
+}
+
+checkSession();
+</script>
+</body>
+</html>

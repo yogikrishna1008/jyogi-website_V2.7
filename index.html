@@ -1155,12 +1155,26 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; line-height
     </div>
     <div class="footer-bottom">
       <span>© 2026 Jyogi.in — All rights reserved</span>
+      <span id="visitor-count" style="display:none;opacity:.7"></span>
       <span style="display:flex;align-items:center;gap:6px"><svg class="icon" style="width:13px;height:13px;color:#5A8A6A"><use href="#i-lock"/></svg>Secure payments via Razorpay</span>
     </div>
   </div>
 </footer>
+<script>
+(function(){
+  var API_BASE=(window.SITE_CONFIG&&window.SITE_CONFIG.apiBase)||'https://jyogi-api.onrender.com';
+  fetch(API_BASE+'/api/analytics/count').then(function(r){return r.json();}).then(function(d){
+    var el=document.getElementById('visitor-count');
+    if(el && d && typeof d.visitors_this_month==='number' && d.visitors_this_month>0){
+      el.textContent=d.visitors_this_month.toLocaleString()+' seekers visited this month';
+      el.style.display='inline';
+    }
+  }).catch(function(){});
+})();
+</script>
 
 <script src="crystals_data.js"></script>
+<script src="js/analytics.js"></script>
 <script>
 /* ─── CRYSTALS ─── */
 var V25_OPT_BASE = {

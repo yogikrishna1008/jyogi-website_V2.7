@@ -330,6 +330,7 @@ nav{position:sticky;top:0;z-index:100;background:var(--dark);backdrop-filter:blu
 const ACTIVE = BRACELETS.filter(b => b && b.id && b.active !== false);
 
 function openWhatsApp(msg){
+  if(window.jyogiTrack) jyogiTrack('whatsapp_click');
   window.open('https://wa.me/919437794561?text='+encodeURIComponent(msg),'_blank');
 }
 function navigateToCrystal(id){
@@ -515,5 +516,6 @@ function switchModalImg(thumbEl, src){
   thumbEl.classList.add('active');
 }
 </script>
+<script src="js/analytics.js"></script>
 </body>
 </html>
